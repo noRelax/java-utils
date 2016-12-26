@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE> New Document </TITLE>
+<META NAME="Generator" CONTENT="EditPlus">
+<META NAME="Author" CONTENT="">
+<META NAME="Keywords" CONTENT="">
+<META NAME="Description" CONTENT="">
+<script>
+var x=50,y=60//浮动广告的初始位置
+var xin =true,yin=true;//xin为真则向右运动，否则向左运动，
+						//yin为真则向下运动，否则向上运动
+var step=1;//移动的距离
+var delay=10;//移动的时间间隔
+function floatAD(){
+	var L=T=0;//L为左边界T为上边界
+	var R=document.body.offsetWidth-document.getElementById("fly").offsetWidth;
+	//层移动到祐边界
+	var B=document.body.offsetHeight-document.getElementById("fly").offsetHeight;
+	//层移动到下边界
+	document.getElementById("fly").style.left=x;//层移动后的左边界
+	document.getElementById("fly").style.top=y;//层移动后的上边界
+	x=x+step*(xin?1:-1);//判断水平方向
+	if(x<L){xin=true;x=L}//层到达边界后的处理
+	if(x>R){xin=false;x=R}
+	y=y+step*(yin?1:-1);
+	if(y<T){yin=true;y=T}
+	if(y>B){yin=false;y=B}
+	setTimeout("floatAD()",delay)
+}
+</script>
+</HEAD>
+
+<BODY onload="floatAD()">
+<div id="fly" style="position:absolute;left:16px;top:80px;width:265px;height:135px;z-index:1;">
+<a href="#"><img src="//laby_0007.jpg" width="264" height="134" border="0"></a>
+
+</div>
+</BODY>
+</HTML>
