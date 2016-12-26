@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>MetricsAnalyzer: Project Status</title>
+  </head>
+
+  <body>
+    <h1>MetricsAnalyzer: Project Status</h1>
+
+    <p>This is the first alpha release of MetricsAnalyzer. The following are known deficiencies, and will probably be addressed in the future:</p>
+
+    <ul>
+      <li>The JavaNCSS importer tries to skip metrics related to inner classes, because the JavaNCSS output for inner classes is ambiquous (two distinct inner classes may have the exact same name). It can easily be formally proven, that this problem in JavaNCSS output can not be entirely solved by MetricsAnalyzer (without the possiblity of associating the metrics incorrectly).</li>
+      <li>There is insufficient documentation at the moment.</li>
+      <li>Query visualization and export is missing.</li>
+      <li>There is no way to remap the relations produced by Importers. This makes it more difficult for the user to combine the outputs of third party Importers (in case someone ever writes those).</li>
+      <li>The code that collects metrics from the Importers and stores them to the database is probably rather slow at the moment. The code should be profiled and optimized.</li>
+    </ul>
+
+    <p>Contributions, such as</p>
+    <ul>
+      <li>constructive feedback,</li>
+      <li>importers,</li>
+      <li>queries,</li>
+      <li>documentation,</li>
+      <li>architecture (design &amp; implementation) for query visualization and export) and</li>
+      <li>success stories,</li>
+    </ul>
+    <p>will be appreciated and acknowledged! CVS write access is generally granted to developers who are willing to integrate and maintain major contributions to MetricsAnalyzer.</p>
+
+    <hr>
+
+<!-- Created: Sun Sep  8 21:00:08 EEST 2002 -->
+<!-- hhmts start -->
+Last modified: Sat Nov  2 08:30:08 EET 2002
+<!-- hhmts end -->
+  </body>
+</html>

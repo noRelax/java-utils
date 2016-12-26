@@ -1,0 +1,7 @@
+SELECT fpn.str AS from, tpn.str AS to
+FROM <#(emit (snapshot-tbl-name "dependency" selected-index))#> AS d
+, <#(emit (shared-tbl-name "str"))#> AS fpn
+, <#(emit (shared-tbl-name "str"))#> AS tpn
+WHERE d.from_package_id = fpn.id
+AND d.to_package_id = tpn.id
+ORDER BY fpn.str

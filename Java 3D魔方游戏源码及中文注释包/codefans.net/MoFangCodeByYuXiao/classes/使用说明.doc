@@ -1,0 +1,75 @@
+{\rtf1\ansi\ansicpg936\deff0\deflang1033\deftab425{\fonttbl{\f0\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f1\froman\fcharset0 Times New Roman;}}
+{\colortbl ;\red0\green127\blue0;\red0\green127\blue127;\red0\green0\blue127;}
+{\*\generator Msftedit 5.41.15.1503;}\viewkind4\uc1\pard\nowidctlpar\qj\cf1\lang2052\kerning2\f0\fs21\'bc\'fc\'c5\'cc\'b9\'a6\'c4\'dc\'bc\'fc\'b1\'ed\'a3\'ba\par
+\'b7\'bd\'b1\'e3\'b5\'d8\'b5\'c3\'b5\'bd\'b8\'f7\'d6\'d6\'cf\'d4\'ca\'be\'c4\'a3\'ca\'bd\'b5\'c4\'c4\'a7\'b7\'bd\'a3\'ac\'b1\'e3\'d3\'da\'c4\'e3\'b5\'c4\'b7\'d6\'ce\'f6\'ba\'cd\'b2\'e9\'bf\'b4\lang1033\f1\par
+\par
+\cf2 F1-\lang2052\f0\'c8\'a5\'b5\'f4\'ba\'cd\'cc\'ed\'bc\'d3\'b1\'b3\'be\'b0\'b2\'e3\lang1033\f1\par
+F2-\lang2052\f0\'c8\'a5\'b5\'f4\'ba\'cd\'cc\'ed\'bc\'d3\'d7\'d6\'c4\'bb\'b2\'e3\lang1033\f1\par
+F3-\lang2052\f0\'b3\'a1\'be\'b0\'b7\'c5\'b4\'f3\lang1033\f1\par
+F4-\lang2052\f0\'b3\'a1\'be\'b0\'cb\'f5\'d0\'a1\lang1033\f1\par
+F6-\lang2052\f0\'c4\'da\'b1\'ed\'c3\'e6\'c7\'d0\'bb\'bb\'a3\'ba\'c4\'da\'b1\'ed\'c3\'e6\'cf\'d4\'ca\'be-\'a1\'b5\'c4\'da\'b1\'ed\'c3\'e6\'b2\'bb\'cf\'d4\'ca\'be\lang1033\f1\par
+F7-\lang2052\f0\'cd\'e2\'b1\'ed\'c3\'e6\'c7\'d0\'bb\'bb\'a3\'ba\'cd\'e2\'b1\'ed\'c3\'e6\'cf\'d4\'ca\'be-\'a1\'b5\'cd\'e2\'b1\'ed\'c3\'e6\'b2\'bb\'cf\'d4\'ca\'be\lang1033\f1\par
+F8-\lang2052\f0\'d7\'f8\'b1\'ea\'d6\'e1\'c7\'d0\'bb\'bb\lang1033\f1 (4\lang2052\f0\'d6\'d6\lang1033\f1 )\lang2052\f0\'a3\'ba\'b4\'f3\'d6\'e1\'ba\'cd\'d0\'a1\'d6\'e1 \lang1033\f1 -\lang2052\f0\fs20\'a1\'b5\lang1033\f1\fs21  \lang2052\f0\'b4\'f3\'d6\'e1 \lang1033\f1 -\lang2052\f0\fs20\'a1\'b5\fs21\'ce\'de \lang1033\f1 -\lang2052\f0\fs20\'a1\'b5\lang1033\f1\fs21  \lang2052\f0\'d0\'a1\'d6\'e1 \lang1033\f1 -\lang2052\f0\fs20\'a1\'b5\lang1033\f1\fs21  \lang2052\f0\'b4\'f3\'d6\'e1\'ba\'cd\'d0\'a1\'d6\'e1\lang1033\f1\par
+F9-\lang2052\f0\'bf\'e9\'bc\'e4\'be\'e0\'c7\'d0\'bb\'bb\fs20\'a3\'ba\lang1033\f1\fs21 0.25-\lang2052\f0\fs20\'a1\'b5\lang1033\f1\fs21 0.26-\lang2052\f0\fs20\'a1\'b5\lang1033\f1\fs21 ...-\lang2052\f0\fs20\'a1\'b5\lang1033\f1\fs21 0.50-\lang2052\f0\fs20\'a1\'b5\lang1033\f1\fs21 0.23\par
+F11-\lang2052\f0\'cd\'b8\'c3\'f7\'c4\'a3\'ca\'bd\'c7\'d0\'bb\'bb\'a3\'a8\'b9\'b2\lang1033\f1 17\lang2052\f0\'d6\'d6\lang1033\f1 ),5\lang2052\f0\'d6\'d6\'cd\'b8\'c3\'f7\lang1033\f1 (NONE,FASTEST,NICEST,SCREEN_DOOR,BLENDED)\lang2052\f0\'a3\'ac\lang1033\f1 4\lang2052\f0\'d6\'d6\'cd\'b8\'c3\'f7\'b6\'c8\lang1033\f1 (20%,40%,60%,80%)\par
+F12-\lang2052\f0\'d7\'d4\'b6\'a8\'d2\'e5\'b1\'e0\'ba\'c5\'ba\'cd\'c4\'ac\'c8\'cf\'b1\'e0\'ba\'c5\'c7\'d0\'bb\'bb\'b9\'a6\'c4\'dc\lang1033\f1 (\lang2052\f0\'c8\'fd\'d6\'d6\lang1033\f1 )\lang2052\f0\'a3\'ba\'c4\'ac\'c8\'cf\'b1\'e0\'ba\'c5\lang1033\f1 -\lang2052\f0\fs20\'a1\'b5\fs21\'d7\'d4\'b6\'a8\'d2\'e5\'b1\'e0\'ba\'c5\lang1033\f1 -\lang2052\f0\fs20\'a1\'b5\fs21\'ce\'de\'b1\'e0\'ba\'c5\lang1033\f1 -\lang2052\f0\fs20\'a1\'b5\fs21\'c4\'ac\'c8\'cf\'b1\'e0\'ba\'c5\lang1033\f1\par
+\cf0\par
+\cf1\lang2052\f0\'bc\'fc\'c5\'cc\'b2\'d9\'d7\'f7\'bc\'fc\'b1\'ed\'a3\'ba\lang1033\f1\par
+\par
+\cf2 type=0:\lang2052\f0\'c8\'c6\lang1033\f1 X\lang2052\f0\'d6\'e1\'d5\'fd\'cf\'f2\'b5\'c4\'d0\'fd\'d7\'aa\'bd\'c7\lang1033\f1\par
+type=1:\lang2052\f0\'c8\'c6\lang1033\f1 Y\lang2052\f0\'d6\'e1\'d5\'fd\'cf\'f2\'b5\'c4\'d0\'fd\'d7\'aa\'bd\'c7\lang1033\f1\par
+type=2\lang2052\f0\'c8\'c6\lang1033\f1 Z\lang2052\f0\'d6\'e1\'d5\'fd\'cf\'f2\'b5\'c4\'d0\'fd\'d7\'aa\'bd\'c7\lang1033\f1\par
+\par
+arg=\lang2052\f0\'d0\'fd\'d7\'aa\'bd\'c7\'b6\'c8\lang1033\f1\par
+\par
+\lang2052\f0\fs20\'c0\'fd\'c8\'e7\'a3\'ba\lang1033\f1\fs21 Q(E):type=0,layer=0,arg=90\lang2052\f0\'b1\'ed\'ca\'be \lang1033\f1 Q\lang2052\f0\'bc\'fc\'ce\'aa\lang1033\f1 :\lang2052\f0\'c8\'c6\lang1033\f1 X\lang2052\f0\'d6\'e1\lang1033\f1 ,\lang2052\f0\'b5\'da\lang1033\f1 0\lang2052\f0\'b2\'e3\'b5\'c4\'d0\'fd\'d7\'aa\lang1033\f1 ,E\lang2052\f0\'ce\'aa\'c4\'e6\'b1\'e4\'bb\'bb\lang1033\f1 .\par
+\par
+\cf3 Q(E):type=0,layer=0,arg=90\par
+W(W):type=0,layer=0,arg=180\par
+E(Q):type=0,layer=0,arg=-90\par
+A(D):type=0,layer=1,arg=90\par
+S(S):type=0,layer=1,arg=180\par
+D(A):type=0,layer=1,arg=-90\par
+Z(C):type=0,layer=2,arg=90\par
+X(X):type=0,layer=2,arg=180\par
+C(Z):type=0,layer=2,arg=-90\par
+R(Y):type=1,layer=0,arg=90\par
+T(T):type=1,layer=0,arg=180\par
+Y(R):type=1,layer=0,arg=-90\par
+F(H):type=1,layer=1,arg=90\par
+G(G):type=1,layer=1,arg=180\par
+H(F):type=1,layer=1,arg=-90\par
+V(N):type=1,layer=2,arg=90\par
+B(B):type=1,layer=2,arg=180\par
+N(V):type=1,layer=2,arg=-90\par
+U(O):type=2,layer=0,arg=90\par
+I(I):type=2,layer=0,arg=180\par
+O(U):type=2,layer=0,arg=-90\par
+J(L):type=2,layer=1,arg=90\par
+K(K):type=2,layer=1,arg=180\par
+L(J):type=2,layer=1,arg=-90\par
+M(M):type=2,layer=2,arg=90\par
+,(.):type=2,layer=2,arg=180\par
+.(M):type=2,layer=2,arg=-90\par
+\par
+\cf1\lang2052\f0\'d7\'b4\'cc\'ac\'ca\'fd\'be\'dd\'b7\'d6\'ce\'f6\'b1\'ed\'b5\'c4\'ca\'b9\'d3\'c3\'a3\'ba\lang1033\f1\par
+\par
+\cf2\lang2052\f0\'b5\'da\'d2\'bb\'c1\'d0\'ce\'aa\'cf\'b5\'cd\'b3\'b1\'e0\'ba\'c5\'a3\'ac\'d4\'da\'b3\'a1\'be\'b0\'d6\'d0\'d3\'d0\'ca\'fd\'d7\'d6\'b1\'ea\'c3\'f7\'a1\'a3\'b5\'da\'b6\'fe\'c1\'d0\'ce\'aa\'d3\'c3\'bb\'a7\'d7\'d4\'b6\'a8\'d2\'e5\'b5\'c4\'b1\'e0\'ba\'c5\'a3\'ac\'d3\'c3\lang1033\f1 F12\lang2052\f0\'bc\'fc\'bf\'c9\'c7\'d0\'bb\'bb\'b5\'bd\'d7\'d4\'b6\'a8\'d2\'e5\'b1\'e0\'ba\'c5\'d7\'b4\'cc\'ac\'a1\'a3\'d3\'c3\'bb\'a7\'d7\'d4\'bc\'ba\'b1\'e0\'ba\'c5\'b5\'c4\'b7\'bd\'ca\'bd\'ca\'c7\'d4\'da\'ca\'fd\'be\'dd\'b7\'d6\'ce\'f6\'b1\'ed\'d6\'d0\'d6\'b1\'bd\'d3\'b1\'e0\'bc\'ad\'a1\'a3\'c3\'bf\'b8\'f6\'bf\'e9\'b5\'c4\'ce\'bb\'d6\'c3\'bb\'f2\'d5\'df\'b7\'bd\'cf\'f2\'d2\'b2\'bf\'c9\'d4\'da\'b1\'ed\'d6\'d0\'b1\'e0\'bc\'ad\'a1\'a3\'b5\'ab\'ca\'c7\'b2\'d9\'d7\'f7\'c4\'d1\'b6\'c8\'bd\'cf\'b8\'df\'a1\'a3\'b1\'e0\'bc\'ad\'cd\'ea\'b3\'c9\'ba\'f3\'a3\'ac\'b5\'e3\'bb\'f7\'b2\'cb\'b5\'a5 \'d7\'b4\'cc\'ac\'ca\'fd\'be\'dd\'b1\'ed-\'ca\'b9\'d3\'c3\'d4\'da\'b1\'ed\'d6\'d0\'d0\'de\'b8\'c4\'ba\'f3\'b5\'c4\'d7\'b4\'cc\'ac\'ca\'fd\'be\'dd \'c8\'b7\'c8\'cf\'d0\'de\'b8\'c4\'a1\'a3\lang1033\f1\par
+\par
+\cf1\lang2052\f0\'b7\'bd\'cf\'f2\'d7\'b4\'cc\'ac\'b1\'e4\'bb\'af\'b1\'ed\'ba\'cd\'cb\'d1\'cb\'f7\'b1\'ed\'d6\'bb\'b0\'ef\'d6\'fa\'c0\'ed\'bd\'e2\'c4\'a7\'b7\'bd\'b5\'c4\'bd\'e1\'b9\'b9\lang1033\f1 :\par
+\par
+\cf2\lang2052\f0\'d6\'a4\'c3\'f7\'c1\'cb\'cd\'a8\'b9\'fd\'d0\'fd\'d7\'aa\'d3\'d0\lang1033\f1 24\lang2052\f0\'b8\'f6\'b7\'bd\'cf\'f2\lang1033\f1\par
+\lang2052\f0\'d6\'a4\'c3\'f7\'c1\'cb\'b4\'d3\'c4\'b3\'b8\'f6\'b7\'bd\'cf\'f2\'b1\'e4\'bb\'af\'b5\'bd\'c4\'b3\'b8\'f6\'b7\'bd\'cf\'f2\lang1033\f1 ,\lang2052\f0\'bb\'f2\'d5\'df\'b4\'d3\'d2\'bb\'b8\'f6\'ce\'bb\'d6\'c3\'b1\'e4\'bb\'af\'b5\'bd\'c1\'ed\'d2\'bb\'b8\'f6\'ce\'bb\'d6\'c3\'a3\'ac\'ca\'b9\'d3\'c3\lang1033\f1 1\lang2052\f0\'b5\'bd\lang1033\f1 2\lang2052\f0\'b2\'bd\'be\'cd\'c4\'dc\'cd\'ea\'b3\'c9\'a1\'a3\'b2\'a2\'c1\'d0\'be\'d9\'b3\'f6\'c1\'cb\'b8\'f7\'d6\'d6\'d0\'fd\'d7\'aa\'c2\'b7\'be\'b6\lang1033\f1\par
+\par
+\cf1\lang2052\f0\'ca\'f3\'b1\'ea\'b2\'d9\'d7\'f7\'a3\'ba\par
+\cf2\fs20\'d2\'aa\'c7\'f3\'ca\'f3\'b1\'ea\'ba\'ac\'d3\'d0\'d7\'f3\'bc\'fc\'a3\'ac\'d6\'d0\'bc\'fc\'a3\'ac\'d3\'d2\'bc\'fc\'c8\'fd\'b8\'f6\'bc\'fc\par
+\'d6\'d0\'bc\'fc\'d3\'c3\'c0\'b4\'b8\'c4\'b1\'e4\'ca\'f3\'b1\'ea\'b5\'c4\'b9\'a6\'c4\'dc\'a1\'a3\par
+\'cf\'b5\'cd\'b3\'c4\'ac\'c8\'cf\'ce\'aa\'d1\'a1\'d4\'f1\'b9\'a6\'c4\'dc\'a3\'ba\'d7\'f3\'bc\'fc\'d3\'c3\'c0\'b4\'d1\'a1\'d4\'f1\'b7\'bd\'bf\'e9\'a3\'ac\'d4\'da\'b1\'bb\'d1\'a1\'d6\'d0\'b7\'bd\'bf\'e9\'c9\'cf\'b5\'e3\'bb\'f7\'d3\'d2\'bc\'fc\'d3\'c3\'c0\'b4\'d1\'a1\'d4\'f1\'b8\'c3\'b7\'bd\'bf\'e9\'b3\'af\'c4\'c4\'b8\'f6\'b7\'bd\'cf\'f2\'d0\'fd\'d7\'aa\'a1\'a3\'c7\'d0\'bb\'bb\'b5\'bd\'d0\'fd\'d7\'aa\'b9\'a6\'c4\'dc\'ba\'f3\'a3\'ba\'ca\'f3\'b1\'ea\'b5\'c4\'d1\'a1\'d4\'f1\'b9\'a6\'c4\'dc\'b1\'bb\'bd\'fb\'d6\'b9\'a3\'ac\'d7\'f3\'bc\'fc\'b5\'e3\'bb\'f7\'c8\'ce\'d2\'e2\'b7\'bd\'bf\'e9\'ba\'f3\'a3\'ac\'c8\'c6\'d7\'f8\'b1\'ea\'d6\'e1\'c4\'e6\'ca\'b1\'d5\'eb\'d7\'aa90\'b6\'c8\'a3\'ac\'d3\'d2\'bc\'fc\'d4\'f2\'cb\'b3\'ca\'b1\'d5\'eb\'d7\'aa90\'b6\'c8\par
+\par
+\cf1\fs21\'b2\'cb\'b5\'a5\'b5\'c4\'ca\'b9\'d3\'c3\'a3\'ba\par
+\cf2\fs20\'d3\'ce\'cf\'b7-\'d0\'c2\'d3\'ce\'cf\'b7\'a3\'ba\'bf\'aa\'ca\'bc\'d2\'bb\'b8\'f6\'d0\'c2\'c4\'a7\'b7\'bd\par
+\'d3\'ce\'cf\'b7-\'b4\'f2\'bf\'aa\'d3\'ce\'cf\'b7\'d7\'b4\'cc\'ac\'a3\'ba\'b4\'f2\'bf\'aa\'b1\'a3\'b4\'e6\'b9\'fd\'b5\'c4\'d7\'b4\'cc\'ac\'ce\'c4\'bc\'fe\par
+\'d3\'ce\'cf\'b7-\'b1\'a3\'b4\'e6\'d3\'ce\'cf\'b7\'d7\'b4\'cc\'ac\'a3\'ba\'b1\'a3\'b4\'e6\'cf\'d6\'d4\'da\'b5\'c4\'c4\'a7\'b7\'bd\'d7\'b4\'cc\'ac\par
+\lang1033\f1\fs21\par
+}
+ 

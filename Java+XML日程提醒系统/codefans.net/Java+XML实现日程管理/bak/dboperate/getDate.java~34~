@@ -1,0 +1,11 @@
+package dboperate;
+
+import java.awt.*;
+import java.applet.*;
+public class getDate{
+    public static void main(String args[]){
+        AudioClip audio;
+        audio = getAudioClip(getCodeBase(),"fywz.mid");
+        audio.play();
+    }
+}

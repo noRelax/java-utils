@@ -1,0 +1,133 @@
+package dboperate;
+import java.io.*;
+import java.util.*;
+import org.w3c.dom.*;
+import javax.xml.parsers.*;
+import org.xml.sax.SAXException;
+
+public class xmlClass {
+/*
+public String title;
+public String content;
+public String className;
+public String model;
+public String time;
+public String confirm;
+public String youxiao;
+public String auditing;
+*/
+public xmlClass(){
+    /**
+     * DocumentBuilderFactory:定义工厂 API，使应用程序能够从 XML 文档获取生成 DOM 对象树的解析器
+     * newInstance()获取 DocumentBuilderFactory 的新实例
+     */
+    DocumentBuilderFactory domfac = DocumentBuilderFactory.newInstance();
+    try {
+        /**
+         * newDocumentBuilder():使用当前配置的参数创建一个新的 DocumentBuilder 实例
+         * 如果无法创建满足所请求配置的 DocumentBuilder，将抛出ParserConfigurationException异常。
+         */
+        DocumentBuilder dombuilder = domfac.newDocumentBuilder();
+        InputStream is = new FileInputStream("data/Not_Forget.xml");//FileInputStream 从文件系统中的某个文件中获取输入字节
+        // Document 接口表示整个 HTML 或 XML 文档。从概念上讲，它是文档树的根，并提供对文档数据的基本访问
+        Document doc = dombuilder.parse(is);
+
+        /**
+         * Element 接口表示 HTML 或 XML 文档中的一个元素。元素可能有与它们相关的属性；
+         * 由于 Element 接口继承自 Node，所以可以使用一般 Node 接口属性 attributes
+         *  来获得元素所有属性的集合。Element 接口上有通过名称获得 Attr 对象或通过名称
+         * 获得属性值的方法。在 XML 中（其中的属性值可能包含实体引用），应该获得 Attr
+         * 对象来检查表示属性值的可能相当复杂的子树。
+         */
+        Element root = doc.getDocumentElement();
+        /**
+         * NodeList 接口提供对节点的有序集合的抽象，没有定义或约束如何实现此集合。
+         * DOM 中的 NodeList 对象是活动的。 NodeList 中的项可以通过从 0 开始的整数索引进行访问。
+         * getChildNodes()方法:A NodeList that contains all children of this node.
+         * If there are no children, this is a NodeList containing no nodes.
+         */
+        NodeList notForget = root.getChildNodes();
+        if (notForget != null) {
+            for (int i = 0; i < notForget.getLength(); i++) {
+                //Node 接口是整个文档对象模型的主要数据类型。它表示该文档树中的单个节点。
+                Node notForgetMemoire = notForget.item(i);
+                //getNodeType():表示基础对象的类型的节点. ELEMENT_NODE表示:该节点为 Element
+                if (notForgetMemoire.getNodeType() == Node.ELEMENT_NODE) {
+                    /**
+                     * getAttributes(): 包含此节点的属性的 NamedNodeMap（如果它是 Element）；否则为 null。
+                     * getNodeValue():此节点的值，取决于其类型
+                     */
+                    //String email = notForgetMemoire.getAttributes().getNamedItem("email").getNodeValue();
+                    //System.out.println(email);
+                    //getFirstChild():此节点的第一个子节点.getNextSibling():直接在此节点之后的节点
+                    for (Node node = notForgetMemoire.getFirstChild(); node != null; node = node.getNextSibling()) {
+                        if (node.getNodeType() == Node.ELEMENT_NODE) {
+                            if (node.getNodeName().equals("title")) {
+                                String title = node.getFirstChild().getNodeValue();
+                                System.out.println(title);
+                            }
+                            if (node.getNodeName().equals("content")) {
+                                String content = node.getFirstChild().getNodeValue();
+                                System.out.println(content);
+                            }
+                            if (node.getNodeName().equals("className")) {
+                                String className = node.getFirstChild().getNodeValue();
+                                System.out.println(className);
+                            }
+                            if (node.getNodeName().equals("model")) {
+                                String model = node.getFirstChild().getNodeValue();
+                                System.out.println(model);
+                            }
+
+                            if (node.getNodeName().equals("time")) {
+                                String time = node.getFirstChild().getNodeValue();
+                                System.out.println(time);
+                            }
+
+                            if (node.getNodeName().equals("confirm")) {
+                                String confirm = node.getFirstChild().getNodeValue();
+                                System.out.println(confirm);
+                            }
+
+                            if (node.getNodeName().equals("youxiao")) {
+                                String youxiao = node.getFirstChild().getNodeValue();
+                                System.out.println(youxiao);
+                            }
+
+
+                            if (node.getNodeName().equals("auditing")) {
+                                String auditing = node.getFirstChild().getNodeValue();
+                                System.out.println(auditing);
+                            }
+
+                        }
+                    }//end for
+                }//end if
+            }//end for
+        }//end if
+    } catch (ParserConfigurationException e) {
+        e.printStackTrace();
+    } catch (FileNotFoundException e) {
+        e.printStackTrace();
+    } catch (SAXException e) {
+        e.printStackTrace();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+public static void main(String[] args) {
+    new xmlClass();
+}
+}
+
+
+
+
+
+
+
+
+
+
+

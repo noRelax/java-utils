@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Determine the release filename
+read -p "Revision (Single Digit): " revision
+
+export datestr=`date +%y.%m.%d`
+export basename=metricsanalyzer.${datestr}-${revision}
+
+echo Release will be: $basename
+
+# Build everything
+cd ../../minijlisp/script
+./build-jar
+
+cd ../../metricsanalyzer/script
+./build-jar
+./build-javadoc
+
+# Run tests
+# TBD!
+
+# Create release file
+mkdir ../../tmp
+cd ../../tmp
+
+cp -r ../metricsanalyzer .
+cp ../minijlisp/minijlisp.jar ./metricsanalyzer/minijlisp.jar
+rm -rf `find . -path '*.class' -o -path '*/local' -o -path '*CVS*' -o -path '*/prj.el'`
+tar -cjf ../${basename}.tar.bz2 metricsanalyzer
+tar -czf ../${basename}.tar.gz metricsanalyzer
+zip -r9q ../${basename}.zip metricsanalyzer
+cd ..
+
+# Upload to SourceForge
+echo "bin
+cd /incoming
+put ${basename}.tar.bz2
+put ${basename}.tar.gz
+put ${basename}.zip
+bye
+" | pftp upload.sourceforge.net
+
+# Remove temporary files
+rm -rf ${basename}.tar.bz2 ${basename}.tar.gz ${basename}.zip tmp

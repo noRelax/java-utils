@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-2.5.xsd" default-lazy-init="true">
+
+
+	<!-- 定义数据源的Bean ，给Hibernate的sessionFactory-->
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver">
+		</property>
+		<property name="url"
+			value="jdbc:oracle:thin:@192.168.1.3:1521:ora9">
+		</property>
+		<property name="username" value="scott"></property>
+		<property name="password" value="tiger"></property>
+	</bean>
+	
+<!-- 定义Hibernate的sessionFactory，通过该Bean，可以获得Hibernate的Session-->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.Oracle9Dialect
+				</prop>
+				<!--设置二级缓冲-->
+				<prop key="hibernate.cache.provider_class">
+					org.hibernate.cache.EhCacheProvider
+				</prop>
+				<!--设置二级缓冲，打开查询缓冲-->
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<!--设置显示Hibernate操作的SQL语句-->
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>				
+				<value>
+					com/v512/example/model/Product.hbm.xml
+				</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="productDao" class="com.v512.example.dao.hibernate.ProductDaoHibernate">
+	<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="productManager" class="com.v512.example.service.impl.ProductManagerImpl">
+	<property name="productDao" ref="productDao"></property>
+	<property name="compassTemplate" ref="compassTemplate"></property>
+	</bean>
+	
+	<bean id="productBean" class="com.v512.example.action.ProductAction" scope="prototype">
+	<property name="productManager" ref="productManager"></property>
+	
+	</bean>
+	
+	
+		<!-- 配置事务管理器 -->	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory"/>
+		</property>
+	</bean>
+    
+    <!-- 配置事务特性 ，配置add、delete和update开始的方法，事务传播特性为required-->       
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+    	<tx:attributes>
+    		<tx:method name="insert*" propagation="REQUIRED"/>
+    		<tx:method name="delete*" propagation="REQUIRED"/>
+    		<tx:method name="update*" propagation="REQUIRED"/>
+    		<tx:method name="*" read-only="true"/>
+    	</tx:attributes>
+    </tx:advice>
+    
+    <!-- 配置那些类的方法进行事务管理，当前cn.com.jobedu.oa.service包中的子包、类中所有方法需要，还需要参考tx:advice的设置 -->
+    <aop:config>
+    	<aop:pointcut id="allManagerMethod" expression="execution (* com.v512.example.service.*.*(..))"/>
+    	<aop:advisor advice-ref="txAdvice" pointcut-ref="allManagerMethod"/>
+    </aop:config>        
+	
+	
+	</beans>

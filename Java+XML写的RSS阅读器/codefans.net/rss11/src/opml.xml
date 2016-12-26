@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="GB2312"?>
+
+<opml version="1.1">
+  <head />
+  <body>
+    <outline text="学生清华门户网站：视听媒体" xmlUrl="http://rss.student.tsinghua.edu.cn/rss2.aspx?CatID=05f07ee4-8e2b-4762-9251-89fbf84813ff" />
+    <outline text="ccw圈点" xmlUrl="http://rss.ccw.com.cn/news2/1.xml" />
+    <outline text="国内新闻" xmlUrl="http://rss.xinhuanet.com/rss/native.xml" />
+    <outline text="新闻中心-新闻要闻" xmlUrl="http://rss.sina.com.cn/news/marquee/ddt.xml" />
+    <outline text="IT168-视频中心" xmlUrl="http://rss.it168.com/txt/43.xml" />
+    <outline text="蓝色理想 -  技术文档" xmlUrl="http://www.blueidea.com/tech/rss.xml" />
+    <outline text="civ3的自习室" xmlUrl="http://blog.csdn.net/civ3/Rss.aspx" />
+    <outline text="BlogJava-最新评论区" xmlUrl="http://www.blogjava.net/rss.aspx?id=-11" />
+    <outline text="太平洋下载中心－软件下载" xmlUrl="http://dl.pconline.com.cn/rss/soft1.xml" />
+    <outline text="最新书目—JAVA技术" xmlUrl="http://www.duxiu.com:8080/rss/RSS/CJ.xml" />
+    <outline text="中国XML论坛" xmlUrl="http://bbs.xml.org.cn/rss.asp" />
+    <outline text="365Key-天天网摘 - keso的网摘" xmlUrl="http://www.365key.com/rss/keso//" />
+  </body>
+</opml>
+

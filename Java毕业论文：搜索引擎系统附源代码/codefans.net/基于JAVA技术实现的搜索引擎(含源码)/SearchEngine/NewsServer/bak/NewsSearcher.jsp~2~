@@ -1,0 +1,38 @@
+<%@ page contentType="text/html; charset=GBK" %>
+<%@ page errorPage="NewsSearcher_error.jsp" %>
+<html>
+<head>
+<title>
+NewsSearcher
+</title>
+</head>
+<jsp:useBean id="newsSearcherBeanId" scope="session" class="newsserver.NewsSearcherBean" />
+<jsp:setProperty name="newsSearcherBeanId" property="*" />
+<body bgcolor="#ffffff">
+<h1>
+JBuilder Generated JSP
+</h1>
+<form method="post">
+<br>Enter new value   :  <input name="sample"><br>
+<br><br>
+<input type="submit" name="Submit" value="Submit">
+<input type="reset" value="Reset">
+<br>
+Value of Bean property is :<jsp:getProperty name="newsSearcherBeanId" property="sample" />
+</form>
+
+<center>
+	<form name="search" action="results.jsp" method="get">
+		<p>
+			<input name="query" size="44"/>&nbsp;Search Criteria
+		</p>
+		<p>
+			<input name="maxresults" size="4" value="100"/>&nbsp;Results Per Page&nbsp;
+			<input type="submit" value="Search"/>
+		</p>
+        </form>
+</center>
+
+
+</body>
+</html>

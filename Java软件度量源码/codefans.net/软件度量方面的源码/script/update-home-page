@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# TBD: tar bz2 the homepages, scp the tar file and untar the file on the server
+
+./verify-html
+
+# Read the user name first
+read -p "(SourceForge) User name: " user
+
+export htdocs="/home/groups/m/me/metricsanalyzer/htdocs"
+export account="${user}@shell.sourceforge.net"
+
+# Build stuff for homepages
+./build-javadoc
+
+# Compose home page content in a tmp dir
+mkdir tmp
+cp -r ../doc tmp
+cp ../index.html tmp
+rm -rf `find tmp -path '*CVS*'`
+chmod a+rx `find tmp -path '*'`
+
+# Remove the old pages
+ssh ${account} "rm -rf ${htdocs}/*"
+
+# Transfer the home page content to the server
+scp -r -p tmp/* "${account}:${htdocs}"
+
+# Remove tmp dir
+rm -rf tmp

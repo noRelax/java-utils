@@ -1,0 +1,23 @@
+<# (if (not (= 2 (array-length selected-indices))) (failwith "Please select exactly two snapshots.") (begin #>
+SELECT pn.str || '.' || cn.str || '.' || fn.str AS function_added_or_changed, ncss, ccn
+FROM (
+  SELECT * FROM <#(emit (snapshot-tbl-name "function" (array-ref selected-indices 0)))#>
+  EXCEPT
+  SELECT * FROM <#(emit (snapshot-tbl-name "function" (array-ref selected-indices 1)))#>
+) AS f
+, <#(emit (shared-tbl-name "str"))#> AS fn
+, <#(emit (shared-tbl-name "str"))#> AS cn
+, <#(emit (shared-tbl-name "str"))#> AS pn
+WHERE f.function_id = fn.id AND f.class_id = cn.id AND f.package_id = pn.id
+;
+SELECT pn.str || '.' || cn.str || '.' || fn.str AS function_removed
+FROM (
+  SELECT function_id, class_id, package_id FROM <#(emit (snapshot-tbl-name "function" (array-ref selected-indices 1)))#>
+  EXCEPT
+  SELECT function_id, class_id, package_id FROM <#(emit (snapshot-tbl-name "function" (array-ref selected-indices 0)))#>
+) AS f
+, <#(emit (shared-tbl-name "str"))#> AS fn
+, <#(emit (shared-tbl-name "str"))#> AS cn
+, <#(emit (shared-tbl-name "str"))#> AS pn
+WHERE f.function_id = fn.id AND f.class_id = cn.id AND f.package_id = pn.id
+<# )) #>

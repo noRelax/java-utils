@@ -1,0 +1,292 @@
+package list_all;
+
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.tree.*;
+import java.awt.BorderLayout;
+import com.borland.jbcl.layout.XYLayout;
+import com.borland.jbcl.layout.*;
+import javax.swing.BorderFactory;
+import java.awt.Color;
+import dboperate.*;
+import javax.swing.table.TableColumn;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+import main_frame.*;
+
+/**
+ * <p>Title: </p>
+ *
+ * <p>Description: </p>
+ *
+ * <p>Copyright: Copyright (c) 2007</p>
+ *
+ * <p>Company: </p>
+ *
+ * @author not attributable
+ * @version 1.0
+ */
+
+public class List_All extends JFrame {
+    mainFrame main_frame = null; //用来更改主窗体的相关信息.
+    xmlConn conn = null; //new xmlConn("Not_Forget", 9);
+    XYLayout xYLayout1 = new XYLayout();
+    JPanel jPanel1 = new JPanel();
+    XYLayout xYLayout2 = new XYLayout();
+    JPanel jPanel2 = new JPanel();
+    JPanel jPanel3 = new JPanel();
+    XYLayout xYLayout3 = new XYLayout();
+    JScrollPane jsp = new JScrollPane(null);
+    JScrollPane jScrollPane1 = new JScrollPane();
+    String[] colHeads = {"编号", "标题", "提醒内容", "所属类别", "提醒时间"};
+    Object[][] data = null; //conn.getData(); //从xml读取所有的数据.
+    Object tableData[][] = null; //conn.getAllList(data);
+    JTable jTable1 = null; //new JTable(tableData, colHeads);
+    JTable jTable2 = null;
+    public String selectID = new String("");
+    JTree jTree1 = null;
+    XYLayout xYLayout4 = new XYLayout();
+//选中的树节点的名称。
+    String TreeName;
+    public List_All() {
+        this.conn = new xmlConn("Not_Forget", 9);
+        this.data = conn.getData(); //从xml读取所有的数据.
+        this.tableData = conn.getAllList(data);
+        jTable1 = new JTable(this.tableData, this.colHeads);
+//初始化树
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode(
+                " ^_^ Not_Forget");
+        DefaultMutableTreeNode branch = new DefaultMutableTreeNode("我的分组");
+        root.add(branch); //有多个就多加几个root.add();
+        branch.add(new DefaultMutableTreeNode("普通提醒"));
+        branch.add(new DefaultMutableTreeNode("生日聚会"));
+        branch.add(new DefaultMutableTreeNode("重要提醒"));
+        branch.add(new DefaultMutableTreeNode("约会提醒"));
+        branch.add(new DefaultMutableTreeNode("日程计划"));
+        branch.add(new DefaultMutableTreeNode("其它提醒"));
+        this.jTree1 = new JTree(root);
+        this.jTree1.expandRow(1);
+        try {
+            jbInit();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    private void jbInit() throws Exception {
+        this.setSize(500, 300);
+        getContentPane().setLayout(xYLayout1);
+        jPanel1.setBackground(new Color(234, 228, 230));
+        jPanel1.setLayout(xYLayout2);
+        jPanel2.setBackground(new Color(236, 233, 255));
+        jPanel2.setBorder(BorderFactory.createEtchedBorder());
+        jPanel2.setLayout(xYLayout4);
+        jPanel3.setBackground(new Color(236, 233, 255));
+        jPanel3.setBorder(BorderFactory.createEtchedBorder());
+        jPanel3.setLayout(xYLayout3);
+        xYLayout1.setWidth(500);
+        jTree1.addTreeSelectionListener(new
+                                        List_All_jTree1_treeSelectionAdapter(this));
+        this.getContentPane().add(jPanel1, new XYConstraints(0, 0, 500, 260));
+        jPanel1.add(jPanel2, new XYConstraints(0, 0, 123, 260));
+        jPanel1.add(jPanel3, new XYConstraints(126, 1, 373, 260));
+        this.refreshJtableShow();
+        this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+    }
+    /**
+     * 设置id
+     */
+    public void setSelectID() {
+        this.selectID = "";
+    }
+
+    /**
+     * 返回该面板。
+     * @return JPanel
+     */
+    public JPanel getAllListPanel() {
+        return this.jPanel1;
+    }
+
+    /**
+     * 返回当前表格中共有多少条记录。
+     * @return int
+     */
+    public int getMemoireCount() {
+        return jTable1.getRowCount();
+    }
+
+    /**
+     * 判断选中表格的地几行，并取出该记录的编号。
+     * @param e MouseEvent
+     */
+    public void jTable1_mouseClicked(MouseEvent e) {
+        int selectedRow = this.jTable1.getSelectedRow();
+        this.selectID = this.jTable1.getValueAt(selectedRow, 0).toString().trim();
+    }
+
+    /**
+     * 返回选中的记录的id
+     * @return String
+     */
+    public String getSelectID() {
+        return this.selectID;
+    }
+
+    /**
+     * 刷新jtable
+     */
+    public void refreshJtable() {
+        this.jTable1.repaint();
+        this.jTable1.updateUI();
+    }
+
+    public void refreshJtableShow() {
+        jTable1.addMouseListener(new List_All_jTable1_mouseAdapter(this));
+        jScrollPane1.getViewport().add(jTable1);
+        jPanel3.add(jScrollPane1, new XYConstraints(0, 0, 373, 255));
+        jPanel2.add(jTree1, new XYConstraints(1, 0, 124, 256));
+        jTable1.setPreferredScrollableViewportSize(new Dimension(400, 300));
+        this.jTable1.setRowHeight(25);
+        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+    }
+
+    /**
+     * 把jtable返回.
+     * @return JPanel
+     */
+    public JTable getTable(){
+        return this.jTable1;
+    }
+
+
+    /**
+     * 判断选择的是树的哪个节点。
+     * @param e TreeSelectionEvent
+     */
+    public void jTree1_valueChanged(TreeSelectionEvent e) {
+        JTree tree = (JTree) e.getSource();
+        TreePath treepath = tree.getSelectionPath();
+        DefaultMutableTreeNode selectionNode = (DefaultMutableTreeNode) tree.
+                                               getLastSelectedPathComponent();
+        String nodePath = treepath.toString(); //得到选中节点的路径。
+        String nodeName = selectionNode.toString().trim(); //得到选中节点的名称。
+        this.TreeName = nodeName;
+        if (!this.showClassList(nodeName)) {
+            JOptionPane.showMessageDialog(null, "操作失败");
+        }
+    }
+
+    /**
+     * 返回当前选中的树的节点名称.
+     * @return String
+     */
+    public String getSelectTreeName() {
+        return this.TreeName;
+    }
+
+
+    /**
+     * 分类显示jtable的数据.
+     * @param className String
+     * @return boolean
+     */
+    public boolean showClassList(String className) {
+        try {
+            //System.out.println(className);
+            xmlConn notForgetConn = new xmlConn("Not_Forget", 9);
+            Object[][] allData = notForgetConn.getData();
+            this.data = allData; //所有数据.
+            int newTableRow = 0; //分配存储空间. 行.
+            int rowCount = allData.length;
+            int newRow = 0;
+            Object[][] tableClassData = notForgetConn.getAllList(this.data);
+            //计算类别的记录条数,用来分配内存.
+            for (int i = 0; i < rowCount; i++) {
+                String thisClassName = tableClassData[i][3].toString().trim();
+                if (thisClassName.equals(className)) {
+                    newTableRow++;
+                }
+            }
+            //用于返回的数据.
+            Object[][] showTableData = new Object[newTableRow][5];
+            for (int i = 0; i < rowCount; i++) {
+                String thisClassName = tableClassData[i][3].toString().trim();
+                if (thisClassName.equals(className)) {
+                    for (int j = 0; j < tableClassData[i].length; j++) {
+                        showTableData[newRow][j] = tableClassData[i][j];
+                    }
+                    newRow++;
+                }
+            }
+            this.jPanel3.removeAll();
+            //更改jtable显示的数据.
+            if (className.equals("我的分组") || className.equals("^_^ Not_Forget")) {
+                this.jTable1 = new JTable(tableClassData, this.colHeads);
+            } else {
+                this.jTable1 = new JTable(showTableData, this.colHeads);
+            }
+            //刷新数据.
+            this.refreshJtableShow();
+            this.jPanel3.updateUI();
+            //设置状态栏信息.
+            int jTablerowCount = this.jTable1.getRowCount();
+            String Message = "当前查看: ' " + className + " ' 共有 " + jTablerowCount +
+                             " 条记录.-- ^_^--";
+            this.main_frame.setStatusBar(Message);
+            return true;
+        } catch (Exception e4) {
+            return false;
+        }
+    }
+
+    public JScrollPane getJScrollPane(){
+        return this.jScrollPane1;
+    }
+
+
+    /**
+     * 取得当前运行的mainFrame窗体.
+     * @param mainFrame Object
+     */
+    public void setMainFrame(Object mainFrame) {
+        this.main_frame = (mainFrame) mainFrame;
+    }
+
+    public static void main(String[] args) {
+        List_All listall = new List_All();
+        listall.setSize(500, 300);
+        listall.setVisible(true);
+        listall.setLocation(300, 300);
+    }
+
+
+}
+
+
+class List_All_jTree1_treeSelectionAdapter implements TreeSelectionListener {
+    private List_All adaptee;
+    List_All_jTree1_treeSelectionAdapter(List_All adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void valueChanged(TreeSelectionEvent e) {
+        adaptee.jTree1_valueChanged(e);
+    }
+}
+
+
+class List_All_jTable1_mouseAdapter extends MouseAdapter {
+    private List_All adaptee;
+    List_All_jTable1_mouseAdapter(List_All adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void mouseClicked(MouseEvent e) {
+        adaptee.jTable1_mouseClicked(e);
+    }
+}

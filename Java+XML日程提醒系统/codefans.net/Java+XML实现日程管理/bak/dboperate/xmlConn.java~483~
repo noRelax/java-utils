@@ -1,0 +1,193 @@
+package dboperate;
+
+import java.io.*;
+import javax.xml.parsers.*;
+import org.w3c.dom.*;
+import org.xml.sax.*;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+
+/**
+ * <p>Title:勿忘软件,lzquan </p>
+ *
+ * <p>Description:勿忘软件 </p>
+ *
+ * <p>Copyright: 泉水依然 Copyright (c) 2007-03-20</p>
+ *
+ * <p>Company: 泉水依然</p>
+ *
+ * @author :李政权,湖南农业大学科学技术师范学院04计算机教育班.
+ *
+ * QQ:25241418
+ */
+public class xmlConn{
+    private DocumentBuilderFactory domfac;
+    private DocumentBuilder dombuilder;
+    public Document doc;
+    public Element root;
+    private NodeList notForget;
+    private int nodeNumber;//当前共有多少节点.
+    private int columnNum;
+    private Object[][] data;
+    private int rowCount;
+
+    /**
+     * 构造函数:
+     * @param fileName xml文件名
+     * @param columnNum 文件字段的个数.
+     */
+    public xmlConn(String fileName,int columnNum){
+        this.domfac = DocumentBuilderFactory.newInstance();
+        this.columnNum = columnNum;
+        try {
+            this.dombuilder = domfac.newDocumentBuilder();
+            InputStream is = null;
+            //FileInputStream 从文件系统中的某个文件中获取输入字节
+            if (fileName.equals("Not_Forget")) {
+                is = new FileInputStream("data/Not_Forget.xml");
+            } else if (fileName.equals("Class_Name")) {
+                is = new FileInputStream("data/Class_Name.xml");
+            }
+            this.doc = dombuilder.parse(is);
+            this.root = doc.getDocumentElement();
+            this.notForget = root.getChildNodes();
+            this.nodeNumber =  notForget.getLength();
+        } catch (ParserConfigurationException ex) {
+        } catch (FileNotFoundException ex1) {
+        } catch (IOException ex2) {
+        } catch (SAXException ex2) {
+        }
+    }
+
+
+    /**
+     * 读取xml文档,以二维数组返回所有数据.
+     */
+    public Object[][] getData(){
+        int row = notForget.getLength();
+        int arryRow =(int)(row / 2);//总记录条数.
+        this.rowCount = arryRow;
+        int arryColumn=this.columnNum;
+        int m=0,k=0;
+        //根据文件类型确定行数.
+        //定义object类型二维数组 Data.
+        Object[][] Data = new Object[arryRow][arryColumn];
+        if (this.notForget != null) {
+            for (int i = 0; i < row; i++) {
+                Node notForgetMemoire = notForget.item(i);
+                for (Node node = notForgetMemoire.getFirstChild(); node != null;
+                                 node = node.getNextSibling()) {
+                    if (node.getNodeType() == Node.ELEMENT_NODE) {
+                        Data[m][k]=node.getFirstChild().getNodeValue();
+                        k++;
+                        if(k/arryColumn==1){
+                            m++;
+                            k=0;
+                        }
+                    }
+                }
+            }
+        }
+        this.data = Data;
+        return Data;
+    }
+
+    /**
+     * 取得最终显示在jtable中的数据.
+     * @param data Object : xml中所有的数据.
+     * @return Object[][] : 数组返回.
+     */
+    public Object[][] getAllList(Object data){
+        Object[][] tableData = new Object[this.rowCount][5];
+        for(int i=0;i<this.data.length;i++)
+            for(int j=0;j<5;j++){
+                tableData[i][j] = this.data[i][j];
+            }
+        return tableData;
+    }
+
+
+    /**
+     * 分类读取xml文档.
+     */
+    public Object[][] getData(int classID) {
+        return null;
+    }
+
+
+
+
+
+    /**
+     *返回xml文档中最大的id值.
+     */
+    public int getMaxID(Object[][] Value){
+        String[][] arry =(String[][]) Value;
+        int MaxID=1;
+        for(int a =0;a<arry.length;a++){
+            int thisId = Integer.parseInt(arry[a][0]);
+            if(thisId > MaxID){
+                MaxID = thisId;
+            }
+        }
+        return MaxID;
+    }
+
+
+    /**
+     * 返回节点个数.
+     * @return int
+     */
+    public int getRowCount(){
+        return this.rowCount;
+    }
+
+
+    public boolean writXml(Object[][] data){
+        try {
+            writexml insert = new writexml();
+            insert.toWrite(data);
+            insert.toSave();
+            return true;
+        } catch (ParserConfigurationException ex) {
+            return false;
+        }
+
+    }
+
+
+
+
+    public static void main(String args[]) {
+       try{
+           Object a = 1;
+           Object b = 1;
+
+           String av = (String) a;
+           String bv = (String) b;
+           if (av.equals(b)) {
+               System.out.println("can compare");
+           } else {
+               System.out.println("can not  compare");
+           }
+       }catch(Exception ex){
+           System.out.println(ex.getMessage());
+       }
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,80 @@
+package dbconnection;
+
+import com.borland.dx.dataset.DataModule;
+import com.borland.dx.sql.dataset.Database;
+import com.borland.dx.sql.dataset.ConnectionDescriptor;
+import com.borland.dx.sql.dataset.QueryDataSet;
+import com.borland.dx.sql.dataset.QueryDescriptor;
+import com.borland.dx.sql.dataset.Load;
+
+/**
+ * <p>Title: </p>
+ *
+ * <p>Description: </p>
+ *
+ * <p>Copyright: Copyright (c) 2007</p>
+ *
+ * <p>Company: </p>
+ *
+ * @author not attributable
+ * @version 1.0
+ */
+public class AccessConnection implements DataModule {
+    /**
+     * Data module reference.
+     */
+    private static AccessConnection myDM;
+    Database database1 = new Database();
+    QueryDataSet content = new QueryDataSet();
+
+    /**
+     * DataModule constructor.
+     */
+    public AccessConnection() {
+        try {
+            jbInit();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    /**
+     * Initialize.
+     *
+     * @throws java.lang.Exception
+     */
+    private void jbInit() throws Exception {
+        database1.setConnection(new ConnectionDescriptor(
+                "jdbc:odbc:MS Access Database", "", "", false,
+                "sun.jdbc.odbc.JdbcOdbcDriver"));
+        content.setQuery(new QueryDescriptor(database1, "SELECT Content.id,Content.title,Content.content,Content.class,Content.model,Content.\"time\",Content.co" +
+                                             "nfirm,Content.youxiao,Content.auditing FROM \"D:\\J2EE_Folder\\Java_Application\\JBuilder_Program\\Not_For" +
+                                             "get\\Not_Forget\\data\\Not_Forget\".Content", null, true,
+                                             Load.ALL));
+    }
+
+    /**
+     * Get data module reference.
+     *
+     * @return DataModule reference
+     */
+    public static AccessConnection getDataModule() {
+        if (myDM == null) {
+            myDM = new AccessConnection();
+        }
+        return myDM;
+    }
+
+    public Database getDatabase1() {
+        return database1;
+    }
+
+    public QueryDataSet getContent() {
+        return content;
+    }
+    public static void main(String args[]){
+        AccessConnection ac = new AccessConnection();
+        System.out.println(ac.getContent());
+    }
+
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowViewLayout Version="1.2">
+  <StrutsActivity path="/user.do" location="45,0" dimension="150,100" />
+  <StrutsActivity path="index;6" location="345,0" dimension="93,75" />
+  <StrutsActivity path="/index.html" location="285,120" dimension="150,100" />
+  <StrutsTransition id="index;6,null,/index.html,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="391,75" />
+      <AbsolutePoint location="391,120" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+</FlowViewLayout>
+

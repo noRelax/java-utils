@@ -1,0 +1,33 @@
+<#
+(define package-name
+  (java-call
+   'javax.swing.JOptionPane
+   'showInputDialog
+   (list "Specify package name:")
+   '(java.lang.Object)))
+
+(if (null? package-name)
+    (failwith "Cancelled")
+  (begin
+#>
+SELECT fpn.str AS from, tpn.str AS to
+FROM <#(emit (snapshot-tbl-name "dependency" selected-index))#> AS d
+, <#(emit (shared-tbl-name "str"))#> AS fpn
+, <#(emit (shared-tbl-name "str"))#> AS tpn
+WHERE d.to_package_id IN (SELECT id FROM <#(emit (shared-tbl-name "str"))#> WHERE str LIKE <#(emit "'" package-name "'")#>)
+AND d.from_package_id = fpn.id
+AND d.to_package_id = tpn.id
+ORDER BY fpn.str
+;
+SELECT fpn.str AS from, tpn.str AS to
+FROM <#(emit (snapshot-tbl-name "dependency" selected-index))#> AS d
+, <#(emit (shared-tbl-name "str"))#> AS fpn
+, <#(emit (shared-tbl-name "str"))#> AS tpn
+WHERE d.from_package_id IN (SELECT id FROM <#(emit (shared-tbl-name "str"))#> WHERE str LIKE <#(emit "'" package-name "'")#>)
+AND d.from_package_id = fpn.id
+AND d.to_package_id = tpn.id
+ORDER BY fpn.str
+<#
+))
+#>
+

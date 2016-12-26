@@ -1,0 +1,29 @@
+   
+         BackSale表----退货表
+BackSale_ID---------varchar-----10----主键,退货单编号
+BackDate---------varchar--------50----------退货日期
+Product_ID------varchar------50-------商品条形码，主键，外键(参照PRODUCT表)
+Number--------numeric-------9---------数量
+Price----------varchar-------8--------进货价格
+ProductName------varchar-----20---------商品名称
+ProductManufacturer-----varchar-----50-------货品生产厂家
+BackPerson------------varchar-------50-------退货所退给单位
+CommonClient-----------varchar------10------(退货人)普通客户
+VIP_ID----------------varchar-------10-----(退货人)会员
+SuperMarket--------varchar----------50--------(退货人)超市
+reason------------varchar-----------250-------退货原因
+
+         Sale表----销售表
+Sale_ID--------varchar------10-----------------销售编号,主键, 外键 ( 参照 SALE 表 )
+Product_ID-----varchar-------10-----------------商品编号(条形码),主键,外键 ( 参照 PRODUCT 表 
+SaleDate--------varchar------50------------------销售日期
+Number----------numeric-------9------------------商品数量
+Price------------money---------8---------商品单价
+Discount---------int-----------4--------折扣
+VIP_ID------------varchar-------10---------------会员卡号
+Shroff------------varchar--------10--------------收银员编号
+CommonClient------varchar---------10------------普通客户
+ProductName--------varchar---------50-----------------商品名称
+ProductSort---------varchar---------50----------商品类别
+
+

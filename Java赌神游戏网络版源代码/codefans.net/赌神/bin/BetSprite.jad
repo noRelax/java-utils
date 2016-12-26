@@ -1,0 +1,8 @@
+MIDlet-1: BetSprite, BetSprite.png, bet
+MIDlet-Jar-Size: 100
+MIDlet-Jar-URL: BetSprite.jar
+MIDlet-Name: BetSprite
+MIDlet-Vendor: Sun Microsystems
+MIDlet-Version: 1.0
+MicroEdition-Configuration: CLDC-1.0
+MicroEdition-Profile: MIDP-1.0

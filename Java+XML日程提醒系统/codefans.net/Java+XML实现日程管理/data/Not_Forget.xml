@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="GB2312"?>
+<Not_Forget>
+<memoire>
+<id>38</id>
+<title>ccccccccccc</title>
+<content>cccccccccccccccccccccccc</content>
+<className>普通提醒</className>
+<time>Sat Apr 07 22:52:00 CST 2007</time>
+<model>弹出窗口</model>
+<confirm>1</confirm>
+<youxiao>0</youxiao>
+<auditing>0</auditing>
+</memoire>
+<memoire>
+<id>37</id>
+<title>mmmmmmmmmm</title>
+<content>mmmmmmmmmmmmmmmmmmmmm</content>
+<className>普通提醒</className>
+<time>Sat Apr 07 22:04:03 CST 2007</time>
+<model>默认提醒</model>
+<confirm>1</confirm>
+<youxiao>0</youxiao>
+<auditing>0</auditing>
+</memoire>
+<memoire>
+<id>36</id>
+<title>bbbbbbbbbbb</title>
+<content>bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</content>
+<className>普通提醒</className>
+<time>Sat Apr 07 22:03:16 CST 2007</time>
+<model>默认提醒</model>
+<confirm>1</confirm>
+<youxiao>0</youxiao>
+<auditing>0</auditing>
+</memoire>
+<memoire>
+<id>35</id>
+<title>bbbbbbbbbbb</title>
+<content>bbbbbbbbbbbbbbbbbbbbbb</content>
+<className>重要提醒</className>
+<time>Sat Apr 07 20:08:40 CST 2007</time>
+<model>默认提醒</model>
+<confirm>1</confirm>
+<youxiao>0</youxiao>
+<auditing>1</auditing>
+</memoire>
+</Not_Forget>

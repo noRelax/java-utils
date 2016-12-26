@@ -1,0 +1,32 @@
+package dboperate;
+
+import java.applet.AudioClip;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.net.*;
+
+// 声音播放程序
+
+public class getDate extends JFrame{
+    String[] choics = {"chimes.wav", "start.wav"}; //声音文件名数组
+    URL file1 = getClass().getResource(choics[0]); //声音文件1
+
+    URL file2 = getClass().getResource(choics[1]); //声音文件2
+    AudioClip chosenClip;
+    public getDate() {
+        AudioClip sound1 = java.applet.Applet.newAudioClip(file1); //声音剪辑对象1
+        AudioClip sound2 = java.applet.Applet.newAudioClip(file2); //声音剪辑对象2
+        this.chosenClip = sound1; //选择的声音剪辑对象
+    }
+    public void play(){
+        chosenClip.play();
+    }
+
+    public static void main(String s[]) {
+        getDate getda = new getDate();
+
+    }
+
+}
+

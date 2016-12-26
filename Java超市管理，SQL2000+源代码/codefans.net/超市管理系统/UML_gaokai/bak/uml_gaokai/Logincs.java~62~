@@ -1,0 +1,184 @@
+package uml_gaokai;
+
+import java.awt.*;
+import javax.swing.*;
+import com.borland.jbcl.layout.*;
+import java.awt.event.*;
+import com.borland.dx.sql.dataset.*;
+import java.sql.*;
+
+/**
+ * <p>Title: </p>
+ * <p>Description: </p>
+ * <p>Copyright: Copyright (c) 2003</p>
+ * <p>Company: </p>
+ * @author unascribed
+ * @version 1.0
+ */
+
+public class Logincs extends JDialog implements ActionListener{
+  private JPanel panel1 = new JPanel();
+  private BorderLayout borderLayout1 = new BorderLayout();
+  private JPanel jPanel1 = new JPanel();
+  private XYLayout xYLayout1 = new XYLayout();
+  private JLabel jLabel1 = new JLabel();
+  private JLabel jLabel2 = new JLabel();
+  private JTextField jTextField1 = new JTextField();
+  private JButton jButton1 = new JButton();
+  private JButton jButton2 = new JButton();
+  private JPasswordField jPasswordField1 = new JPasswordField();
+  private Database database1 = new Database();
+  private QueryDataSet queryDataSet1 = new QueryDataSet();
+  private JLabel jLabel3 = new JLabel();
+  private JLabel jLabel4 = new JLabel();
+  private JLabel jLabel5 = new JLabel();
+
+  public Logincs(Frame frame, String title, boolean modal) {
+    super(frame, title, modal);
+    try {
+      jbInit();
+      pack();
+    }
+    catch(Exception ex) {
+      ex.printStackTrace();
+    }
+  }
+
+  public Logincs() {
+    this(null, "", false);
+  }
+  private void jbInit() throws Exception {
+    panel1.setLayout(borderLayout1);
+    jPanel1.setLayout(xYLayout1);
+    jLabel1.setText("用户名");
+    jLabel2.setText("密码");
+    jButton1.setText("登录");
+    jButton1.addActionListener(this);
+    jButton2.setToolTipText("");
+    jButton2.setText("取消");
+    jButton2.addActionListener(this);
+    jPanel1.setMinimumSize(new Dimension(600, 600));
+    jPanel1.setPreferredSize(new Dimension(400, 300));
+    jPasswordField1.setToolTipText("");
+    database1.setConnection(new com.borland.dx.sql.dataset.ConnectionDescriptor("jdbc:odbc:gaokaiSQL", "sa", "", false, "sun.jdbc.odbc.JdbcOdbcDriver"));
+    queryDataSet1.setQuery(new com.borland.dx.sql.dataset.QueryDescriptor(database1, "SELECT [user].userName,[user].userPassword,[user].userAuthority \n" +
+        "FROM [UML_CS].[dbo].[user]", null, true, Load.ALL));
+    this.setResizable(false);
+    this.setTitle("Login");
+    jLabel3.setBackground(Color.white);
+    jLabel3.setText("         小型超市管理系统");
+    jLabel4.setText(" ——制作人：高凯");
+    jLabel5.setToolTipText("");
+    jLabel5.setText("——版本号: 1.1");
+    getContentPane().add(panel1);
+    panel1.add(jPanel1, BorderLayout.CENTER);
+    jPanel1.add(jButton2,  new XYConstraints(302, 152, 69, -1));
+    jPanel1.add(jButton1, new XYConstraints(219, 153, 68, 28));
+    jPanel1.add(jLabel2, new XYConstraints(154, 94, 85, 26));
+    jPanel1.add(jPasswordField1,   new XYConstraints(250, 94, 133, 28));
+    jPanel1.add(jLabel1,  new XYConstraints(154, 50, 75, 26));
+    jPanel1.add(jTextField1,  new XYConstraints(250, 50, 132, 24));
+    jPanel1.add(jLabel4, new XYConstraints(27, 69, 112, 33));
+    jPanel1.add(jLabel3, new XYConstraints(6, 39, 144, 30));
+    jPanel1.add(jLabel5, new XYConstraints(31, 103, 102, 27));
+  }
+  public void actionPerformed(ActionEvent e){
+    //the user login
+    if(e.getSource() == jButton1){
+      try{
+        String userAuthority = null ;
+        String userName = null ;
+        String userPassword = null ;
+        String testName = jTextField1.getText().toString() ;
+        String testPassword = String.valueOf(jPasswordField1.getPassword()) ;
+        Statement sql = database1.createStatement() ;
+        ResultSet rs = sql.executeQuery("SELECT userName,userPassword , userAuthority FROM [UML_CS].[dbo].[user] WHERE userName = '"+testName+"'") ;
+        while(rs.next()){
+          userName = rs.getString("userName") ;
+          userPassword = rs.getString("userPassword") ;
+          userAuthority = rs.getString("userAuthority") ;
+        }
+        verifyUser(userName,userPassword,testPassword,userAuthority);
+        cancel() ;
+      }
+      catch(SQLException eee){eee.printStackTrace();}
+    }
+    //exit the System
+    else if(e.getSource() == jButton2){
+      cancel();
+    }
+  }
+  void cancel(){
+    dispose();
+  }
+
+  //验证用户名以及密码
+  void verifyUser(String userName , String userPassword , String testPassword, String userAuthority){
+    if(userName == null){
+      JOptionPane.showMessageDialog(null,"用户名不存在，请先注册","verify user",JOptionPane.DEFAULT_OPTION);
+    }
+    else{
+      if(userPassword.equals(testPassword) == false){
+        JOptionPane.showMessageDialog(null,"您输入的密码不正确，请重试","verify password" , JOptionPane.DEFAULT_OPTION);
+      }
+      else{
+        JOptionPane.showMessageDialog(null,"success","",JOptionPane.DEFAULT_OPTION);
+        verifyUserAuthority(userAuthority) ;
+      }
+    }
+  }
+
+  //验证用户权限
+  void verifyUserAuthority(String userAuthority){
+    if(userAuthority.equals("admin")){
+      AdminWindow adminWindow = new AdminWindow() ;
+      Dimension dlgSize = adminWindow.getPreferredSize();
+      Dimension frmSize = getSize();
+      Point loc = getLocation();
+      adminWindow.setLocation((frmSize.width - dlgSize.width) / 2 + loc.x, (frmSize.height - dlgSize.height) / 2 + loc.y);
+      adminWindow.setModal(true);
+      adminWindow.pack();
+      adminWindow.show();
+    }
+    else if (userAuthority.equals("customer")){
+      CustomerWindow customerWindow =new CustomerWindow() ;
+      Dimension dlgSize = customerWindow.getPreferredSize();
+      Dimension frmSize = getSize();
+      Point loc = getLocation();
+      customerWindow.setLocation((frmSize.width - dlgSize.width) / 2 + loc.x, (frmSize.height - dlgSize.height) / 2 + loc.y);
+      customerWindow.setModal(true);
+      customerWindow.pack();
+      customerWindow.show();
+    }
+    else if (userAuthority.equals("buyer")){
+      BuyerWindow buyerWindow =new BuyerWindow() ;
+      Dimension dlgSize = buyerWindow.getPreferredSize();
+      Dimension frmSize = getSize();
+      Point loc = getLocation();
+      buyerWindow.setLocation((frmSize.width - dlgSize.width) / 2 + loc.x, (frmSize.height - dlgSize.height) / 2 + loc.y);
+      buyerWindow.setModal(true);
+      buyerWindow.pack();
+      buyerWindow.show();
+    }
+    else if (userAuthority.equals("saler")){
+      SalesWindow salesWindow =new SalesWindow() ;
+      Dimension dlgSize = salesWindow.getPreferredSize();
+      Dimension frmSize = getSize();
+      Point loc = getLocation();
+      salesWindow.setLocation((frmSize.width - dlgSize.width) / 2 + loc.x, (frmSize.height - dlgSize.height) / 2 + loc.y);
+      salesWindow.setModal(true);
+      salesWindow.pack();
+      salesWindow.show();
+    }
+    else if (userAuthority.equals("mamager")){
+     ManagementWindow managementWindow =new ManagementWindow() ;
+     Dimension dlgSize = managementWindow.getPreferredSize();
+     Dimension frmSize = getSize();
+     Point loc = getLocation();
+     managementWindow.setLocation((frmSize.width - dlgSize.width) / 2 + loc.x, (frmSize.height - dlgSize.height) / 2 + loc.y);
+     managementWindow.setModal(true);
+     managementWindow.pack();
+     managementWindow.show();
+    }
+  }
+}

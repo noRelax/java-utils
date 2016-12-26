@@ -1,0 +1,22 @@
+#
+#Sat Nov 15 10:26:43 CST 2008
+genBasicCompId=false
+sessionFactoryName=
+profile=
+daoSFId=
+version=3.2
+jndiPath=
+detectM2M=false
+reStrategyClass=
+springDaoFile=
+useJavaTypes=true
+keyGenerator=uuid.hex
+libInstallFolder=WebRoot/WEB-INF/lib
+addLibs2Project=true
+genVersionTag=false
+sessionFactoryId=
+basePersistenceClass=
+reSettingsFile=
+configFile=/compass1/src/hibernate.cfg.xml
+createConfigFile=true
+addLibs2Classpath=true

@@ -1,0 +1,62 @@
+package uml_gaokai;
+
+import java.awt.*;
+import javax.swing.*;
+import com.borland.jbcl.layout.*;
+import java.awt.event.*;
+
+/**
+ * <p>Title: </p>
+ * <p>Description: </p>
+ * <p>Copyright: Copyright (c) 2003</p>
+ * <p>Company: </p>
+ * @author unascribed
+ * @version 1.0
+ */
+
+public class login extends JDialog {
+  private JPanel panel1 = new JPanel();
+  private XYLayout xYLayout1 = new XYLayout();
+  private JPanel jPanel1 = new JPanel();
+  private XYLayout xYLayout2 = new XYLayout();
+  private JLabel jLabel1 = new JLabel();
+  private JLabel jLabel2 = new JLabel();
+  private JButton jButton1 = new JButton();
+  private JButton jButton2 = new JButton();
+  private JTextField jTextField1 = new JTextField();
+  private JTextField jTextField2 = new JTextField();
+  private JButton jButton3 = new JButton();
+
+  public login(Frame frame, String title, boolean modal) {
+    super(frame, title, modal);
+    try {
+      jbInit();
+      pack();
+    }
+    catch(Exception ex) {
+      ex.printStackTrace();
+    }
+  }
+
+  public login() {
+    this(null, "", false);
+  }
+  private void jbInit() throws Exception {
+    panel1.setLayout(xYLayout1);
+    jPanel1.setLayout(xYLayout2);
+    jLabel1.setText("用户名");
+    jLabel2.setText("密码");
+    jButton1.setText("确定");
+    jButton2.setText("取消");
+    jButton3.setText("退出");
+    this.getContentPane().add(panel1, BorderLayout.EAST);
+    this.getContentPane().add(jPanel1, BorderLayout.CENTER);
+    jPanel1.add(jTextField2,  new XYConstraints(150, 105, 146, 23));
+    jPanel1.add(jLabel2, new XYConstraints(71, 105, 78, 22));
+    jPanel1.add(jLabel1, new XYConstraints(72, 65, 69, 22));
+    jPanel1.add(jTextField1,    new XYConstraints(148, 65, 149, 24));
+    jPanel1.add(jButton1, new XYConstraints(62, 204, 63, 23));
+    jPanel1.add(jButton2, new XYConstraints(161, 203, 64, 24));
+    jPanel1.add(jButton3,   new XYConstraints(266, 203, 58, 26));
+  }
+}

@@ -1,0 +1,9 @@
+SELECT pn.str || '.' || cn.str || '.' || fn.str AS function, ncss, ccn
+FROM <#(emit (snapshot-tbl-name "function" selected-index))#> AS f
+, <#(emit (shared-tbl-name "str"))#> AS fn
+, <#(emit (shared-tbl-name "str"))#> AS cn
+, <#(emit (shared-tbl-name "str"))#> AS pn
+WHERE f.function_id = fn.id
+AND f.class_id = cn.id
+AND f.package_id = pn.id
+ORDER BY ncss DESC

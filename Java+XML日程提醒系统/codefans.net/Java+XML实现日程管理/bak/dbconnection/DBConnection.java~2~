@@ -1,0 +1,115 @@
+package dbconnection;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+/**
+ * @author liuxy
+ * @version 1.1
+ * 主要功能：连接access数据库
+ */
+public class DBConnection {
+    private Connection connDb;
+    private Statement voidStatemt;
+    private Statement rstStatemt;
+
+    /**
+     * 初始化
+     */
+    public void ini() {
+        connDb = null;
+        voidStatemt = null;
+        rstStatemt = null;
+    }
+
+    /**
+     * 设置voidStatemt与rstStatemt
+     */
+    public DBConnection() {
+        this.ini();
+        try { //建立连接
+            this.createConn("C:\\temp\\Dossier.mdb", "", "");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            voidStatemt = connDb.createStatement();
+            rstStatemt = connDb
+                         .createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                                          ResultSet.CONCUR_UPDATABLE);
+        } catch (SQLException ex) {
+        }
+    }
+
+    /**
+     * 建立数据库连接，并设置<code>connDb</code>
+     * @param dbName 数据库名
+     * @param user 数据库用户
+     * @param pWords 数据库密码
+     */
+    private void createConn(String dbName, String user, String pWords) throws
+            SQLException {
+        String strdsn = "jdbc:odbc:MS Access Database;DBQ="
+                        + dbName;
+        try {
+            Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        this.connDb = DriverManager.getConnection(strdsn, user, pWords);
+    }
+
+    /**
+     * @return <code>connDb</code>
+     */
+    public Connection getConnDb() {
+        return connDb;
+    }
+
+    /**
+     * 得到仅能执行SQL的数据库对象，不能返回数据集
+     * @return <code>voidStatemt</code>
+     */
+    public Statement getVoidStatemt() {
+        return voidStatemt;
+    }
+
+    /**
+     * 得到可以返回记录集的数据库对象
+     * @return <code>rstStatemt</code>
+     */
+    public Statement getRstStatemt() {
+        return rstStatemt;
+    }
+
+    /**
+     * 测试连接，成功则打印 数据库连接成功！ ，否则不打印
+     */
+    public static void main(String args[]) {
+        DBConnection connClass = new DBConnection();
+        try {
+
+            Statement stm = connClass.getRstStatemt();
+            ResultSet rs = stm.executeQuery("select * from person");
+            if (rs.absolute(1)) {
+                System.out.println("数据库连接成功！");
+            }
+            connClass.closeAll();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void closeAll() {
+        try {
+            this.rstStatemt.close();
+            this.voidStatemt.close();
+            this.connDb.close();
+        } catch (SQLException ex) {
+        }
+
+    }
+}

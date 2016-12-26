@@ -1,0 +1,51 @@
+package news;
+
+/**
+ * <p>Title: 新闻搜索引擎</p>
+ * <p>Description: 毕业设计</p>
+ * <p>Copyright: Copyright (c) 2003</p>
+ * <p>Company: </p>
+ * @author 计算机99630 沈晨
+ * @version 1.0
+  * @Download:http://www.codefans.net
+ */
+
+import com.heaton.bot.HTTP;
+import com.heaton.bot.HTTPSocket;
+import com.heaton.bot.ISpiderReportable;
+import com.heaton.bot.IWorkloadStorable;
+import com.heaton.bot.Spider;
+import com.heaton.bot.SpiderInternalWorkload;
+
+public class Searcher
+    implements ISpiderReportable {
+  public static void main(String[] args) throws Exception {
+    IWorkloadStorable wl = new SpiderInternalWorkload();
+    Searcher _searcher = new Searcher();
+    Spider _spider
+        = new Spider(_searcher, "http://www.chenshen.com/index.html",
+                     new HTTPSocket(), 100, wl);
+    _spider.setMaxBody(100);
+    _spider.start();
+  }
+  public boolean foundInternalLink(String url) {
+    return false;
+  }
+  public boolean foundExternalLink(String url) {
+    return false;
+  }
+  public boolean foundOtherLink(String url) {
+    return false;
+  }
+  public void processPage(HTTP http) {
+    System.out.println("扫描网页：" + http.getURL());
+    new HTMLParse(http).start();
+  }
+  public void completePage(HTTP http, boolean error) {
+  }
+  public boolean getRemoveQuery() {
+    return true;
+  }
+  public void spiderComplete() {
+  }
+}

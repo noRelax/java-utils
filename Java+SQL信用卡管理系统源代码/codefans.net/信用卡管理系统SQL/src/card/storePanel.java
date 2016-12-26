@@ -1,0 +1,136 @@
+package card;
+//download by http://www.codefans.net
+import java.awt.*;
+import javax.swing.*;
+import java.sql.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class storePanel extends JPanel
+{
+  public storePanel(String id,eventFrame ef)
+  {
+    try
+    {
+      this.eFrame=ef;
+      this.CardID=id;
+      jbInit();
+    } catch( Exception exception )
+    {
+      exception.printStackTrace();
+    }
+  }
+
+  private void jbInit() throws Exception
+  {
+    this.setLayout( null );
+    jLabel1.setFont( new java.awt.Font( "Dialog", Font.PLAIN, 18 ) );
+    jLabel1.setHorizontalAlignment( SwingConstants.CENTER );
+    jLabel1.setText( "用户名：" );
+    jLabel1.setBounds( new Rectangle( 80, 70, 76, 25 ) );
+    staticMessage sm=new staticMessage(CardID);
+    jLabel2.setText(staticMessage.userName);
+    jLabel2.setFont( new java.awt.Font( "Dialog", Font.BOLD, 18 ) );
+    jLabel2.setBounds( new Rectangle( 181, 65, 178, 27 ) );
+    jLabel2.setForeground(Color.red);
+    jLabel3.setFont( new java.awt.Font( "Dialog", Font.PLAIN, 18 ) );
+    jLabel3.setText( "存入数量：" );
+    jLabel3.setBounds( new Rectangle( 80, 131, 90, 24 ) );
+    jTextField1.setText( "" );
+    jTextField1.setBounds( new Rectangle( 187, 130, 126, 24 ) );
+    jTextField1.addActionListener( new ActionListener()
+    {
+      public void actionPerformed( ActionEvent e )
+      {
+        jTextField1_actionPerformed( e );
+      }
+    } );
+    jButton1.setBounds( new Rectangle( 93, 207, 75, 22 ) );
+    jButton1.setFont( new java.awt.Font( "Dialog", Font.PLAIN, 12 ) );
+    jButton1.setText( "确　定" );
+    jButton1.addActionListener( new ActionListener()
+    {
+      public void actionPerformed( ActionEvent e )
+      {
+        jButton1_actionPerformed( e );
+      }
+    } );
+    jButton2.setBounds( new Rectangle( 230, 207, 75, 22 ) );
+    jButton2.setFont( new java.awt.Font( "Dialog", Font.PLAIN, 12 ) );
+    jButton2.setText( "重　置" );
+    jButton2.addActionListener( new ActionListener()
+    {
+      public void actionPerformed( ActionEvent e )
+      {
+        jButton2_actionPerformed( e );
+      }
+    } );
+
+    this.add( jLabel1 );
+    this.add( jLabel3 );
+    this.add( jLabel2 );
+    this.add( jTextField1 );
+    this.add( jButton2 );
+    this.add( jButton1 );
+
+    con=cardConnect.getconn();
+  }
+
+  JLabel jLabel1 = new JLabel();
+  JLabel jLabel2 = new JLabel();
+  JLabel jLabel3 = new JLabel();
+  JTextField jTextField1 = new JTextField();
+  JButton jButton1 = new JButton();
+  JButton jButton2 = new JButton();
+
+  eventFrame eFrame;
+  String CardID;
+  Connection con;
+  String UserName;
+  Statement getUpdate;
+  Statement getInsert;
+  eventFrame eventFrame;
+  String updateString;
+  String insertString;
+  public void jButton1_actionPerformed( ActionEvent e )
+  {
+    int num=0;
+    try
+    {
+      num=Integer.parseInt(jTextField1.getText());
+    }catch(NumberFormatException ex)
+    {
+      jTextField1.setText("");
+      return;
+    }
+    try
+    {
+      getInsert = con.createStatement();
+      getUpdate = con.createStatement();
+      insertString="insert event (CardID,EventMoney,EventDate) values ("+CardID+","+("+"+num)+",getDate())";
+      updateString="update card set LeaveMoney=LeaveMoney+"+Integer.parseInt(jTextField1.getText())+" Where CardID="+CardID;
+      getInsert.executeUpdate(insertString);
+      getUpdate.executeUpdate(updateString);
+      eFrame.setQueryState();
+    }catch(SQLException ex)
+    {
+      System.out.println("数据库错误！");
+    }
+    finally
+    {
+      cardConnect.close(getInsert);
+      cardConnect.close(getUpdate);
+      cardConnect.close(con);
+    }
+
+  }
+  public void jButton2_actionPerformed( ActionEvent e )
+  {
+    jTextField1.setText("");
+  }
+
+  public void jTextField1_actionPerformed( ActionEvent e )
+  {
+    jButton1_actionPerformed(e);
+  }
+}

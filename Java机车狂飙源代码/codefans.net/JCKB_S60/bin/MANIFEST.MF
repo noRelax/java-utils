@@ -1,0 +1,7 @@
+MIDlet-1: 机车狂飚, /icon.png, ZASM
+MIDlet-Description: 诺基亚S60 机车狂飚
+MIDlet-Name: 机车狂飚
+MIDlet-Vendor: 东方达科技有限公司
+MIDlet-Version: 1.0
+MicroEdition-Configuration: CLDC-1.0
+MicroEdition-Profile: MIDP-1.0

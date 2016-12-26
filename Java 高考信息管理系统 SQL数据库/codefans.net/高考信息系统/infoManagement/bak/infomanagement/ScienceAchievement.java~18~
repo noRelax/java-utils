@@ -1,0 +1,151 @@
+package infomanagement;
+
+import java.awt.*;
+import javax.swing.*;
+import com.borland.jbcl.layout.*;
+import com.borland.dx.dataset.*;
+import com.borland.dbswing.*;
+import com.borland.dx.sql.dataset.*;
+import java.awt.event.*;
+
+/**
+ * <p>Title: </p>
+ * <p>Description: </p>
+ * <p>Copyright: Copyright (c) 2003</p>
+ * <p>Company: </p>
+ * @author unascribed
+ * @version 1.0
+ */
+
+public class ScienceAchievement extends JDialog {
+  private JPanel panel1 = new JPanel();
+  private BorderLayout borderLayout1 = new BorderLayout();
+  private JPanel jPanel1 = new JPanel();
+  private XYLayout xYLayout1 = new XYLayout();
+  private JLabel jLabel1 = new JLabel();
+  private JLabel jLabel2 = new JLabel();
+  private JLabel jLabel3 = new JLabel();
+  private JLabel jLabel4 = new JLabel();
+  private JLabel jLabel5 = new JLabel();
+  private JTextField jTextField1 = new JTextField();
+  private JTextField jTextField2 = new JTextField();
+  private JTextField jTextField3 = new JTextField();
+  private JLabel jLabel6 = new JLabel();
+  private JLabel jLabel7 = new JLabel();
+  private JdbTable jdbTable1 = new JdbTable();
+  private TableScrollPane tableScrollPane1 = new TableScrollPane();
+  private JButton jButton1 = new JButton();
+  private Database database1 = new Database();
+  private Column column2 = new Column();
+  private QueryDataSet queryDataSet1 = new QueryDataSet();
+  private Column column1 = new Column();
+  private Column column3 = new Column();
+  private Column column4 = new Column();
+
+  public ScienceAchievement(Frame frame, String title, boolean modal) {
+    super(frame, title, modal);
+    try {
+      jbInit();
+      pack();
+    }
+    catch(Exception ex) {
+      ex.printStackTrace();
+    }
+  }
+
+  public ScienceAchievement() {
+    this(null, "", false);
+  }
+  private void jbInit() throws Exception {
+    panel1.setLayout(borderLayout1);
+    jPanel1.setLayout(xYLayout1);
+    jLabel1.setFont(new java.awt.Font("Dialog", 0, 23));
+    jLabel1.setForeground(Color.red);
+    jLabel1.setBorder(BorderFactory.createEtchedBorder());
+    jLabel1.setText("                  理科成绩录入");
+    jLabel2.setBorder(BorderFactory.createEtchedBorder());
+    jLabel3.setText("    准考证号");
+    jLabel4.setText("       学生姓名");
+    jLabel5.setText("    考前学校");
+    jLabel6.setBorder(BorderFactory.createEtchedBorder());
+    jLabel7.setBorder(BorderFactory.createEtchedBorder());
+    jButton1.setText("成绩录入");
+    jButton1.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        jButton1_actionPerformed(e);
+      }
+    });
+    database1.setConnection(new com.borland.dx.sql.dataset.ConnectionDescriptor("jdbc:odbc:local", "sa", "", false, "sun.jdbc.odbc.JdbcOdbcDriver"));
+    database1.setDatabaseName("");
+    column2.setColumnName("studentName");
+    column2.setDataType(com.borland.dx.dataset.Variant.STRING);
+    column2.setDefault("");
+    column2.setPreferredOrdinal(1);
+    column2.setVisible(com.borland.jb.util.TriStateProperty.TRUE);
+    column2.setServerColumnName("NewColumn1");
+    column2.setSqlType(0);
+    column1.setColumnName("cardID");
+    column1.setDataType(com.borland.dx.dataset.Variant.INT);
+    column1.setPreferredOrdinal(0);
+    column1.setRowId(true);
+    column1.setVisible(com.borland.jb.util.TriStateProperty.TRUE);
+    column3.setColumnName("studentName");
+    column3.setDataType(com.borland.dx.dataset.Variant.STRING);
+    column3.setDefault("");
+    column3.setPreferredOrdinal(1);
+    column3.setVisible(com.borland.jb.util.TriStateProperty.TRUE);
+    column4.setColumnName("schoolBefore");
+    column4.setDataType(com.borland.dx.dataset.Variant.STRING);
+    column4.setPreferredOrdinal(3);
+    column4.setRowId(true);
+    column4.setVisible(com.borland.jb.util.TriStateProperty.TRUE);
+    queryDataSet1.setMetaDataUpdate(MetaDataUpdate.TABLENAME);
+    queryDataSet1.setSchemaName("dbo");
+    queryDataSet1.setSort(new com.borland.dx.dataset.SortDescriptor("", new String[] {"cardID", "studentName", "schoolBefore"}, new boolean[] {true, false, false, }, null, 0));
+    queryDataSet1.setTableName("science");
+    queryDataSet1.setQuery(new com.borland.dx.sql.dataset.QueryDescriptor(database1, "SELECT dbo.science.cardID,dbo.science.studentName,dbo.science.schoolBefore " +
+        "FROM info.dbo.science", null, true, Load.ALL));
+    jdbTable1.setBorder(BorderFactory.createEtchedBorder());
+    jdbTable1.setToolTipText("");
+    jdbTable1.setDataSet(queryDataSet1);
+    queryDataSet1.setColumns(new Column[] {column1, column3, column4});
+    jTextField1.setText("0");
+    getContentPane().add(panel1);
+    panel1.add(jPanel1, BorderLayout.CENTER);
+    jPanel1.add(jLabel1,    new XYConstraints(0, 0, 384, 48));
+    jPanel1.add(jLabel3,    new XYConstraints(30, 50, 114, 21));
+    jPanel1.add(jLabel4,    new XYConstraints(150, 50, 108, 23));
+    jPanel1.add(jLabel5,    new XYConstraints(270, 50, 104, 23));
+    jPanel1.add(jLabel2,   new XYConstraints(0, 46, 383, 76));
+    jPanel1.add(jTextField1,  new XYConstraints(40, 81, 90, 20));
+    jPanel1.add(jTextField2,   new XYConstraints(160, 81, 90, 20));
+    jPanel1.add(jTextField3,    new XYConstraints(280, 81, 90, 20));
+    jPanel1.add(tableScrollPane1,  new XYConstraints(188, 281, -1, -1));
+    jPanel1.add(jLabel7, new XYConstraints(0, 121, 382, 44));
+    jPanel1.add(jLabel6,   new XYConstraints(1, 127, 381, 221));
+    jPanel1.add(jButton1, new XYConstraints(275, 132, 99, 26));
+    jPanel1.add(jdbTable1,    new XYConstraints(3, 166, 379, 179));
+  }
+
+  public int cardID(){
+    int card = Integer.parseInt(jTextField1.getText().trim()) ;
+    return card ;
+  }
+  public String studentName(){
+    return jTextField2.getText().trim().toString() ;
+  }
+  public String studentBefore(){
+    return jTextField3.getText().trim().toString();
+  }
+
+  void jButton1_actionPerformed(ActionEvent e) {
+    ScienceAcn dlg = new ScienceAcn();
+    Dimension dlgSize = dlg.getPreferredSize();
+    Dimension frmSize = getSize();
+    Point loc = getLocation();
+    dlg.setLocation((frmSize.width - dlgSize.width) / 2 + loc.x, (frmSize.height - dlgSize.height) / 2 + loc.y);
+    dlg.setModal(true);
+    dlg.pack();
+    dlg.show();
+  }
+}

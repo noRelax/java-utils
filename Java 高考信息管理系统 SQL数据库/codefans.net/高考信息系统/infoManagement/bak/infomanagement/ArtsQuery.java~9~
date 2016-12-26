@@ -1,0 +1,125 @@
+package infomanagement;
+
+import java.awt.*;
+import javax.swing.*;
+import com.borland.jbcl.layout.*;
+import com.borland.dbswing.*;
+import com.borland.dx.sql.dataset.*;
+import com.borland.dx.dataset.*;
+import java.awt.event.*;
+
+/**
+ * <p>Title: </p>
+ * <p>Description: </p>
+ * <p>Copyright: Copyright (c) 2003</p>
+ * <p>Company: </p>
+ * @author unascribed
+ * @version 1.0
+ */
+
+public class ArtsQuery extends JDialog {
+  private JPanel jPanel1 = new JPanel();
+  private XYLayout xYLayout1 = new XYLayout();
+  private JLabel jLabel1 = new JLabel();
+  private JLabel jLabel2 = new JLabel();
+  private JLabel jLabel3 = new JLabel();
+  private JTextField jTextField1 = new JTextField();
+  private JButton jButton1 = new JButton();
+  private JLabel jLabel4 = new JLabel();
+  private JdbTable jdbTable1 = new JdbTable();
+  private JLabel jLabel5 = new JLabel();
+  private JButton jButton2 = new JButton();
+  private JdbTextField jdbTextField1 = new JdbTextField();
+  private QueryDataSet queryDataSet1 = new QueryDataSet();
+  private Database database1 = new Database();
+  private QueryDataSet queryDataSet2 = new QueryDataSet();
+  private Column column1 = new Column();
+
+  public ArtsQuery(Frame frame, String title, boolean modal) {
+    super(frame, title, modal);
+    try {
+      jbInit();
+      pack();
+    }
+    catch(Exception ex) {
+      ex.printStackTrace();
+    }
+  }
+
+  public ArtsQuery() {
+    this(null, "", false);
+  }
+  private void jbInit() throws Exception {
+    jPanel1.setLayout(xYLayout1);
+    jLabel1.setFont(new java.awt.Font("Dialog", 0, 23));
+    jLabel1.setForeground(Color.magenta);
+    jLabel1.setBorder(BorderFactory.createEtchedBorder());
+    jLabel1.setText("                     文科科成绩查询");
+    jLabel2.setBorder(BorderFactory.createEtchedBorder());
+    jLabel3.setText("准考证号");
+    jButton1.setText("执行查询");
+    jButton1.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        jButton1_actionPerformed(e);
+      }
+    });
+    jLabel4.setBorder(BorderFactory.createEtchedBorder());
+    jdbTable1.setBorder(BorderFactory.createEtchedBorder());
+    jdbTable1.setDataSet(queryDataSet1);
+    jLabel5.setText("总成绩");
+    jButton2.setText("退出");
+    jButton2.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        jButton2_actionPerformed(e);
+      }
+    });
+    database1.setConnection(new com.borland.dx.sql.dataset.ConnectionDescriptor("jdbc:odbc:local", "sa", "", false, "sun.jdbc.odbc.JdbcOdbcDriver"));
+    column1.setColumnName("NewColumn1");
+    column1.setDataType(com.borland.dx.dataset.Variant.STRING);
+    column1.setPreferredOrdinal(0);
+    column1.setServerColumnName("NewColumn1");
+    column1.setSqlType(0);
+
+
+    this.getContentPane().add(jPanel1, BorderLayout.CENTER);
+    jPanel1.add(jLabel1, new XYConstraints(0, 1, 399, 53));
+    jPanel1.add(jLabel3,  new XYConstraints(10, 68, 90, 20));
+    jPanel1.add(jTextField1,     new XYConstraints(110, 68, 90, 20));
+    jPanel1.add(jLabel2,   new XYConstraints(0, 53, 398, 49));
+    jPanel1.add(jButton1,      new XYConstraints(290, 68, 90, 20));
+    jPanel1.add(jdbTable1,  new XYConstraints(1, 104, 394, 153));
+    jPanel1.add(jLabel5,   new XYConstraints(20, 270, 90, 20));
+    jPanel1.add(jButton2,   new XYConstraints(290, 270, 90, 20));
+    jPanel1.add(jdbTextField1,     new XYConstraints(110, 270, 90, 20));
+    jPanel1.add(jLabel4, new XYConstraints(-2, 105, 397, 202));
+  }
+  void cancel(){
+    dispose() ;
+  }
+
+  void jButton2_actionPerformed(ActionEvent e) {
+    cancel() ;
+  }
+
+  void jButton1_actionPerformed(ActionEvent e) {
+
+      //进行数据查询
+     try{
+     //获得准考证号
+     int cardID1 = Integer.parseInt(jTextField1.getText().trim());
+     //查询学习成绩
+     queryDataSet1.setQuery(new com.borland.dx.sql.dataset.QueryDescriptor(database1, "SELECT art2.cardID,art2.subject,art2.achievement,art2.subjectNameID " +
+      "FROM info.dbo.art2 where art2.cardID='10000002'", null, true, Load.ALL));
+     //加入到jdbTable1中
+     jdbTable1.setDataSet(queryDataSet1);
+     //执行sum语句，获得成绩总分
+     queryDataSet2.setQuery(new com.borland.dx.sql.dataset.QueryDescriptor(database1, "SELECT SUM(achievement) AS SUM_achievement FROM info.dbo.art2\n" +
+       "where art2.cardID = '"+cardID1+"'", null, true, Load.ALL));
+     //在jdbTextField1中加入一列
+     jdbTextField1.setColumnName("SUM_achievement");
+     //把数据集加入到jdbTextField1中
+    jdbTextField1.setDataSet(queryDataSet2);
+    }
+    catch(Exception www){}
+  }
+}

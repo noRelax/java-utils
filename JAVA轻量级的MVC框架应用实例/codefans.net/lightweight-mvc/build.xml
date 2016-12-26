@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<project name="light-weight-mvc" default="dist" basedir=".">
+
+    <description>light-weight-mvc</description>
+
+    <property name="src.dir"    value="src" />
+    <property name="test.dir"   value="test" />
+    <property name="lib.dir"    value="lib" />
+    <property name="build.dir"  value="bin" />
+    <property name="dist.dir"   value="dist" />
+    <property name="doc.dir"    value="doc/api" />
+    <property name="sample.dir" value="sample" />
+
+    <!-- classpath definition -->
+    <path id="build-classpath">
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar" />
+        </fileset>
+    </path>
+
+    <!-- clean all built class file and config file -->
+    <target name="clean">
+        <delete dir="${build.dir}" />
+        <delete dir="${doc.dir}" />
+    </target>
+
+    <!-- make all needed dirs -->
+    <target name="init">
+    </target>
+
+    <!-- compile all java source files -->
+    <target name="build" depends="init" description="compile the source files">
+        <mkdir dir="${build.dir}" />
+        <!-- for product use, set: optimize="on" debug="off" -->
+        <javac destdir="${build.dir}" target="1.5" encoding="utf-8" deprecation="on" debug="on" debuglevel="lines,vars,source">
+            <src path="${src.dir}" />
+            <src path="${test.dir}" />
+            <classpath refid="build-classpath"/>
+        </javac>
+        <!-- copy non-java source files to build dir -->
+        <copy todir="${build.dir}">
+            <fileset dir="${src.dir}" excludes="**/*.java" />
+        </copy>
+    </target>
+
+    <!-- test
+    <target name="test" depends="build" description="run junit test">
+        <taskdef name="junit" classname="org.apache.tools.ant.taskdefs.optional.junit.JUnitTask">
+            <classpath>
+                <fileset dir="${lib.dir}">
+                    <include name="**/*.jar" />
+                </fileset>
+            </classpath>
+        </taskdef>
+        <mkdir dir="${report.dir}"/>
+        <delete file="${report.dir}/*.*" />
+        <junit printsummary="on"
+               haltonfailure="false"
+               failureproperty="tests.failed"
+               showoutput="true">
+            <classpath refid="build-classpath" />
+            <formatter type="plain"/>
+            <batchtest todir="${report.dir}">
+                <fileset dir="${build.dir}">
+                    <include name="**/*Test.class"/>
+                </fileset>
+            </batchtest>
+        </junit>
+        <fail if="tests.failed">
+        ***********************************************************
+        ****  One or more tests failed!  Check the output ...  ****
+        ***********************************************************
+        </fail>
+    </target>
+-->
+
+    <!-- api doc -->
+    <target name="apidoc" depends="init" description="create api doc">
+        <javadoc sourcepath="${src.dir}"
+                 destdir="${doc.dir}"
+                 Locale="en_US"
+                 author="true"
+                 source="1.5"
+                 charset="UTF-8"
+                 encoding="UTF-8"
+                 docencoding="UTF-8"
+                 windowtitle="Lightweight MVC API Documents"
+        >
+            <classpath refid="build-classpath"/>
+            <bottom><![CDATA[<b>Lightweight MVC v1.0</b>, <i>Copyright_2007, <a href="http://www.javaeedev.com" target="_blank">http://www.javaeedev.com</a>, All Rights Reserved.</i>]]></bottom>
+        </javadoc>
+    </target>
+
+    <target name="dist" depends="build" description="make jar">
+        <delete file="${dist.dir}/lightweight-mvc.jar" />
+        <mkdir dir="${dist.dir}" />
+        <jar destfile="${dist.dir}/lightweight-mvc.jar">
+            <fileset dir="${build.dir}">
+                <include name="**/*.*" />
+            </fileset>
+        </jar>
+    </target>
+
+</project>

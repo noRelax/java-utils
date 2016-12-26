@@ -1,0 +1,66 @@
+Blackwhitechess -> Blackwhitechess:
+    javax.microedition.lcdui.Command exitCommand -> a
+    javax.microedition.lcdui.Command scoreCommand -> b
+    javax.microedition.lcdui.Command aboutCommand -> c
+    MyGameCanvas myGameCanvas -> d
+    int oldState -> e
+    void destroyApp(boolean) -> destroyApp
+    void pauseApp() -> pauseApp
+    void startApp() -> startApp
+    void commandAction(javax.microedition.lcdui.Command,javax.microedition.lcdui.Displayable) -> commandAction
+ChessBoard -> c:
+    ChessMan[][] m_board -> a
+    void initChessBoard() -> a
+    ChessMan getChessMan(int,int) -> a
+    void changeBoard(int,int,boolean) -> a
+ChessMan -> b:
+    boolean m_chessMan -> a
+Game -> f:
+    Player m_black -> a
+    Player m_white -> b
+    boolean m_turn -> c
+    int m_state -> d
+MyGameCanvas -> d:
+    Game m_game -> a
+    short m_x -> h
+    short m_y -> i
+    int UNITY -> j
+    int UNITX -> k
+    javax.microedition.lcdui.Image imgGround -> l
+    javax.microedition.lcdui.Image imgBlack -> m
+    javax.microedition.lcdui.Image imgWhite -> n
+    javax.microedition.lcdui.Graphics g -> o
+    javax.microedition.lcdui.Command runCommand -> b
+    javax.microedition.lcdui.Command backCommand -> c
+    javax.microedition.lcdui.Command fullCommand -> d
+    javax.microedition.lcdui.Command notFullCommand -> e
+    boolean full -> f
+    int clrRect -> p
+    java.lang.Thread thread -> g
+    boolean sign -> q
+    int color -> r
+    java.lang.String msgStr -> s
+    void keyPressed() -> a
+    void draw() -> b
+    void run() -> run
+    void drawAbout() -> c
+    void drawReady() -> d
+    void drawScore() -> e
+    void drawRun() -> f
+    void drawRect() -> g
+    void drawBoard() -> h
+    void other() -> i
+Player -> e:
+    boolean m_turn -> b
+    ChessBoard m_bod -> c
+    int m_scroe -> a
+    boolean eat(int,int,int,int) -> a
+    boolean judge(int,int,int,int) -> b
+    int result() -> a
+    int getNum() -> b
+    boolean setChess(int,int) -> a
+    ChessMan getChess(int,int) -> b
+    void init() -> c
+    int[] aiXY() -> d
+transImage -> a:
+    javax.microedition.lcdui.Image scale(javax.microedition.lcdui.Image,int,int) -> a

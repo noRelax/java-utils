@@ -1,0 +1,1735 @@
+<?xml version="1.0" encoding="GBK" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711078</millis>
+  <sequence>0</sequence>
+  <logger>com.ll.smsbeans.ConnectionAdapter</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionAdapter</class>
+  <method>connecting</method>
+  <thread>10</thread>
+  <message>正在连接服务器！！！</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711296</millis>
+  <sequence>1</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppConnectResp: SequenceId=0
+  status=0
+  AuthenticatorISMG=m溒^?7s?8??
+  Version=48</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711296</millis>
+  <sequence>2</sequence>
+  <logger>com.ll.smsbeans.ConnectionAdapter</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionAdapter</class>
+  <method>connected</method>
+  <thread>11</thread>
+  <message>与服务器成功连接！！！</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711312</millis>
+  <sequence>3</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppConnect: SequenceId=0
+  SourceAddr=901234
+  SpPassword=1234
+  SequenceId=0
+  timestamp=0928101511
+  Version=3</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711359</millis>
+  <sequence>4</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=1
+  MsgId=-7050118310135266315
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711375</millis>
+  <sequence>5</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=1
+ msgId =1
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@18385e3
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711375</millis>
+  <sequence>6</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=2
+ msgId =1
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@1cb25f1
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711406</millis>
+  <sequence>7</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=2
+  MsgId=-7050118310135266314
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711421</millis>
+  <sequence>8</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=3
+ msgId =3
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@535b58
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711437</millis>
+  <sequence>9</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=4
+ msgId =1
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@922804
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711437</millis>
+  <sequence>10</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=5
+ msgId =3
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@1815859
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711437</millis>
+  <sequence>11</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=6
+ msgId =1
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =90
+ msgContent =[B@503429
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711453</millis>
+  <sequence>12</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=7
+ msgId =3
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@100ab23
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711453</millis>
+  <sequence>13</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=8
+ msgId =3
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =90
+ msgContent =[B@e3b895
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711484</millis>
+  <sequence>14</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=3
+  MsgId=-7050118310135266313
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711484</millis>
+  <sequence>15</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=4
+  MsgId=-7050118310135266312
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711500</millis>
+  <sequence>16</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=5
+  MsgId=-7050118310135266311
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711515</millis>
+  <sequence>17</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=6
+  MsgId=-7050118310135266310
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711546</millis>
+  <sequence>18</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=7
+  MsgId=-7050118310135266309
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711546</millis>
+  <sequence>19</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=8
+  MsgId=-7050118310135266308
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711593</millis>
+  <sequence>20</sequence>
+  <logger>com.ll.smsbeans.MessageBeanTest</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.test.MessageBeanTest$MessageBeanThread</class>
+  <method>run</method>
+  <thread>13</thread>
+  <message>发送Submit包成功</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711593</millis>
+  <sequence>21</sequence>
+  <logger>com.ll.smsbeans.MessageBeanTest</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.test.MessageBeanTest$MessageBeanThread</class>
+  <method>run</method>
+  <thread>14</thread>
+  <message>发送Submit包成功</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711625</millis>
+  <sequence>22</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=9
+  MsgId=-7050118310135266307
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711625</millis>
+  <sequence>23</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=9
+ msgId =4
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@df503
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711625</millis>
+  <sequence>24</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=10
+ msgId =4
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@50d89c
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711625</millis>
+  <sequence>25</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=10
+  MsgId=-7050118310135266306
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711656</millis>
+  <sequence>26</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=11
+  MsgId=-7050118310135266305
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711656</millis>
+  <sequence>27</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=11
+ msgId =4
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@1bd0dd4
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711656</millis>
+  <sequence>28</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=12
+ msgId =4
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =10
+ msgContent =[B@d70d7a
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711656</millis>
+  <sequence>29</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=13
+ msgId =5
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@b5f53a
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711703</millis>
+  <sequence>30</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=12
+  MsgId=-7050118310135266304
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711703</millis>
+  <sequence>31</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=14
+ msgId =5
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@1f6f0bf
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711718</millis>
+  <sequence>32</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=13
+  MsgId=-7050118310135266303
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711734</millis>
+  <sequence>33</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=15
+ msgId =5
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@137c60d
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711750</millis>
+  <sequence>34</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=14
+  MsgId=-7050118310135266302
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711765</millis>
+  <sequence>35</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=16
+ msgId =5
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =10
+ msgContent =[B@ab853b
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711765</millis>
+  <sequence>36</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=15
+  MsgId=-7050118310135266301
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711765</millis>
+  <sequence>37</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=16
+  MsgId=-7050118310135266300
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711765</millis>
+  <sequence>38</sequence>
+  <logger>com.ll.smsbeans.MessageBeanTest</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.test.MessageBeanTest$MessageBeanThread</class>
+  <method>run</method>
+  <thread>13</thread>
+  <message>发送Submit包成功</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:11</date>
+  <millis>1096337711812</millis>
+  <sequence>39</sequence>
+  <logger>com.ll.smsbeans.MessageBeanTest</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.test.MessageBeanTest$MessageBeanThread</class>
+  <method>run</method>
+  <thread>14</thread>
+  <message>发送Submit包成功</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721765</millis>
+  <sequence>40</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=17
+  MsgId=-7050115561356196859
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721765</millis>
+  <sequence>41</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=17
+ msgId =7
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@15cda3f
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721765</millis>
+  <sequence>42</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=18
+ msgId =7
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@fc9944
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721765</millis>
+  <sequence>43</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=18
+  MsgId=-7050115561356196858
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721812</millis>
+  <sequence>44</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=19
+  MsgId=-7050115561356196857
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721828</millis>
+  <sequence>45</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=19
+ msgId =7
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@1b26af3
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721828</millis>
+  <sequence>46</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=20
+  MsgId=-7050115561356196856
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721828</millis>
+  <sequence>47</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=20
+ msgId =7
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =90
+ msgContent =[B@8b819f
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721828</millis>
+  <sequence>48</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=21
+  MsgId=-7050115561356196855
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721828</millis>
+  <sequence>49</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=21
+ msgId =9
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@eb017e
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721828</millis>
+  <sequence>50</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=22
+  MsgId=-7050115561356196854
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721828</millis>
+  <sequence>51</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=22
+ msgId =9
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@aeffdf
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721843</millis>
+  <sequence>52</sequence>
+  <logger>com.ll.smsbeans.MessageBeanTest</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.test.MessageBeanTest$MessageBeanThread</class>
+  <method>run</method>
+  <thread>13</thread>
+  <message>发送Submit包成功</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721843</millis>
+  <sequence>53</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=24
+ msgId =10
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@120a47e
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721843</millis>
+  <sequence>54</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=24
+  MsgId=-7050115561356196853
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721875</millis>
+  <sequence>55</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=25
+  MsgId=-7050115561356196852
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721875</millis>
+  <sequence>56</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=25
+ msgId =10
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@f73c1
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721890</millis>
+  <sequence>57</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=26
+ msgId =10
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@186c6b2
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721890</millis>
+  <sequence>58</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=27
+ msgId =10
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =10
+ msgContent =[B@15ee671
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721890</millis>
+  <sequence>59</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=23
+ msgId =9
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@16b13c7
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721890</millis>
+  <sequence>60</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=28
+ msgId =9
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =90
+ msgContent =[B@df8f5e
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721890</millis>
+  <sequence>61</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=26
+  MsgId=-7050115561356196851
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721906</millis>
+  <sequence>62</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=27
+  MsgId=-7050115561356196850
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721906</millis>
+  <sequence>63</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=23
+  MsgId=-7050115561356196849
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721906</millis>
+  <sequence>64</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=28
+  MsgId=-7050115561356196848
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721906</millis>
+  <sequence>65</sequence>
+  <logger>com.ll.smsbeans.MessageBeanTest</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.test.MessageBeanTest$MessageBeanThread</class>
+  <method>run</method>
+  <thread>13</thread>
+  <message>发送Submit包成功</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721906</millis>
+  <sequence>66</sequence>
+  <logger>com.ll.smsbeans.MessageBeanTest</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.test.MessageBeanTest$MessageBeanThread</class>
+  <method>run</method>
+  <thread>14</thread>
+  <message>发送Submit包成功</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721921</millis>
+  <sequence>67</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=29
+ msgId =11
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@329f3d
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721921</millis>
+  <sequence>68</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=29
+  MsgId=-7050115561356196847
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721953</millis>
+  <sequence>69</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=30
+ msgId =11
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@17bd6a1
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721953</millis>
+  <sequence>70</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=31
+ msgId =11
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =140
+ msgContent =[B@147ee05
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721968</millis>
+  <sequence>71</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmit: SequenceId=32
+ msgId =11
+ pkTotal =1
+ pkNumber =1
+ registerDelivery =0
+ msgLevel =1
+ serviceId =
+ feeUserType =0
+ feeTermId =
+ feeTermType =0
+ tpPid =0
+ tpUdhi =0
+ msgFmt =15
+ msgSrc =901234
+ feeType =01
+ feeCode =000000
+ validTime =55555
+ atTime =0000
+ srcTermId =901234
+ destUsrTl =3
+ dstTermId =13803882229;13803884444;13803881234;
+ dstTermType =0
+ msgLen =10
+ msgContent =[B@15b9e68
+ linkId =</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721968</millis>
+  <sequence>72</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=30
+  MsgId=-7050115561356196846
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721968</millis>
+  <sequence>73</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=31
+  MsgId=-7050115561356196845
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721968</millis>
+  <sequence>74</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppSubmitResp:SequenceId=32
+  MsgId=-7050115561356196844
+  Result=0</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:21</date>
+  <millis>1096337721968</millis>
+  <sequence>75</sequence>
+  <logger>com.ll.smsbeans.MessageBeanTest</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.test.MessageBeanTest$MessageBeanThread</class>
+  <method>run</method>
+  <thread>14</thread>
+  <message>发送Submit包成功</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:28</date>
+  <millis>1096337728265</millis>
+  <sequence>76</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>sentPacket</method>
+  <thread>12</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppTerminate: SequenceId=33</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:28</date>
+  <millis>1096337728281</millis>
+  <sequence>77</sequence>
+  <logger>com.ll.smsbeans.ConnectBean</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionBean$PacketStreamMonitor</class>
+  <method>receivedPacket</method>
+  <thread>11</thread>
+  <message>com.ll.smsbeans.cmpp3.CmppTerminateResp: SequenceId=33</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:28</date>
+  <millis>1096337728281</millis>
+  <sequence>78</sequence>
+  <logger>com.ll.smsbeans.ConnectionAdapter</logger>
+  <level>INFO</level>
+  <class>com.ll.smsbeans.ConnectionAdapter</class>
+  <method>disconnected</method>
+  <thread>11</thread>
+  <message>与服务器连接已断开！！！</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:28</date>
+  <millis>1096337728281</millis>
+  <sequence>79</sequence>
+  <logger>com.ll.smsbeans.InputStreamHandler</logger>
+  <level>WARNING</level>
+  <class>com.ll.smsbeans.InputStreamHandler</class>
+  <method>run</method>
+  <thread>11</thread>
+  <message>InputStream: parsing done</message>
+</record>
+<record>
+  <date>2004-09-28T10:15:28</date>
+  <millis>1096337728281</millis>
+  <sequence>80</sequence>
+  <logger>com.ll.smsbeans.OutputStreamHandler</logger>
+  <level>WARNING</level>
+  <class>com.ll.smsbeans.OutputStreamHandler</class>
+  <method>run</method>
+  <thread>12</thread>
+  <message>OutputStream: stopped</message>
+</record>
+</log>

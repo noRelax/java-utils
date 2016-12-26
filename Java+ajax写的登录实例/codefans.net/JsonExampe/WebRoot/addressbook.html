@@ -1,0 +1,156 @@
+<html> 
+<head> 
+<title> JSON Address Book </title> 
+<script type="text/javascript" src="prototype-1.4.0.js"></script> 
+<script type="text/javascript"> 
+/*
+  (c) 2006, Daniel Rubio
+  relased under terms of the GNU public license 
+  http://www.gnu.org/licenses/licenses.html#TOCGPL
+*/
+// Method invoked when user changes letter range
+function searchAddressBook()	{
+
+  // Declare variables for HTML select lists
+  var fromLetter;
+  var toLetter; 
+
+  // Browser detection IE 
+  var ie = (document.all) ? true : false;
+
+  // Validate current selection list and assign based on browser 
+  if(ie) {  
+    // Internet Explorer 
+    if(this.toLetter.selectedIndex == -1) { 
+       alert("Please select a limiting \"To\" letter");return false;
+     }
+
+    // Check if the user selected a from letter
+    if(this.fromLetter.selectedIndex == -1) { 
+       alert("Please select a limiting \"From\" letter");return false;
+     }
+
+    // Assign values 
+    fromLetter = this.fromLetter.options[this.fromLetter.selectedIndex].text;  
+    toLetter = this.toLetter.options[this.toLetter.selectedIndex].text; 
+
+   } else { 
+    // Firexfox-Mozilla 
+    // Check if the user selected a to letter
+    if($F('toLetter') == "" ) { 
+      alert("Please select a limiting \"To\" letter");return false;
+    }
+
+    // Check if the user selected a from letter
+     if($F('fromLetter') == "") { 
+      alert("Please select a limiting \"From\" letter");return false;
+     }
+    // Assign values 
+    fromLetter = $F('fromLetter');
+    toLetter = $F('toLetter');
+  } // end validation and assignment 
+
+  // Define REST web service URL 
+  var url = 'restservice.jsp';
+  // Prepare parameters to send into REST web service
+  var pars = 'from=' + fromLetter + '&to=' + toLetter;
+
+  // Make web service AJAX request via prototype helper, 
+  // upon response, call showResponse method		
+  new Ajax.Request( url, { method: 'get', parameters: pars, onComplete: showResponse });
+}
+
+
+// Method invoked when page receives AJAX response from REST web service 
+function showResponse(originalRequest)	{
+   // Get JSON values 
+   jsonRaw = originalRequest.responseText;
+   alert(jsonRaw);
+   // Eval JSON response into variable 
+   jsonContent = eval("(" + jsonRaw + ")");
+   alert(jsonContent);
+
+   // Create place holder for final response    
+   finalResponse = "<b>" + jsonContent.addressbook.length + " matches found in range</b><br/>";
+
+   // Loop over address book length.
+   for (i = 0; i < jsonContent.addressbook.length; i++) {
+        finalResponse += "<hr/>";
+        finalResponse += "<i>Name:</i> " + jsonContent.addressbook[i].name + "<br/>";          
+        finalResponse += "<i>Address:</i> " + jsonContent.addressbook[i].address.street + " -- " + 
+                          jsonContent.addressbook[i].address.city + "," +           
+                          jsonContent.addressbook[i].address.zip + ".<br/>";          
+        finalResponse += "<i>Telephone numbers:</i> " + jsonContent.addressbook[i].phoneNumbers[0] + " &amp; " + 
+        jsonContent.addressbook[i].phoneNumbers[1] + ".";          
+   }
+
+   // Place formatted finalResponse in div element
+   document.getElementById("addressBookResults").innerHTML = finalResponse;
+	}
+</script> 
+</head>
+<body> 
+<h4 style="text-align:left">Request address book matches:</h4>
+<table style="text-align:left" cellpadding="15"><tr><td valign="top">From:<br/>
+<select id="fromLetter" size="15" onchange="searchAddressBook()">
+	<option>A</option>
+	<option>B</option>
+	<option>C</option>
+	<option>D</option>
+	<option>E</option>
+	<option>F</option>
+	<option>G</option>
+	<option>H</option>
+	<option>I</option>
+	<option>J</option>
+	<option>K</option>
+	<option>L</option>
+	<option>M</option>
+	<option>N</option>
+	<option>O</option>
+	<option>P</option>
+	<option>Q</option>
+	<option>R</option>
+	<option>S</option>
+	<option>T</option>
+	<option>U</option>
+	<option>V</option>
+	<option>X</option>
+	<option>Y</option>
+	<option>Z</option>
+</select>
+</td><td valign="top">To:<br/>
+<select id="toLetter" size="15" onchange="searchAddressBook()">
+	<option>A</option>
+	<option>B</option>
+	<option>C</option>
+	<option>D</option>
+	<option>E</option>
+	<option>F</option>
+	<option>G</option>
+	<option>H</option>
+	<option>I</option>
+	<option>J</option>
+	<option>K</option>
+	<option>L</option>
+	<option>M</option>
+	<option>N</option>
+	<option>O</option>
+	<option>P</option>
+	<option>Q</option>
+	<option>R</option>
+	<option>S</option>
+	<option>T</option>
+	<option>U</option>
+	<option>V</option>
+	<option>X</option>
+	<option>Y</option>
+	<option>Z</option>
+</select>
+</td><td valign="top">
+<h5> Results </h5> 
+<div style="text-align:left" id="addressBookResults">Please select range</div>
+</td></tr>
+</table>
+</body> 
+</html> 

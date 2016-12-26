@@ -1,0 +1,46 @@
+package get_time;
+
+import java.awt.*;
+
+import javax.swing.*;
+import java.awt.BorderLayout;
+import com.borland.jbcl.layout.XYLayout;
+import com.borland.jbcl.layout.*;
+
+/**
+ * <p>Title: </p>
+ *
+ * <p>Description: </p>
+ *
+ * <p>Copyright: Copyright (c) 2007</p>
+ *
+ * <p>Company: </p>
+ *
+ * @author not attributable
+ * @version 1.0
+ */
+public class getTime extends JFrame {
+    XYLayout xYLayout1 = new XYLayout();
+    JPanel jPanel1 = new JPanel();
+    XYLayout xYLayout2 = new XYLayout();
+    JPanel jPanel2 = new JPanel();
+    public getTime() {
+        try {
+            jbInit();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    private void jbInit() throws Exception {
+        getContentPane().setLayout(xYLayout1);
+        jPanel1.setLayout(xYLayout2);
+        jPanel1.setBackground(new Color(236, 233, 255));
+        this.getContentPane().add(jPanel1, new XYConstraints(16, 30, 374, 199));
+        jPanel1.add(jPanel2, new XYConstraints(0, 0, 204, 164));
+    }
+
+    public static void main(String[] args) {
+        getTime gettime = new getTime();
+    }
+}

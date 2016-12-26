@@ -1,0 +1,63 @@
+package card;
+//download by http://www.codefans.net
+import java.sql.*;
+
+public class cardConnect
+{
+  public cardConnect()
+  {
+   try
+   {
+     Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+   }catch(ClassNotFoundException ee){  }
+    try
+    {
+      jbInit();
+    } catch( Exception ex )
+    {
+      ex.printStackTrace();
+    }
+  }
+
+  public static Connection getconn() throws SQLException
+  {
+    String url="jdbc:odbc:dbcard";
+    String username="sa";
+    String password="4795587";
+    return DriverManager.getConnection(url,username,password);
+  }
+
+  public static void close(ResultSet rs)
+  {
+    try
+    {
+      if(rs!=null)
+      {
+        rs.close();
+      }
+    }catch(Exception ex){}
+  }
+
+  public static void close(Statement stmt)
+  {
+    try
+    {
+      if(stmt!=null)
+        stmt.close();
+    }catch(Exception ex){}
+  }
+
+  public static void close(Connection conn)
+  {
+    try
+    {
+      if(conn!=null)
+        conn.close();
+    }catch(Exception ex){}
+  }
+  //调用本类的构造方法
+  private static cardConnect dbconn=new cardConnect();
+  private void jbInit() throws Exception
+  {
+  }
+}

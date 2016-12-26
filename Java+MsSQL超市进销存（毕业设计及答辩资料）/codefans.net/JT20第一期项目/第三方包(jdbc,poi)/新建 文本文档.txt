@@ -1,0 +1,4 @@
+driverclass=com.microsoft.jdbc.sqlserver.SQLServerDriver
+url=jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=BBS
+username=sa
+password=sa

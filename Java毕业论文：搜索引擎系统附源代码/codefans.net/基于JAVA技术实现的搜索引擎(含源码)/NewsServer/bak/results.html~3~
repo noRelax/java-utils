@@ -1,0 +1,15 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title>
+Results
+</title>
+</head>
+<body bgcolor="#ffffff">
+
+<form action="/NewsServer/results" method="get">
+<p>输入关键字  <input type="text" name="QueryContent"></p>
+<p><input type="submit" name="搜索" value="Submit"></p>
+</form>
+</body>
+</html>

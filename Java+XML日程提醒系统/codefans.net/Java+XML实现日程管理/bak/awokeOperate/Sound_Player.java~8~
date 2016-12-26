@@ -1,0 +1,18 @@
+package awokeOperate;
+import java.applet.AudioClip;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.net.*;
+public class Sound_Player{
+    boolean looping = false; //是否循环播放
+    String[] choics = {"chimes.wav", "start.wav"}; //声音文件名数组
+    URL file1 = getClass().getResource(choics[0]); //声音文件1
+    URL file2 = getClass().getResource(choics[1]); //声音文件2
+    AudioClip sound1 = java.applet.Applet.newAudioClip(file1); //声音剪辑对象1
+    AudioClip sound2 = java.applet.Applet.newAudioClip(file2); //声音剪辑对象2
+    AudioClip chosenClip = sound1; //选择的声音剪辑对象
+
+    public
+
+}

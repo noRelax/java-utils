@@ -1,0 +1,11 @@
+package Other;
+import java.util.*;
+import java.text.DateFormat;
+public class getTime{
+    public static void main(String args[]){
+        Date now = new Date();
+        DateFormat d = DateFormat.getDateInstance();
+        String str = d.toString();
+        System.out.println(str);
+    }
+}

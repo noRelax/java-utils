@@ -1,0 +1,21 @@
+[PropertyInfo]
+_log,java.util.logging.Logger,false,false, , ,false,<default>
+connectionState,com.ll.smsbeans.ConnectionEvent.EState,false,false, , ,true,<default>
+DEFAULT_PORT,int,false,false, , ,false,<default>
+idBuilder,com.ll.smsbeans.IdBuilder,false,false, , ,false,<default>
+input,com.ll.smsbeans.InputStreamHandler,false,false, , ,false,<default>
+isi,com.ll.smsbeans.ConnectionBean.InputStreamInterface,false,false, , ,false,<default>
+MTimer,com.ll.smsbeans.ConnectionBean.Timer,false,false, , ,false,<default>
+osi,com.ll.smsbeans.ConnectionBean.OutputStreamInterface,false,false, , ,false,<default>
+output,com.ll.smsbeans.OutputStreamHandler,false,false, , ,false,<default>
+password,String,false,false, , ,false,<default>
+sendPackedNumber,int,false,false, , ,true,<default>
+sendPacketList,com.ll.smsbeans.SendPackStateList,false,false, , ,false,<default>
+socket,java.net.Socket,false,false, , ,false,<default>
+sourceAddr,String,false,false, , ,false,<default>
+status,com.ll.smsbeans.ConnectionEvent.EState,false,false, , ,false,<default>
+[IconNames]
+
+
+
+

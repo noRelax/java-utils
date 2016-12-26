@@ -1,0 +1,68 @@
+package infomanagement;
+
+import java.awt.*;
+import javax.swing.*;
+import com.borland.jbcl.layout.*;
+import com.borland.dx.dataset.*;
+import com.borland.dbswing.*;
+
+/**
+ * <p>Title: </p>
+ * <p>Description: </p>
+ * <p>Copyright: Copyright (c) 2003</p>
+ * <p>Company: </p>
+ * @author unascribed
+ * @version 1.0
+ */
+
+public class ArtsAchievement extends JDialog {
+  private JPanel panel1 = new JPanel();
+  private BorderLayout borderLayout1 = new BorderLayout();
+  private JPanel jPanel1 = new JPanel();
+  private XYLayout xYLayout1 = new XYLayout();
+  private JLabel jLabel1 = new JLabel();
+  private JLabel jLabel2 = new JLabel();
+  private JLabel jLabel3 = new JLabel();
+  private JLabel jLabel4 = new JLabel();
+  private JLabel jLabel5 = new JLabel();
+  private JTextField jTextField1 = new JTextField();
+  private JTextField jTextField2 = new JTextField();
+  private JTextField jTextField3 = new JTextField();
+
+  public ArtsAchievement(Frame frame, String title, boolean modal) {
+    super(frame, title, modal);
+    try {
+      jbInit();
+      pack();
+    }
+    catch(Exception ex) {
+      ex.printStackTrace();
+    }
+  }
+
+  public ArtsAchievement() {
+    this(null, "", false);
+  }
+  private void jbInit() throws Exception {
+    panel1.setLayout(borderLayout1);
+    jPanel1.setLayout(xYLayout1);
+    jLabel1.setFont(new java.awt.Font("Dialog", 0, 23));
+    jLabel1.setForeground(Color.red);
+    jLabel1.setBorder(BorderFactory.createEtchedBorder());
+    jLabel1.setText("                  理科成绩录入");
+    jLabel2.setBorder(BorderFactory.createEtchedBorder());
+    jLabel3.setText("    准考证号");
+    jLabel4.setText("       学生姓名");
+    jLabel5.setText("    考前学校");
+    getContentPane().add(panel1);
+    panel1.add(jPanel1, BorderLayout.CENTER);
+    jPanel1.add(jLabel1,  new XYConstraints(0, 0, 399, 48));
+    jPanel1.add(jLabel3,    new XYConstraints(30, 50, 114, 21));
+    jPanel1.add(jLabel4,    new XYConstraints(150, 50, 108, 23));
+    jPanel1.add(jLabel5,    new XYConstraints(270, 50, 104, 23));
+    jPanel1.add(jLabel2, new XYConstraints(0, 46, 399, 76));
+    jPanel1.add(jTextField1,  new XYConstraints(40, 81, 90, 20));
+    jPanel1.add(jTextField2,   new XYConstraints(160, 81, 90, 20));
+    jPanel1.add(jTextField3,    new XYConstraints(280, 81, 90, 20));
+  }
+}

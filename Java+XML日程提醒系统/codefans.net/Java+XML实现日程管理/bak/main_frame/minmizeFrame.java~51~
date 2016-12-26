@@ -1,0 +1,91 @@
+package main_frame;
+
+import java.awt.*;
+
+import javax.swing.*;
+import java.awt.BorderLayout;
+import com.borland.jbcl.layout.XYLayout;
+import com.borland.jbcl.layout.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+/**
+ * <p>Title: </p>
+ *
+ * <p>Description: </p>
+ *
+ * <p>Copyright: Copyright (c) 2007</p>
+ *
+ * <p>Company: </p>
+ *
+ * @author not attributable
+ * @version 1.0
+ */
+public class minmizeFrame extends JFrame {
+    JButton jButton1 = new JButton();
+    XYLayout xYLayout1 = new XYLayout();
+    JButton jButton2 = new JButton();
+    mainFrame mf = null;
+    JLabel jLabel1 = new JLabel();
+
+    public minmizeFrame() {
+        try {
+            jbInit();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    private void jbInit() throws Exception {
+        getContentPane().setLayout(xYLayout1);
+        this.getContentPane().setBackground(new Color(236, 233, 255));
+        this.setUndecorated(true);
+        jButton1.setText("还原");
+        jButton1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                jButton1_actionPerformed(e);
+            }
+        });
+        jButton2.setText("退出");
+        jButton2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                jButton2_actionPerformed(e);
+            }
+        });
+        xYLayout1.setWidth(200);
+        xYLayout1.setHeight(28);
+        jLabel1.setText("勿忘提醒簿");
+        this.getContentPane().add(jButton1, new XYConstraints(0, 1, 60, 27));
+        this.getContentPane().add(jButton2, new XYConstraints(61, 1, -1, 27));
+        this.getContentPane().add(jLabel1, new XYConstraints(119, 1, 81, 25));
+        jLabel1.setIcon(new ImageIcon("images/ICON.jpg"));
+    }
+    /**
+     * 获取主窗体.
+     * @param mainFrame Object
+     */
+    public void setMainFrame(Object mainFrame){
+        this.mf =(mainFrame) mainFrame;
+    }
+
+    public void jButton2_actionPerformed(ActionEvent e) {
+        System.exit(0);
+    }
+
+
+    public void jButton1_actionPerformed(ActionEvent e) {
+        this.mf.setVisible(true);
+        this.mf.setLocation(300, 200);
+        this.mf.setSize(500, 400);
+        Thread notForget = new Thread(this.mf,"Not_Forget");
+        notForget.start();
+        this.dispose();
+    }
+
+    public static void main(String[] args) {
+        minmizeFrame minmizeframe = new minmizeFrame();
+        minmizeframe.setSize(200, 30);
+        minmizeframe.setLocation(824, 700);
+        minmizeframe.setVisible(true);
+    }
+}

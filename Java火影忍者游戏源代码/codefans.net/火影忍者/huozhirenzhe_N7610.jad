@@ -1,0 +1,11 @@
+MIDlet-1: d, /icons/icon.png, numen
+MIDlet-Description: 适合NOKIA76710。单机应用。
+MIDlet-Icon: /icons/icon.png
+MIDlet-Jar-Size: 99699
+MIDlet-Jar-URL: huozhirenzhe_N7610.jar
+MIDlet-Name: 火之忍者
+MIDlet-Vendor: run
+MIDlet-Version: 1.0
+Media-Price: 按次计费0元/次 无使用限制
+MicroEdition-Profile: MIDP-1.0
+MicroEdition-Configuration: CLDC-1.0

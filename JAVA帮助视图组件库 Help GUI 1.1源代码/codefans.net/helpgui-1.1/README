@@ -1,0 +1,54 @@
+HelpHUI  version 1.1
+http://helpgui.sourceforge.net
+
+
+
+==========================
+TABLE OF CONTENT
+================
+ 1. Author 
+ 2. The License
+ 3. The Demo
+ 4. How To Use ??
+
+
+==========================
+1. Author
+=========
+Alexandre THOMAS <alexthomas@free.fr>
+
+
+==========================
+2. The License
+==============
+HelpGUI is under the GPL License
+
+
+==========================
+3. The Demo
+===========
+The HelpGUI demo show you a simple example of the
+HelpGUI utilisation.
+Run by "java -jar helpgui-version-demo.jar"
+The Main Frame is showing with some documentation example
+
+
+
+==========================
+4. How To Use ??
+================
+
+Create a directory like /docs/help/
+include a file name toc.xml (table of content) and edit it as the on of the demo.
+Next edit you html web pages on the directory
+
+For launching the helpGUI only use the following line
+
+JFrame helpFrame = new net.sourceforge.helpgui.gui.MainFrame("/docs/help/","java");
+helpFrame.setVisible(true);
+
+ "/docs/help/" is the directory where the files are located
+ "java" is the icon theme (choose between bluecurve, crystal, gtk, java, jfa, kde, plastic, slick, windows
+
+
+

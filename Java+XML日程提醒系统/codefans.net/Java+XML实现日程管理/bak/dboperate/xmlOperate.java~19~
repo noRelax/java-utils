@@ -1,0 +1,30 @@
+package dboperate;
+public class xmlOperate{
+    public Object[][] allData;
+    public int MaxID;
+    public int rowCount;
+    public Object[][] tableData;
+  
+    /**
+     * 建立连接.初始化.
+     * @param fileName String
+     * @param columnNum int
+     */
+    public xmlOperate(String fileName,int columnNum){
+        xmlConn conn = new xmlConn(fileName,columnNum);
+        this.allData = conn.getData();
+        this.MaxID = conn.getMaxID();
+        this.rowCount = conn.getRowCount();
+        this.tableData = conn.getAllList(this.allData);
+    }
+    
+    
+    public boolean insertXml(){
+        writexml insert = new writexml();
+        return true;
+    }
+    
+    
+    
+    
+}

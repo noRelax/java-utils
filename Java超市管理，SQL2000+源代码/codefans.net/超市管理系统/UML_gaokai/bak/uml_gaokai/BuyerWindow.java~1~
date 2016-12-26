@@ -1,0 +1,57 @@
+package uml_gaokai;
+
+import java.awt.*;
+import javax.swing.*;
+import com.borland.dx.sql.dataset.*;
+import com.borland.dbswing.*;
+import com.borland.jbcl.layout.*;
+
+/**
+ * <p>Title: </p>
+ * <p>Description: </p>
+ * <p>Copyright: Copyright (c) 2003</p>
+ * <p>Company: </p>
+ * @author unascribed
+ * @version 1.0
+ */
+
+public class BuyerWindow extends JDialog {
+  private JPanel panel1 = new JPanel();
+  private Database database1 = new Database();
+  private QueryDataSet queryDataSet1 = new QueryDataSet();
+  private XYLayout xYLayout1 = new XYLayout();
+  private JPanel jPanel1 = new JPanel();
+  private XYLayout xYLayout2 = new XYLayout();
+  private JdbTable jdbTable1 = new JdbTable();
+  private TableScrollPane tableScrollPane1 = new TableScrollPane();
+  private JButton jButton1 = new JButton();
+  private JButton jButton2 = new JButton();
+
+  public BuyerWindow(Frame frame, String title, boolean modal) {
+    super(frame, title, modal);
+    try {
+      jbInit();
+      pack();
+    }
+    catch(Exception ex) {
+      ex.printStackTrace();
+    }
+  }
+
+  public BuyerWindow() {
+    this(null, "", false);
+  }
+  private void jbInit() throws Exception {
+    panel1.setLayout(xYLayout1);
+    database1.setConnection(new com.borland.dx.sql.dataset.ConnectionDescriptor("jdbc:odbc:gaokaiSQL", "sa", "", false, "sun.jdbc.odbc.JdbcOdbcDriver"));
+    jPanel1.setLayout(xYLayout2);
+    jButton1.setText("查看订货单");
+    jButton2.setText("退出");
+    getContentPane().add(panel1);
+    panel1.add(jPanel1,  new XYConstraints(190, 154, -1, -1));
+    panel1.add(jdbTable1,  new XYConstraints(1, 0, 399, 238));
+    panel1.add(tableScrollPane1,  new XYConstraints(192, 117, -1, -1));
+    panel1.add(jButton1,   new XYConstraints(8, 255, 103, 22));
+    panel1.add(jButton2,  new XYConstraints(282, 255, 110, 23));
+  }
+}

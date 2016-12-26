@@ -1,0 +1,37 @@
+package today_list;
+
+import java.awt.*;
+
+import javax.swing.*;
+
+/**
+ * <p>Title: </p>
+ *
+ * <p>Description: </p>
+ *
+ * <p>Copyright: Copyright (c) 2007</p>
+ *
+ * <p>Company: </p>
+ *
+ * @author not attributable
+ * @version 1.0
+ */
+public class Help_HandBook extends JFrame {
+    BorderLayout borderLayout1 = new BorderLayout();
+
+    public Help_HandBook() {
+        try {
+            jbInit();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    private void jbInit() throws Exception {
+        getContentPane().setLayout(borderLayout1);
+    }
+
+    public static void main(String[] args) {
+        Help_HandBook help_handbook = new Help_HandBook();
+    }
+}

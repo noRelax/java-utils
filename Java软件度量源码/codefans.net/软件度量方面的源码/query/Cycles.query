@@ -1,0 +1,43 @@
+<#
+(define recursion-depth-string
+  (java-call
+   'javax.swing.JOptionPane
+   'showInputDialog
+   (list "The SQL 2 standard does not have recursive queries.
+This query actually generates a finite depth SQL 2 query.
+
+Please specify the recursion depth: 0 <= N <= 5
+(Maximum cycle length found grows as O(N*N).)")
+   '(java.lang.Object)))
+
+(if (null? recursion-depth-string)
+    (failwith "Cancelled")
+  (begin
+    (define rec-depth (java-call 'java.lang.Integer 'Integer (list recursion-depth-string) '(java.lang.String)))
+    (set! rec-depth (if (<= rec-depth 0) 0 (if (<= 5 rec-depth) 5 rec-depth)))
+    (define emit-rec-deps
+      (lambda (depth)
+        (if (<= depth 0)
+            (emit (snapshot-tbl-name "dependency" selected-index))
+          (begin #>
+((SELECT *
+  FROM <#(emit-rec-deps (- depth 1))#> AS d)
+ UNION
+ (SELECT d1.from_package_id, d2.to_package_id
+  FROM <#(emit-rec-deps (- depth 1))#> AS d1,
+       <#(emit-rec-deps (- depth 1))#> AS d2
+  WHERE d1.from_package_id <> d2.to_package_id
+  AND d1.to_package_id = d2.from_package_id))
+<# )))) #>
+SELECT fpn.str AS package, tpn.str AS package
+FROM <#(emit-rec-deps rec-depth)#> AS d1,
+     <#(emit-rec-deps rec-depth)#> AS d2
+, <#(emit (shared-tbl-name "str"))#> AS fpn
+, <#(emit (shared-tbl-name "str"))#> AS tpn
+WHERE d1.from_package_id < d1.to_package_id
+AND d1.from_package_id = d2.to_package_id
+AND d2.from_package_id = d1.to_package_id
+AND d1.from_package_id = fpn.id
+AND d1.to_package_id = tpn.id
+ORDER BY fpn.str
+<# )) #>

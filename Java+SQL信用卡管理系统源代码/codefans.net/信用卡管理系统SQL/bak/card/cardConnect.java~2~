@@ -1,0 +1,24 @@
+package card;
+
+import java.sql.*;
+
+public class cardConnect
+{
+  public cardConnect()
+  {
+   try
+   {
+     Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver");
+   }catch(ClassNotFoundException ee){  }
+  }
+
+  public static Connection getconn() throws SQLException
+  {
+    String url="jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=dbcard";
+    String username="sa";
+    String password="4795587";
+    return DriverManager.getConnection(url,username,password);
+  }
+
+
+}

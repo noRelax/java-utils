@@ -1,0 +1,1521 @@
+
+ //创建日期 2005-4-25
+//游戏窗口
+//在这个类里检测碰撞。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。
+//。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。
+//源码爱好者整理下载——http://www.codefans.net
+import javax.microedition.lcdui.*;
+import javax.microedition.lcdui.game.*;
+import java.util.*;
+public class gameScreen extends GameCanvas implements Runnable,CommandListener
+{   
+	private Form al;
+	public LayerManager lm,lm1;
+	TiledLayer b1;
+	int height=getHeight();
+    int bosscolor=0;
+    int sbosscolor=0;
+    int sbz=0;//小BOSS AI相关标志位
+    int sbmove=0;//小BOSS移动标志位置0不动1上2下3左4右
+    int sfire=0;//SBOOS开火
+    int smovebz=0;//SBOSS移动标志
+    int sbpzbz=0;//SBOOS与玩家子弹碰撞标志
+    int slife=0;//sboss生命
+    int sbo=0;//sboss和飞机碰撞后玩家飞机自动出现的标志位
+    int drawslife=0;//画SBOSS生命标志位
+    int lr=0;
+    int drawadd=0;//增加一个飞机画个标志  
+    int pzbz=0;//碰状标记，解决中途被挂掉后的碰撞BUG
+    int pzbzover=0;//解决过关后的敌机器 仍然出现问题	
+    int  playlife=-1;//玩家延续生命标志位
+    int bosslife=0;//bosslife
+    int inputno=0;//键盘输入标志位
+    int position=0;
+    int j1b=0;//CASE3语句里J1具有跟踪能力的子弹
+    int jbsz=-1;//boss子弹标志
+    int sbsz0=-1;//sboss左子弹标志
+    int sbsz1=-1;//sboss右子弹
+    int sbsz2=-1;//SBOSS上子
+    int sbsz3=-1;//SBOSS下子弹
+    int planepo;//飞机下方参照坐标
+    int planepoup;//飞机上方参照坐标
+    int kkk;
+    int gz=0;//上跟踪标志位置
+    int gzks=0;//跟踪开始标志位
+    int jiangli=0;//奖励标志位
+    int jplaneno; 
+    int cloundno=0;
+    int right=0;//BOSS移动标志位,初始化向右移动
+    int left=1;
+    int boss=0;
+    int over=0;
+	int ai=0;
+	int planert=-1;//表示是否三次机会都没了
+	int supermen=0;//玩家挂后短暂无敌
+	int overcmd=0;
+	int bossover=0;
+	int jpb=-12;//敌人子弹是否运行标志位
+	int aipp=0;
+    int jbz=0;
+    int cloudposition; 
+    Random aik=new Random();
+    Random aip=new Random();
+    Random aicloud=new Random();
+	int jb[]=new int[5];//敌人飞机，白云出现标志
+    int playerno=3;//玩家剩余飞机标志，3，2，1三次，0就是挂了
+	private mybullets[] huokebullet=new mybullets[9];
+    private Sprite jbullet0,jbullet1,jbullet2,bossbullet0,bossbullet1,bossbullet2;
+    private Sprite cloud[]=new Sprite[5];//白云彩
+    private MenuScreen ms;
+	private Sprite c1,sboss,cboss,j0,j1,j2,boss1;  //2D时为玩家飞机
+	private lzhhdm midlet;
+	int s1=0;//无敌时间1
+	int s2=65;//无敌时间2
+	int s3=0;//无敌时间3
+	int row2;
+	int row;
+	int planecolor=0;//自己的飞机无敌的时候边红
+	int planecoco=0;//变红控制
+	public int by1;
+	public int y1;
+	
+	public gameScreen (lzhhdm midlet)
+	{
+		super(true);
+		System.gc();
+		this.midlet=midlet;
+	    addCommand(new Command("暂停",Command.BACK,1));
+    	setCommandListener(this);
+        lm=new LayerManager();
+    	c1=new Sprite(img("/pic/MyPlaneFrames.png"),24,24);//,getWidth(),getHeight()+1000);
+    	cboss=new Sprite(img("/pic/boss.png"),65,50);//长 *宽
+    	jbullet0=new Sprite(img("/pic/bullet.png"),6,6);
+    	jbullet1=new Sprite(img("/pic/bullet.png"),6,6);
+    	jbullet2=new Sprite(img("/pic/bullet.png"),6,6);
+    	bossbullet0=new Sprite(img("/pic/bullet.png"),6,6);
+    	bossbullet1=new Sprite(img("/pic/bullet.png"),6,6);
+    	bossbullet2=new Sprite(img("/pic/bullet.png"),6,6);
+        sboss=new Sprite(img("/pic/smallboss.png"),65,50);
+    	b1=createBackGround();//创建背景
+    	c1.setPosition(getWidth()/2,row2+getHeight()-25);//精灵的起始位置row2+getHeight()-25=1655
+    	//精灵是 精灵的坐标，而下面的Y1是画屏幕的位置
+    	//System.out.println("ffffffffffff");
+    	planepoup=row2;//屏幕上方边界
+    	planepo=row2+getHeight();//屏幕下方边界 
+		j0=new Sprite(img("/pic/jplane2.png"),24,22);//宽24，高22
+        j1=new Sprite(img("/pic/jplane2.png"),24,22);
+        j2=new Sprite(img("/pic/jplane2.png"),24,22);
+        kkk=getHeight()/8;
+ 	    
+ 	    cboss.setVisible(false);
+ 	  
+ 	    //aipp=3;
+ 	    ai=aik.nextInt()%4;
+ 	    if (ai<0)
+ 	       ai=-ai;
+ 	    aipp=aip.nextInt()%3;
+	    if(aipp==0)//动态确定下一组敌机位置的参数
+	    {
+	    	 aipp=aip.nextInt()%3;
+	    }
+	      try
+		{
+        	for(int i=0;i<=4;i++)
+        	{
+        		cloud[i]=new Sprite(img("/pic/cloud1.png"),16,16);
+    		    lm.append(cloud[i]);
+   	    	}
+         }catch(Exception e)
+		 {
+         	System.out.println("cloud");
+	     }
+        lm.append(cboss);
+        lm.append(j0);
+ 	    lm.append(j1);
+ 	    lm.append(j2);
+ 	    lm.append(bossbullet0);
+ 	    lm.append(bossbullet1);
+ 	    lm.append(bossbullet2);
+ 	    lm.append(jbullet0);
+ 	    lm.append(jbullet1);
+ 	    lm.append(jbullet2);
+ 	    lm.append(sboss);
+        jb[0]=1;
+        jb[1]=1;
+        jb[2]=1;
+        jb[3]=1;
+      
+  	    try
+		{
+    		for(int i=0;i<9;i++)
+    		{
+    			huokebullet[i]=playerbullet("/pic/bullet.png");
+    		}
+         }catch(Exception e){}
+         
+         try
+		 {
+            for(int i=0;i<=8;i=i+3)
+     	    {
+    		   huokebullet[i].no=1;//ok
+    		   huokebullet[i].score=0;
+    	  }
+         }catch(Exception e){System.out.println("ffffffffffffff");}
+    	
+         
+        for(int i=0;i<9;i++)
+        {
+    		lm.append(huokebullet[i]);
+    	}
+    	lm.append(c1);
+    	lm.append(b1);
+	}
+
+	private Image img (String pic)
+	{
+		Image img=null;
+		try
+		{
+			img=Image.createImage(pic);
+		}catch(Exception exp)
+		{
+			System.out.println(exp);
+		}
+		return img;
+	}
+	
+	private mybullets playerbullet(String pic)//,int px,int py,int total ,int width,int height)
+	{
+		Image img=null;
+		try
+		{
+			img=Image.createImage(pic);
+		}catch(Exception exp)
+		{
+			System.out.println(exp);
+		}
+		return new mybullets(img,6,6,21,getWidth(),getHeight());//
+	}
+
+	public TiledLayer createBackGround()
+	{
+		Image img=null;
+		try
+		{
+			img=Image.createImage("/pic/beijing.png");
+			
+		}catch(Exception exp)
+		{
+			System.out.println("layer create image");
+		}
+	
+	TiledLayer tiledLayer=new TiledLayer(50,200,img,16,16);
+	int[] map1=
+		
+	{       3,1,1,3,3,3,1,3,3,3,3,3,3,2,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			1,3,1,1,1,1,1,1,1,1,1,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,2,4,
+	        3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			1,1,1,1,1,1,1,1,1,3,1,3,3,4,1,
+			1,1,1,1,1,1,1,1,1,3,1,3,3,4,1,
+			1,1,1,1,1,1,1,1,1,3,1,3,3,4,1,
+			1,1,1,1,1,1,1,1,1,3,1,3,3,4,1,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
+			2,2,2,3,3,3,3,3,3,3,3,3,3,3,4,
+			5,5,2,3,3,3,3,3,3,3,3,3,3,3,4,
+			5,7,2,3,3,3,3,3,3,3,3,3,3,3,4,
+			5,5,2,10,10,10,10,10,1,3,1,3,3,4,1,
+			5,2,2,1,1,1,1,1,1,3,1,3,3,4,1,
+			5,5,2,1,1,1,1,1,1,3,1,3,3,4,1,
+			5,2,2,1,1,1,1,1,1,3,1,3,3,4,1
+	};
+	
+	for(int i=0;i<map1.length;i++)//注意 此步，更改后背景才能生效  
+	{
+	  	 int  column=i%15;//15代表有多少列，改变地图后相应也要改变
+	  	 row=(i-column)/15;//同上一起改变
+	     tiledLayer.setCell(column,row,map1[i]);		
+	}
+	row2=(row+1)*16-getHeight();//地图总的长度，减是因为要留一个屏幕的可视区域
+	y1=-row2;
+	System.gc();
+	return tiledLayer;
+    }
+	boolean conti=true;
+	int rate=50;
+	public void run()
+	{
+		long st=0;
+		long et=0;
+		Graphics g=getGraphics();
+		int l=1350;
+	    while(conti)
+		{  
+			st=System.currentTimeMillis();
+			input();
+           //玩家子弹 
+			if(huokebullet[0].isAlive(0))
+			{
+				huokebullet[0].no--;
+			    if(huokebullet[0].no>0)
+			    {  
+			    	huokebullet[0].newposition(huokebullet,0,3,j0,j1,j2,cboss,img("/pic/explosion.png"));
+				   
+			     }
+			    if(huokebullet[0].no<=0)
+			     {	//隐藏子弹
+			     	huokebullet[0].setAlive(0);           
+		            huokebullet[0].clean(0,huokebullet);
+    		      }
+			}
+		    if(huokebullet[3].isAlive(3))
+		    {
+		    	huokebullet[3].no--;
+				if(huokebullet[3].no>0)
+				{  
+					huokebullet[3].newposition(huokebullet,3,3,j0,j1,j2,cboss,img("/pic/explosion.png"));
+				    
+			     }
+			    if(huokebullet[3].no<=0)
+			    {	//隐藏子弹
+			    	huokebullet[3].setAlive(3);           
+			        huokebullet[3].clean(3,huokebullet);
+			    }
+		    }
+	       if(huokebullet[6].isAlive(6))
+	       {
+	        	huokebullet[6].no--;				
+		        if(huokebullet[6].no>0)
+		        {  
+		        	huokebullet[6].newposition(huokebullet,6,3,j0,j1,j2,cboss,img("/pic/explosion.png"));	       
+		        }
+		        	if(huokebullet[6].no<=0)
+			        {	//隐藏子弹
+			        	huokebullet[6].setAlive(6);           
+				       huokebullet[6].clean(6,huokebullet);			       
+			        }
+		        
+		     }
+		        
+		        
+		//检测子弹碰撞
+	       //huoke0
+	       if (huokebullet[0].collidesWith(cboss,true))
+		    {
+		    	huokebullet[0].setVisible(false);
+		    	huokebullet[1].setVisible(false);
+		    	huokebullet[2].setVisible(false);
+		    	cboss.setFrame(1);
+		   //     huokebullet[0].no=0;//****************在下次循环十时，NO--<=0，可以执行NO<=0判断语句
+   	  	    if(bosslife<=55)
+   	  	    {
+   	  	    	bosslife=bosslife+5;
+   	  	    	//cboss.setFrame(0);
+   	  	    }
+   	  	 huokebullet[0].setAlive(0);           
+			huokebullet[0].clean(0,huokebullet);	
+				  	       
+	        }
+		    if(huokebullet[0].collidesWith(sboss,true)&&(sbpzbz==0))
+		    {   
+		    	huokebullet[0].setVisible(false);
+		        huokebullet[1].setVisible(false);
+		        huokebullet[2].setVisible(false);
+		    	sboss.setFrame(1);
+		    	//huokebullet[3].no=1;
+		    	if(slife<=75)
+		    	{
+		    		slife=slife+5;
+		    	}
+		    	 huokebullet[0].setAlive(0);           
+					huokebullet[0].clean(0,huokebullet);	
+		    } 
+		   // huoke3
+		    if (huokebullet[3].collidesWith(cboss,true))
+		    {
+		    	cboss.setFrame(1);
+				huokebullet[3].setVisible(false);
+			    huokebullet[4].setVisible(false);
+				huokebullet[5].setVisible(false);		    	
+				huokebullet[3].no=0;
+			    if(bosslife<=55)
+			    {
+			    	bosslife=bosslife+5;
+				}				  	      
+			    huokebullet[3].setAlive(3);           
+				huokebullet[3].clean(3,huokebullet);	
+             }//end boss
+		    if(huokebullet[3].collidesWith(sboss,true)&&(sbpzbz==0))
+		    {
+		    	sboss.setFrame(1);
+				huokebullet[3].setVisible(false);
+				huokebullet[4].setVisible(false);
+			    huokebullet[5].setVisible(false);
+				huokebullet[3].no=1;
+				if(slife<=75)
+				{
+					slife=slife+5;
+				}
+				 huokebullet[3].setAlive(3);           
+					huokebullet[3].clean(3,huokebullet);	
+		    }
+	       //huoke6
+		        if (huokebullet[6].collidesWith(cboss,true))
+		        {
+		        	huokebullet[6].setVisible(false);
+			        huokebullet[7].setVisible(false);
+				    huokebullet[8].setVisible(false);
+				    cboss.setFrame(1);
+		    	    if(bosslife<=55)
+		    	    {
+		    	    	bosslife=bosslife+5;
+			        }
+		    	    huokebullet[6].setAlive(6);           
+					huokebullet[6].clean(6,huokebullet);		
+			    }
+		    	    if(huokebullet[6].collidesWith(sboss,true)&&(sbpzbz==0))
+			       {
+				       sboss.setFrame(1);
+		    	       huokebullet[6].setVisible(false);
+		    	       huokebullet[7].setVisible(false);
+		    	       huokebullet[8].setVisible(false);
+		       	    //   huokebullet[6].no=1;
+		    	       if(slife<=75)
+		    	       {
+		    	   	      slife=slife+5;
+				       }
+		    	       huokebullet[6].setAlive(6);           
+						huokebullet[6].clean(6,huokebullet);		
+			      }//end sboss
+ 			
+		        
+		        
+		
+	    if((y1>-1350)&&(pzbzover==0))//y1由-1391递增，C1。GETY（）为正常坐标，是正数
+	    	{ 
+	    	
+	    	switch (ai)
+			{
+	    	case 0:
+	    		if(jb[0]==1)
+	    		{ 
+	    			jbz=0;//限定敌人只能发射一次子弹，在CASE0  BREAK上面最后一个IF语句显示
+			        j0.setVisible(true);
+	          	    j1.setVisible(true);
+	           	    j2.setVisible(true);
+	                j1.setFrame(2);
+   	                j0.setFrame(2);
+   	                j2.setFrame(2);
+   	                j0.setPosition(100-aipp*30,planepoup+24);
+   	                j1.setPosition(100,planepoup);
+   	                j2.setPosition(100+aipp*30,planepoup-24);;
+                    jb[0]=2;
+                } 
+	    		if (jb[0]==2)
+                {  
+	    			j0.move(0,3);
+ 	                j1.move(0,3);
+	                j2.move(0,3);
+	                kkk=kkk-1;
+	            }
+	    		if(kkk<=0)//飞机开始转向
+                {
+	    			jb[0]=3;//不执行JB[0]=1，2了
+		      	    if(aipp>=0)
+		      	    {
+		      	    	j1.setFrame(0);
+   		                j0.setFrame(0);
+   	                    j2.setFrame(0);
+   	                    j0.move(-3,3);
+	   	                j1.move(-3,3);
+	   	                j2.move(-3,3);
+            	    }else if(aipp<0)
+            	    {
+            	    	j1.setFrame(1);
+		                j0.setFrame(1);
+		                j2.setFrame(1);
+		   		        j0.move(3,3);
+			    	    j1.move(3,3);
+			    	    j2.move(3,3);
+				    }
+	    	    if(j2.getY()>planepo)//敌人飞机，子弹消失
+	    	    {
+	            	j0.setVisible(false);
+	            	j1.setVisible(false);
+	            	j2.setVisible(false);
+	    	       	jbullet0.setVisible(false);
+	    	   	    jbullet1.setVisible(false);
+             	    jbullet2.setVisible(false);
+	    			jpb=-1;//子弹标志位设为-1，使得SWITCH后的子弹循环不执行   	//子弹比飞机快
+	    	     	ai=aik.nextInt()%4;
+	    	        aipp=aip.nextInt()%5;
+	    	        if(aipp==0)
+	    	        {
+	    	     	   aipp=aip.nextInt()%5;
+	    	        }
+	    	        if(ai<0)
+	    	           ai=ai*(-1);
+	 	            jb[ai]=1;
+        	        kkk=getHeight()/8;	      
+	    	     }
+	          }
+              if((j1.getX()<=c1.getX()-18)&(jbz==0))
+              {      jpb=0;
+              if(j0.isVisible())
+  	        {
+            	 jbullet0.setVisible(true);
+  	        }
+  	        if(j1.isVisible())
+  	        {
+            	 jbullet1.setVisible(true);
+  	        }
+  	        if(j2.isVisible())
+  	        {
+  	        
+            	 jbullet2.setVisible(true);
+  	        }  
+        	         jbullet0.setPosition(j0.getX()+12,j0.getY()+30);
+              	 jbullet1.setPosition(j1.getX()+12,j1.getY()+30);
+        	         jbullet2.setPosition(j2.getX()+12,j2.getY()+30);
+                	 jbz=1;
+               }		
+          break;      
+		case 1:
+			if(jb[1]==1)
+			{
+		        j0.setVisible(true);
+            	j1.setVisible(true);
+            	j2.setVisible(true);
+ 	            j1.setFrame(2);
+	            j0.setFrame(2);
+	            j2.setFrame(2);
+	            j0.setPosition(100-aipp*30,planepoup+24);
+	            j1.setPosition(100,planepoup);
+	            j2.setPosition(100+aipp*30,planepoup-24);;
+                jb[1]=2;
+             } 
+            if (jb[1]==2)
+	              {  
+            	    j0.move(0,3);
+		            j1.move(0,3);
+		            j2.move(0,3);
+		            kkk=kkk-1;
+	              }
+		    if(kkk<0)//飞机掉头，子弹向上方射击
+		          {
+		    	    jb[1]=3;
+		          }
+		    if(jb[1]==3){      
+		    jpb=1;//子弹向上方射击
+		 
+			        j1.setFrame(3);
+ 		            j0.setFrame(3);
+ 		            j2.setFrame(3);
+	jb[1]=4;
+		    }
+		    if(jb[1]==4){
+ 		            j0.move(0,-4);
+	    	        j1.move(0,-4);
+	    	        j2.move(0,-4);	    
+	                if(j2.getY()<planepoup)//此处的飞机是向上方飞的
+	                {
+	                	j0.setVisible(false);
+	    	            j1.setVisible(false);
+	    	            j2.setVisible(false);
+	    	            jbullet0.setVisible(false);
+	    			    jbullet1.setVisible(false);
+	    		        jpb=-1;//飞机子弹不继续运动	   	   
+	    			    jbullet2.setVisible(false);
+	    	     	    ai=aik.nextInt()%4;
+		    	        if(ai<0)
+		    	     	     ai=ai*(-1);
+		    	     	jb[ai]=1;   
+	    	     	    aipp=aip.nextInt()%5;
+		    	     	if(aipp==0)
+		    	     	{
+		    	     		aipp=aip.nextInt()%5;
+		    	     	}
+	    	     	    kkk=getHeight()/8;  
+	    	          }
+	               }
+            break;
+         	    
+      case 2: 
+      	if(jb[2]==1)
+         {
+	        jbz=0;
+	        j0.setVisible(true);
+       	j1.setVisible(true);
+       	j2.setVisible(true);
+            j1.setFrame(2);
+           j0.setFrame(2);
+           j2.setFrame(2);
+           j0.setPosition(100-aipp*30,planepoup+aipp*30);
+           j1.setPosition(100,planepoup);
+           j2.setPosition(100+aipp*30,planepoup+aipp*30);;
+          jb[2]=2;
+        } 
+       if (jb[2]==2)
+             {  
+       	    j0.move(0,3);
+	            j1.move(0,3);
+	            j2.move(0,3);
+	            kkk=kkk-1;
+             }
+	            if(kkk<=0)
+	              {
+	            	jb[2]=3;
+	            	j1.setFrame(0);
+	                j0.setFrame(0);
+	                j2.setFrame(0);
+	                j0.move(-3,3);
+   	            j1.move(-3,3);
+   	            j2.move(-3,3);
+   	   
+   	            if(j2.getY()>planepo)
+   	              {
+   	            	jpb=-1;
+   	              jbullet0.setVisible(false);
+   	       	    jbullet1.setVisible(false);
+   	       	   jbullet2.setVisible(false);
+   	            	j0.setVisible(false);
+   	            	j1.setVisible(false);
+   	            	j2.setVisible(false);
+   	     	      ai=aik.nextInt()%4;
+	    	     	     if(ai<0)
+	    	     	        	ai=ai*(-1);
+	    	     	       jb[ai]=1;  	     	       
+   	     	      aipp=aip.nextInt()%5;
+	    	     	    if(aipp==0)
+	    	     	    {
+	    	     	    	 aipp=aip.nextInt()%5;
+	    	     	    }
+   	     	      kkk=getHeight()/8; 	     	     
+   	             }
+                 }
+       if(((j1.getX()<=c1.getX()-18)||((j2.getX()-6)>=c1.getX()))&(jbz==0))
+       {
+       	if(j0.isVisible())
+        {
+      	 jbullet0.setVisible(true);
+        }
+        if(j1.isVisible())
+        {
+      	 jbullet1.setVisible(true);
+        }
+        if(j2.isVisible())
+        {
+        
+      	 jbullet2.setVisible(true);
+        }     
+     	  jpb=0; 	   
+     	jbullet0.setPosition(j0.getX()+12,j0.getY()+30);
+       	 jbullet1.setPosition(j1.getX()+12,j1.getY()+30);
+ 	         jbullet2.setPosition(j2.getX()+12,j2.getY()+30);
+         jbz=1;
+       }
+    	    break;
+    	   
+          case 3:
+         // 	 System.out.println("ffffffffffffffffffffffffffff");
+          	if(jb[3]==1)
+	         {j1b=0;
+		        jbz=0;	         
+		        j0.setVisible(true);
+           	j1.setVisible(true);
+           	j2.setVisible(true);
+	            j1.setFrame(2);
+	            j0.setFrame(2);
+	            j2.setFrame(2);
+	            j0.setPosition(200-aipp*50,planepoup-aipp*10);
+	            j1.setPosition(100,planepoup);
+	            j2.setPosition(100+aipp*50,planepoup-aipp*10);
+              jb[3]=2;
+            } 
+     if (jb[3]==2)
+	  {  
+	  	j0.move(0,3);
+  	        j1.move(0,3);
+                j2.move(0,3);
+     	//特殊飞机J1具有跟踪能力
+     	if(gzks==0)//如果飞机掉头向上是GZ=1，即向上不能跟踪
+     	{
+     	if(j1.getX()<c1.getX())//J1在C1的左边
+     	{
+     		j1.move(2,2);
+     		j1.setFrame(1);
+     	}
+     	
+     	if(j1.getX()>c1.getX())//j1在C1的右边
+     	{   j1.setFrame(0);
+     		j1.move(-2,2);     		
+     	}
+     	if((j1.getX()<c1.getX())&&((j1.getX()+48)>c1.getX())&&(j1.getY()<c1.getY()))//如果C1在J1的正下面范围内
+     	{
+     		j1.setFrame(2);
+     	   j1.move(0,2);
+     	   if(j1b==0)//跟踪子弹设置
+     	   {
+     	   	jbullet1.setVisible(true);
+     	   jbullet1.setPosition(j1.getX()+12,j1.getY()+30);
+     	   j1b=1;
+     	   }
+     	}
+    //j1.move(0,3);
+    j0.move(0,3);
+    jbullet1.move(0,6);
+  	           j1.move(0,3);
+      j2.move(0,3);
+    
+     	
+     	}
+     	///////////////////////////////////////////////////////
+     
+     
+     if((j2.getY()>(planepo+22))&&(j0.getY()>(planepo+22))&&((j1.getY()<(planepoup-22))||(j1.getY()>(planepo+22))))
+     		{//结束复位
+     	                jb[3]=1;
+     	                 gz=0;
+                     	gzks=0;
+                   	jbullet1.setVisible(false);
+	   	              jbullet2.setVisible(false);
+     	               j0.setVisible(false);
+                     	j1.setVisible(false);
+                    	j2.setVisible(false);
+                    	             ai=aik.nextInt()%4;
+            	     if(ai<0)
+  	                   	ai=ai*(-1);
+  	                jb[ai]=1; 	       
+	                  aipp=aip.nextInt()%5;
+  	                if(aipp==0)
+  	               {
+  	    	              aipp=aip.nextInt()%5;
+  	               }
+	                  kkk=getHeight()/8;
+	     
+     		}
+		       
+           if((j2.getX()<=c1.getX()-18)&(jbz==0))//开火
+           {     jpb=0;
+	        if(j0.isVisible())
+	        {
+          	 jbullet0.setVisible(true);
+	        }
+	      
+	        if(j2.isVisible())
+	        {
+	        
+          	 jbullet2.setVisible(true);
+	        }  
+          	 jbullet0.setPosition(j0.getX()+12,j0.getY()+30);
+           	 //jbullet1.setPosition(j1.getX()+12,j1.getY()+30);
+     	     jbullet2.setPosition(j2.getX()+12,j2.getY()+30);
+             	 jbz=1;
+           }
+        
+        }
+        	    break;
+      }//end while	
+	  }//end if
+     if(jpb==0)
+          {//System.out.println("dddddddddd");
+     		jbullet0.move(0,5);
+            jbullet1.move(0,5);
+             jbullet2.move(0,5);  
+        }
+		if ((jbullet0.collidesWith(c1,true)||jbullet1.collidesWith(c1,true)||jbullet2.collidesWith(c1,true)||bossbullet0.collidesWith(c1,true)||bossbullet1.collidesWith(c1,true)||bossbullet2.collidesWith(c1,true))&&(pzbz==0))
+        {
+       
+			c1.setImage(img("/pic/explosion.png"),32,32);
+			c1.setFrame(3);
+			if((playerno>0))
+			{
+				playerno=playerno-1;
+				planert=1;
+			
+			}else{
+				pzbz=1;
+					overcmd=1;		
+			over=1;
+			}//只有挂了3次后在大挂
+        }
+		if((j0.collidesWith(c1,true)&&(pzbz==0)))	
+		{
+			c1.setImage(img("/pic/explosion.png"),32,32);
+			c1.setFrame(3);
+			if(playerno>0)
+			{
+				playerno=playerno-1;
+				planert=1;
+				playlife=0;
+			}else{	
+					overcmd=1;
+					playlife=1;
+				
+			over=1;}
+			j0.setVisible(false);
+			pzbz=1;
+		}
+		if((j1.collidesWith(c1,true)&&(pzbz==0)))	
+		{
+			c1.setImage(img("/pic/explosion.png"),32,32);
+			c1.setFrame(3);		
+			if(playerno>0)
+			{
+				playerno=playerno-1;
+				planert=1;
+				playlife=0;
+			}else{		
+					overcmd=1;		
+				playlife=1;	
+			over=1;}
+			j1.setVisible(false);
+			pzbz=1;
+		}
+		if((j2.collidesWith(c1,true)&&(pzbz==0)))	
+		{
+			c1.setImage(img("/pic/explosion.png"),32,32);
+			c1.setFrame(3);
+			
+			if(playerno>0)
+			{
+				playerno=playerno-1;
+				planert=1;
+				playlife=0;
+			}else{
+				
+				playlife=1;
+				if(overcmd==0)
+				{
+					overcmd=1;
+				}
+				
+			over=1;}
+			j2.setVisible(false);
+			pzbz=1;
+		}
+		
+	if(overcmd==1)
+		{
+			addCommand(new Command("返回",Command.OK,1));
+			overcmd=2;//同理，中弹后线程不停止
+		}
+		if(boss==1)//第一关关头
+		{  
+			cboss.setVisible(true);
+		   if(cboss.getY()<25)
+		   {
+		   	cboss.move(0,3);
+		  }else lr=1;
+		    //判断飞机横向飞行
+		if(lr==1)
+		{
+			
+			if(cboss.getX()<0)
+			{
+				right=0;
+		        left=1;
+		    }
+		    else if(cboss.getX()>getWidth()-cboss.getWidth())//先头竟然写成了getHeight(),浪费时间
+	     	{
+		    	left=0;
+			    right=1;
+		    }	
+		if(right==0)
+			{
+				cboss.move(3,0);
+			}
+			else if(left==0)
+				{
+					cboss.move(-3,0);
+				}
+		
+		}
+		//判断BOSS开火
+		if(((cboss.getX()<=c1.getX()-10)||(cboss.getX()<=c1.getX()+60))&&(jbsz==0))
+	    {      //jpb=0;
+		         bossbullet0.setPosition(cboss.getX()+6,cboss.getY()+40);
+	    	 bossbullet1.setPosition(cboss.getX()+30,cboss.getY()+52);
+		         bossbullet2.setPosition(cboss.getX()+54,cboss.getY()+40);
+		         jbsz=1;//防止不断刷新到当前位置
+	     }
+		if(jbsz==1)
+		{
+			bossbullet0.setVisible(true);
+         	bossbullet1.setVisible(true);
+         	bossbullet2.setVisible(true);
+		  bossbullet0.move(0,5);
+		  bossbullet1.move(0,5);
+		  bossbullet2.move(0,5);
+		}
+		if(bossbullet2.getY()>getHeight())
+		{
+			jbsz=0;
+		}
+     }
+		if(bosslife==60)//收尾
+		{   
+			cboss.setVisible(false);
+		j1.setVisible(false);
+		j0.setVisible(false);
+		j2.setVisible(false);
+		bossbullet0.setVisible(false);
+		bossbullet1.setVisible(false);
+		bossbullet2.setVisible(false);
+		jbullet0.setVisible(false);
+		jbullet1.setVisible(false);
+		jbullet2.setVisible(false);
+			pzbz=1;
+			bossover=1;//画结尾
+			boss=2;
+			bosslife=65;//防止不停刷新
+			pzbzover=1;//敌人飞机不动了
+			 addCommand(new Command("返回",Command.OK,1));
+		}
+		if(bosslife==45)
+		{
+			bosscolor=1;//BOSS变红，表示快挂了        
+                }
+		if(slife==65)
+		{
+			sbosscolor=1;//SBOSS变红，表示快挂了
+		}
+		 if(y1<0){
+			render(g);
+			y1=y1+1;//地图移动关键处	.........................................................
+	    	planepoup=planepoup-1;//玩家上方
+			planepo=planepo-1;//玩家下方
+	    	   c1.move(0,-1);//玩家不控制飞机的时候飞机可以不出格，此处的 指应该和地图移动的值相等
+		 }//画过程
+		 if (y1>=0 )
+			{
+		      if(boss==0)//防止不停的刷新
+		       {jbsz=0;//////////////////////////////////////lollllllllllllllllllllllllll敌人不能开火啦，应该=0；
+	    	        boss=1;
+	    	        planepoup=0;//判断上出界标志值
+	            	planepo=getHeight();//判断下出界标志值
+	            	cboss.setPosition(80,-60);
+		      }
+	    	renderboss(g);				
+			}//判断地图是否到头，画关头		
+		    if(bosscolor==0)//判断BOSS颜色
+				cboss.setFrame(0);//击中时变的红色，现在变成原色，在线程结尾处变，可以达到变色的效果
+			else cboss.setFrame(1);//快挂时一直红色
+			
+			if(sbosscolor==0)//原理同上
+				sboss.setFrame(0);
+			else sboss.setFrame(1);
+		//白云，原理，先设定5个的其始位置，然消失一个出现一个
+	       	  if(cloundno==0)
+	       	  {  //加1是为了防止出现0，所以随机数应该是1，2，3，4，5
+	       	  	cloud[0].setPosition(25,planepoup-(65));
+	       	  	cloud[1].setPosition(80,planepoup-(140));
+	       	  	cloud[2].setPosition(112,planepoup-(90));
+	       	  	cloud[3].setPosition(175,planepoup-(200));
+				cloud[4].setPosition(223,planepoup-(70));
+				cloundno=1;
+	       	  }  
+	   		cloud[0].move(0,1);
+	   		cloud[1].move(0,1);
+	   		cloud[2].move(0,1);
+	   		cloud[3].move(0,1);
+	   		cloud[4].move(0,1);
+	         if(cloud[0].getY()>planepo){
+	         	cloudposition=aicloud.nextInt()%5;
+	     	 	if(cloudposition<0)
+	     	 	{
+	     	 		cloudposition=cloudposition*(-1);
+	     	 	}
+	     	 	cloudposition=cloudposition+1;
+	     	 	cloud[0].setPosition(cloudposition*40,planepoup);
+	         }
+	         if(cloud[1].getY()>planepo){
+	         	cloudposition=aicloud.nextInt()%5;
+	     	 	if(cloudposition<0)
+	     	 	{
+	     	 		cloudposition=cloudposition*(-1);
+	     	 	}
+	     	 	cloudposition=cloudposition+1;
+	     	 	cloud[1].setPosition(cloudposition*30,planepoup);
+	         }
+	         if(cloud[2].getY()>planepo){
+	         	cloudposition=aicloud.nextInt()%5;
+	     	 	if(cloudposition<0)
+	     	 	{
+	     	 		cloudposition=cloudposition*(-1);
+	     	 	}
+	     	 	cloudposition=cloudposition+1;
+	     	 	cloud[2].setPosition(cloudposition*55,planepoup);
+	         }
+	         if(cloud[3].getY()>planepo){
+	         	cloudposition=aicloud.nextInt()%5;
+	     	 	if(cloudposition<0)
+	     	 	{
+	     	 		cloudposition=cloudposition*(-1);
+	     	 	}
+	     	 	cloudposition=cloudposition+1;
+	     	 	cloud[03].setPosition(cloudposition*15,planepoup);
+	         }
+	         if(cloud[4].getY()>planepo){
+	         	cloudposition=aicloud.nextInt()%5;
+	     	 	if(cloudposition<0)
+	     	 	{
+	     	 		cloudposition=cloudposition*(-1);
+	     	 	}
+	     	 	cloudposition=cloudposition+1;
+	     	 	cloud[4].setPosition(cloudposition*22,planepoup);
+	         }
+	         //白云END         
+	         //小BOSS出现及其AI
+	         if((y1==-1000)&&(sbz==0))
+	         {sbsz0=0;
+	         sbsz1=0;
+	         sbsz2=0;
+	         sbsz3=0;
+	         drawslife=1;
+	         	sboss.setVisible(true);
+	         	sboss.setPosition(50,planepoup-65);
+	            sbz=1;
+	         } 
+	         if(sbz==1)//如果敌人飞机处于屏幕外面，直飞入屏幕
+	         {//System.out.println("dddddddddddddddddddddddddd");
+	         	sboss.move(0,3);
+	         if(sboss.getY()>planepoup)
+	         {
+	         	sbz=2;//飞机出来后先不动，根据玩家飞机的的位置判断应该怎么办
+	         }
+	         }
+	         if(sbz==2)//攻击
+	         {	
+	         	
+	         	if(((sboss.getY()-50)<c1.getY())&&(smovebz==0))
+	         	{
+	         		sbmove=1;//上移		
+	         	}
+	         	if(((sboss.getX()+30)<c1.getX())&&(smovebz==0))
+	         	{
+	         		sbmove=4;//右移
+	         	}
+	         	if(((sboss.getY()+50)<c1.getY())&&(smovebz==0))
+	         	{
+	         		sbmove=2;//下移
+	         	}
+	         	if(((sboss.getX()-30)>c1.getX())&&(smovebz==0))
+	         	{
+	         		sbmove=3;//左移
+	         	}
+	         	
+	         	if(sbmove==1)//上移
+	         	{  
+	         		smovebz=1;
+	         		sboss.move(0,-2);//之所以这么写是为了可以让他一直移动
+	         			
+	         	}
+	         	if(sbmove==2)//下
+	         	{
+	         		smovebz=1;
+         	    	sboss.move(0,2);
+	         	}
+	         	
+	         	if(sbmove==3)//左
+	         	{
+	         		sboss.move(-2,0);
+	         	}
+	         
+	         	if(sbmove==4)//右
+	         	{
+	         		smovebz=1;
+	         		sboss.move(2,0);
+	         	}
+	       	
+	         	//上  下 左  右
+	         if(sboss.getY()<planepoup) // ||(sboss.getY()>(planepo-65))||(sboss.getX()<0)||(sboss.getX()>getWidth()-65))
+	         {
+	         	sboss.setPosition(sboss.getX(),planepoup);
+	         	smovebz=0;
+	         }
+	         //下
+	         if(sboss.getY()>(planepo-65))
+	         {
+	        	sboss.setPosition(sboss.getX(),planepo-65);
+	        	smovebz=0;
+	         }
+	         //左
+	         if(sboss.getX()<0)
+	         {
+	         	sboss.setPosition(0,sboss.getY());
+	         	smovebz=0;
+	         }
+	         //右
+	         if(sboss.getX()>(getWidth()-65))
+	         {
+	         	sboss.setPosition(getWidth()-65,sboss.getY());
+	         	smovebz=0;
+	         }       	
+	         //开火
+	         //向右
+	         if(((sboss.getX()+40)<c1.getX())&&(sboss.getY()<c1.getY())&&((sboss.getY()+65)>c1.getY())&&(sbsz0==0))
+	         {bossbullet0.setVisible(true);
+	         	bossbullet0.setPosition(sboss.getX()+45,sboss.getY()+35);
+	         	sbsz0=1;
+	         }
+	         if(sbsz0==1)
+	         {
+	         	bossbullet0.move(3,0);
+	         	if(bossbullet0.getX()>getWidth())
+	         	{
+	         		sbsz0=0;
+	         	}
+	         }
+	         //向左
+	        if((sboss.getX()>c1.getX())&&((sboss.getY()+65)>c1.getY())&&(sbsz1==0))
+	        {
+	        	bossbullet1.setPosition(sboss.getX()+10,sboss.getY()+35);
+	         	sbsz1=1;
+	        }
+	        if(sbsz1==1)
+	         {
+	         	bossbullet1.move(-3,0);
+	         	if(bossbullet1.getX()<0)
+	         	{
+	         		bossbullet1.setVisible(false);
+	         		sbsz1=0;
+	         	}
+	         }	        
+	        //向上
+	        if((sboss.getX()<c1.getX())&&((sboss.getX()+50)>(c1.getX()))&&(sboss.getY()>c1.getY())&&(sbsz2==0))
+	        		{
+	        	bossbullet2.setVisible(true);//之所以只有2SET，是因为屏幕向上东，如果不SET，屏幕早晚会看到静止的子弹
+	        	bossbullet2.setPosition(sboss.getX()+25,sboss.getY());
+	         	sbsz2=1;
+	        		}
+	        if(sbsz2==1)
+	        {
+	        	bossbullet2.move(0,-4);
+	         	if(bossbullet2.getY()<planepoup)
+	         	{bossbullet2.setVisible(false);	
+	         		sbsz2=0;
+	         	}
+	        }
+	        
+	       //向下
+	        if((sboss.getX()<c1.getX())&&((sboss.getX()+50)>(c1.getX()))&&(sboss.getY()<c1.getY())&&(sbsz3==0))
+	        {bossbullet0.setVisible(true);
+	        bossbullet1.setVisible(true);
+	        bossbullet2.setVisible(true);
+	        		bossbullet2.setPosition(sboss.getX()+10,sboss.getY()+25);
+	        		bossbullet1.setPosition(sboss.getX()+30,sboss.getY()+50);
+	        		bossbullet0.setPosition(sboss.getX()+55,sboss.getY()+25);
+	        		sbsz3=1;
+	        }
+	        	if(sbsz3==1)
+	        	{
+	        		bossbullet0.move(0,4);
+	        		bossbullet1.move(0,4);
+	        		bossbullet2.move(0,4);
+	        		if(bossbullet0.getY()>planepo)
+	        		{
+	        			bossbullet0.setVisible(false);
+	        			bossbullet1.setVisible(false);
+	        			bossbullet2.setVisible(false);
+	        			sbsz3=0;
+	        		}
+	        	}
+	   }//sboss end
+	         if((slife==80))
+	         	{ 
+	         	sboss.setImage(img("/pic/explosion.png"),32,32);
+	         	 sboss.setFrame(3);
+	         	bossbullet0.setVisible(false);
+	         	bossbullet1.setVisible(false);
+	         	bossbullet2.setVisible(false);
+	         jiangli=11;
+	         slife=85;
+	         	drawslife=0;
+	         	playerno=playerno+1;
+	         	sbz=-1;//sboss发射子弹那段不执行
+	         	sbpzbz=1;//玩家子弹与小BOSS不发生碰撞检测
+	         }
+	         //如果玩家挂了，背景的地图自动走，到BOSS出来得时候，SBOSS快速飞出屏幕上界
+	         if((sboss.getY()==getHeight()))
+	         {
+	         	sbz=-1;
+	         	sbpzbz=1;
+	         	drawadd=21;
+	         }
+	         if(drawadd==21)
+	         {
+	         	sboss.move(0,-3);
+	         	if(sboss.getY()<-65)
+	         	{
+	         		sboss.setVisible(false);
+	         		drawadd=31;
+	         	}
+	         }
+	         if(planert==1)
+	         {inputno=1;
+	         pzbz=1;
+	        s2=65;
+	         	c1.setImage(img("/pic/MyPlaneFrames.png"),24,24);
+	         	c1.setFrame(0);
+	         c1.setVisible(true);	
+	         	c1.setPosition(getWidth()/2,planepo+48);
+	         	//pzbz=0;
+	         	//飞机从屏幕外飞回来，此过程键盘不好用
+	         	//此时碰撞不好用，即无敌状态 
+	         	planert=2;
+	         }//玩家飞机小挂后初始位置
+	         if(planert==2)
+	         {
+	         	  c1.move(0,-2);
+	         	
+	         	if(c1.getY()<(planepo-24))
+	         	{//System.out.println(c1.getY());
+	         	//System.out.println(planepo-24);
+	         		inputno=0;
+	         		s1=1;
+		         		planert=3;
+	         	}
+	         	if(c1.getY()>(planepo+24))
+	         	{  
+	         		c1.move(0,-2);
+	         	}
+	         }
+			et=System.currentTimeMillis();
+			if((et-st)<rate)
+			{
+				try
+				{
+					Thread.sleep(rate-(et-st));
+				
+				}catch(Exception exp){}
+			}
+	
+	  }
+   
+		
+	}
+	public void render(Graphics g)
+	{ 	System.gc();
+		g.setColor(255,255,255);
+	  g.fillRect(0,0,getWidth(),getHeight());
+		lm.setViewWindow(0,0,getWidth(),getHeight()+10000);//0,0,开始位置，宽，高,既是 可视面积
+		lm.paint(g,0,y1);//在哪里画是地图，不是精灵//参考《王》P376，所有的点都是左上的点，所以PAINT要设置负数//即开始=-1400，一个线程+1，即-1399，-1398，
+		// huokebullet.paint(g);
+		//c1.setPosition(50,50);//有此行的话，瞄准精灵不懂，就固定在（50，50）了，
+		//因为线成的关系，所以此行改在了构造函数里
+		if(over==1)//c1.getheight=32,因为飞机被击中后变成了爆炸图片
+		{
+		    g.drawString("寒在杭州览桥上空因座机被击中，壮烈殉国,时",c1.getWidth()-24,60,0);//c1.getHeight(),0);
+		    g.drawString("1937年 8月14日，空军第4大队少尉飞行员刘思",c1.getWidth()-24,40,0);//c1.getHeight()-20,0);
+		    g.drawString("年21岁",c1.getWidth()-24,80,0);//c1.getHeight()+20,0);
+		
+		  inputno=1; //键盘输入标志位，GAMEOVER后，就不能读取键盘数据了
+		}
+		g.drawString("37年8月14日 杭州览桥 战果:"+String.valueOf(huokebullet[0].rscore()+huokebullet[3].rscore()+huokebullet[6].rscore()),c1.getWidth()-24,c1.getHeight()-20,0);//
+        if(drawslife==1)//sboss生命条
+        {
+        	g.setColor(255,0,0);
+		g.fillRect(2,22,80,5);//sboss进度条背景，白
+        	g.setColor(255,255,255);
+    		g.fillRect(2,22,slife,5);//sboss生命进度条前景，红
+        }
+		if(playerno==3)
+        {
+		g.drawImage(img("/pic/playerbiaozhi.png"),170,4,0);
+        g.drawImage(img("/pic/playerbiaozhi.png"),195,4,0);
+        g.drawImage(img("/pic/playerbiaozhi.png"),220,4,0);
+        
+		}
+        if(playerno==2)
+        {
+        g.drawImage(img("/pic/playerbiaozhi.png"),195,4,0);
+        g.drawImage(img("/pic/playerbiaozhi.png"),220,4,0); 
+		}
+        if(playerno==1)
+        {
+        g.drawImage(img("/pic/playerbiaozhi.png"),220,4,0);
+		}       
+        if(playerno==4)
+        {
+			g.drawImage(img("/pic/playerbiaozhi.png"),145,4,0);
+		g.drawImage(img("/pic/playerbiaozhi.png"),170,4,0);
+        g.drawImage(img("/pic/playerbiaozhi.png"),195,4,0);
+        g.drawImage(img("/pic/playerbiaozhi.png"),220,4,0);
+        g.setColor(255,0,0); 
+		}
+		if(jiangli==11)
+		{
+			g.setColor(255,0,0);
+			g.drawString("援军到达",100,150,0);
+			if(sboss.getY()>planepo)
+			{
+				jiangli=20;
+			}
+		}
+        if(s1==1)
+        {	
+        	g.setColor(255,255,255);
+		g.fillRect(170,22,65,5);//无敌生命进度条前景，白
+        	g.setColor(255,0,0);
+			g.fillRect(170,22,s2,5);//无敌进度条背景，红
+			g.drawString("无敌时间",124,18,0);
+		drawadd=1;
+			s2=s2-1;	
+			if(s2==0)
+			{pzbz=0;
+				s1=2;
+			}
+        }
+		 flushGraphics();
+	}	
+	public void renderboss(Graphics g)
+	{System.gc();
+			lm.setViewWindow(0,0,getWidth(),getHeight());//0,0,开始位置，宽，高,既是 可视面积		
+			lm.paint(g,0,0);
+			if(over==1)//c1.getheight=32,因为飞机被击中后变成了爆炸图片
+			{
+			    g.drawString("寒在杭州览桥上空因座机被击中，壮烈殉国,年",c1.getWidth()-24,60,0);//c1.getHeight(),0);
+			    g.drawString("1937年 8月14日，空军第4大队少尉飞行员刘思",c1.getWidth()-24,40,0);//c1.getHeight()-20,0);
+			    g.drawString("仅21岁",c1.getWidth()-24,80,0);//c1.getHeight()+20,0);
+			  inputno=1; //键盘输入标志位，GAMEOVER后，就不能读取键盘数据了
+			} 
+			g.setColor(255,0,0);
+			g.fillRect(2,2,60,5);//生命进度条背景，红
+			g.setColor(255,255,255);
+			g.fillRect(2,2,bosslife,5);//生命进度条前景，白
+			if((bossover==1)&&(c1.isVisible()))
+			{
+				    g.drawString("此处加览桥空战真实历史战果",c1.getWidth()-24,40,0);//c1.getHeight()-20,0); 
+				    g.drawString("此处加览桥空战真实历史战果",c1.getWidth()-24,60,0);//c1.getHeight(),0);
+				    g.drawString("仅21岁",c1.getWidth()-24,80,0);//c1.getHeight()+20,0);
+			}
+			if(playerno==4)
+	        {
+				g.drawImage(img("/pic/playerbiaozhi.png"),145,4,0);
+			g.drawImage(img("/pic/playerbiaozhi.png"),170,4,0);
+	        g.drawImage(img("/pic/playerbiaozhi.png"),195,4,0);
+	        g.drawImage(img("/pic/playerbiaozhi.png"),220,4,0);
+			}
+			if(playerno==3)
+	        {
+			g.drawImage(img("/pic/playerbiaozhi.png"),170,4,0);
+	        g.drawImage(img("/pic/playerbiaozhi.png"),195,4,0);
+	        g.drawImage(img("/pic/playerbiaozhi.png"),220,4,0);
+			}
+	        if(playerno==2)
+	        {
+	        g.drawImage(img("/pic/playerbiaozhi.png"),195,4,0);
+	        g.drawImage(img("/pic/playerbiaozhi.png"),220,4,0);
+			}
+	        if(playerno==1)
+	        {
+	        g.drawImage(img("/pic/playerbiaozhi.png"),220,4,0);
+	        }
+	        if(s1==1)
+	        {	
+	        	g.setColor(255,255,255);
+			g.fillRect(170,22,65,5);//无敌生命进度条前景，白
+	        	g.setColor(255,0,0);
+				g.fillRect(170,22,s2,5);//无敌进度条背景，红
+				g.drawString("无敌",124,18,0);
+				s2=s2-1;
+				if(s2==0)
+				{pzbz=0;
+					s1=2;		
+				}
+	        }
+			flushGraphics();//必须写在最后，在做这BOSSOVER的时候忘了，浪费了时间 
+	}
+	
+	public void input()
+	{   if(inputno==0)
+	{
+		int keystate=getKeyStates();
+		if((keystate&UP_PRESSED)!=0)
+		{ 
+			   moveUp();
+		}
+		if((keystate&DOWN_PRESSED)!=0)
+		{
+			moveDown();
+		}
+		if((keystate&LEFT_PRESSED)!=0)
+		{ 
+			moveLeft();
+		}
+	    if((keystate&LEFT_PRESSED)==0)
+		{ 
+			c1.setFrame(0);//飞机左转后改为平飞，即，只要左键松开都是平飞
+	    }
+		if((keystate&RIGHT_PRESSED)!=0)
+		{
+			moveRight();
+	
+		}
+		//以 huokebullet[z].no为射程，以每组第一个子弹为标志，即0，3，，6，9。。。。。。。18
+		if((keystate&FIRE_PRESSED)!=0)
+		{ 
+			for(int i=0;i<=6;i=i+3)
+			{ 
+				if(huokebullet[i].no==1)
+				{   
+					for( int z=i;z<i+3;z++)
+					{   //huokebullet[z].setv(z);				
+						huokebullet[z].initBullets(z);
+				        huokebullet[z].no=huokebullet[z].bulletheight;
+			    	}
+					huokebullet[i].setfirstposition(c1.getX(),c1.getY(),i,huokebullet,img("/pic/bullet.png"));//相对于IF语句的I
+					break;//重要，删除后就只能打一组子弹了
+				}
+		    }
+		}
+	}
+}
+	private void moveDown() {
+		c1.move(0,4);
+		
+				if((c1.getY()+c1.getHeight())>planepo)
+				{
+					c1.setPosition(c1.getX(),planepo-c1.getHeight());//-c1.getHeight()是因为坐标点是左上的点，所以要减去GETHEIGHT以使用飞机出来
+				}
+	}
+	private void moveUp() {
+		c1.move(0,-4);
+		if(c1.getY()<planepoup)
+		{   
+			c1.setPosition(c1.getX(),planepoup);
+		}
+	}
+	private void moveRight() {
+
+		  c1.setFrame(2);
+			c1.move(3,0);
+			if(c1.getX()>(getWidth()-c1.getWidth()))
+			{
+				c1.setPosition((getWidth()-c1.getWidth()),c1.getY());
+				
+			}	
+	}
+private void moveLeft() {
+		c1.move(-3,0);
+		c1.setFrame(1);	
+		if(c1.getX()<=0)
+	    {
+	    	c1.setPosition(0,c1.getY());
+	    }
+	}
+	public void start()
+	{
+		Thread t=new Thread(this);
+		t.start();
+	}
+	public void commandAction(Command c,Displayable d)
+	{
+		if(c.getLabel()=="暂停")
+		{   conti=false;
+		 removeCommand(c);
+		 addCommand(new Command("继续",Command.OK,1));
+		}
+		if(c.getLabel()=="继续")
+		{   conti=true;
+		start();//此处很重要，如果不写他，则RUN（）根本就不执行，所以原先的继续不好用5月30日凌晨12时22分OK 
+		 removeCommand(c);
+		 addCommand(new Command("暂停",Command.OK,2));
+		}
+if(c.getLabel()=="返回")
+		{   conti=false;
+			midlet.menuscreensecond();//玩完一遍或挂了后在玩一遍 菜单第一项改为 重新开始
+	        
+		}
+	}  
+}

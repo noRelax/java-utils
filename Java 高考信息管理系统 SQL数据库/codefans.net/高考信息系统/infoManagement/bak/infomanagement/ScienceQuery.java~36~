@@ -1,0 +1,155 @@
+package infomanagement;
+
+import java.awt.*;
+import javax.swing.*;
+import com.borland.jbcl.layout.*;
+import com.borland.dbswing.*;
+import com.borland.dx.sql.dataset.*;
+import java.awt.event.*;
+import com.borland.dx.dataset.*;
+
+/**
+ * <p>Title: </p>
+ * <p>Description: </p>
+ * <p>Copyright: Copyright (c) 2003</p>
+ * <p>Company: </p>
+ * @author unascribed
+ * @version 1.0
+ */
+
+public class ScienceQuery extends JDialog {
+  private JPanel jPanel1 = new JPanel();
+  private XYLayout xYLayout1 = new XYLayout();
+  private JLabel jLabel1 = new JLabel();
+  private JLabel jLabel2 = new JLabel();
+  private JLabel jLabel3 = new JLabel();
+  private JTextField jtfCardID = new JTextField();
+  private JButton jbnQuery = new JButton();
+  private Database database1 = new Database();
+  private QueryDataSet queryDataSet1 = new QueryDataSet();
+  private JdbTable jdbTable1 = new JdbTable();
+  private JLabel jLabel4 = new JLabel();
+  private JTextField jtfAchievement = new JTextField();
+  private JButton jbnExit = new JButton();
+  private Column column1 = new Column();
+  private Column column2 = new Column();
+  private Column column3 = new Column();
+  private Column column4 = new Column();
+  private Column column5 = new Column();
+
+  public ScienceQuery(Frame frame, String title, boolean modal) {
+    super(frame, title, modal);
+    try {
+      jbInit();
+      pack();
+    }
+    catch(Exception ex) {
+      ex.printStackTrace();
+    }
+  }
+
+  public ScienceQuery() {
+    this(null, "", false);
+  }
+  private void jbInit() throws Exception {
+    //设置jPanel1为任意放置
+    jPanel1.setLayout(xYLayout1);
+    jLabel1.setFont(new java.awt.Font("Dialog", 0, 23));
+    jLabel1.setForeground(Color.magenta);
+    jLabel1.setBorder(BorderFactory.createEtchedBorder());
+    //设置文本标题 理科成绩查询
+    jLabel1.setText("                     理科成绩查询");
+    jLabel2.setBorder(BorderFactory.createEtchedBorder());
+    //设置文本标题 准考证号
+    jLabel3.setText("准考证号");
+    //设置文本标题
+    jbnQuery.setText("执行查询");
+    jbnQuery.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        jbnQuery_actionPerformed(e);
+      }
+    });
+    //连接数据库（local）
+    database1.setConnection(new com.borland.dx.sql.dataset.ConnectionDescriptor("jdbc:odbc:local", "sa", "", false, "sun.jdbc.odbc.JdbcOdbcDriver"));
+    //设置文本标题 执行查询
+    jLabel4.setText("总成绩");
+    //设置文本标题 退出
+    jbnExit.setText("退出");
+    //添加退出事件
+    jbnExit.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        jbnExit_actionPerformed(e);
+      }
+    });
+    column1.setColumnName("NewColumn1");
+    column1.setDataType(com.borland.dx.dataset.Variant.STRING);
+    column1.setPreferredOrdinal(4);
+    column1.setServerColumnName("NewColumn1");
+    column1.setSqlType(0);
+    column2.setColumnName("subject");
+    column2.setDataType(com.borland.dx.dataset.Variant.STRING);
+    column2.setPrecision(50);
+    column2.setPreferredOrdinal(0);
+    column2.setSchemaName("dbo");
+    column2.setTableName("science2");
+    column2.setServerColumnName("subject");
+    column2.setSqlType(12);
+    column3.setColumnName("subjectNameID");
+    column3.setDataType(com.borland.dx.dataset.Variant.LONG);
+    column3.setPreferredOrdinal(1);
+    column3.setSchemaName("dbo");
+    column3.setTableName("science2");
+    column3.setServerColumnName("subjectNameID");
+    column3.setSqlType(-5);
+    column4.setColumnName("cardID");
+    column4.setDataType(com.borland.dx.dataset.Variant.LONG);
+    column4.setPreferredOrdinal(2);
+    column4.setSchemaName("dbo");
+    column4.setTableName("science2");
+    column4.setServerColumnName("cardID");
+    column4.setSqlType(-5);
+    column5.setColumnName("achievement");
+    column5.setDataType(com.borland.dx.dataset.Variant.STRING);
+    column5.setPrecision(50);
+    column5.setPreferredOrdinal(3);
+    column5.setSchemaName("dbo");
+    column5.setTableName("science2");
+    column5.setServerColumnName("achievement");
+    column5.setSqlType(12);
+
+    this.getContentPane().add(jPanel1, BorderLayout.CENTER);
+    //在jPanel1中放置各个控件
+    jPanel1.add(jLabel1, new XYConstraints(0, 1, 399, 53));
+    jPanel1.add(jLabel3,   new XYConstraints(10, 66, 80, 19));
+    jPanel1.add(jtfCardID,    new XYConstraints(97, 66, 80, 21));
+    jPanel1.add(jLabel2,   new XYConstraints(0, 53, 398, 49));
+    jPanel1.add(jbnQuery,       new XYConstraints(300, 66, 90, 22));
+    jPanel1.add(jdbTable1,      new XYConstraints(0, 100, 398, 154));
+    jPanel1.add(jLabel4,    new XYConstraints(13, 268, 80, 20));
+    jPanel1.add(jtfAchievement,   new XYConstraints(105, 268, 80, 20));
+    jPanel1.add(jbnExit,     new XYConstraints(300, 268, 90, 20));
+  }
+  //定义退出方法
+  void cancel(){
+    dispose() ;
+  }
+  //退出事件
+  void jbnExit_actionPerformed(ActionEvent e) {
+    cancel();
+  }
+  //执行查询语句
+  void jbnQuery_actionPerformed(ActionEvent e) {
+    //进行数据查询
+    try{
+    int cardID1 = Integer.parseInt(jtfCardID.getText().trim());
+    queryDataSet1.setQuery(new com.borland.dx.sql.dataset.QueryDescriptor(database1, "SELECT science2.cardID,science2.subject,science2.achievement,science2.subjectNameID " +
+      "FROM info.dbo.science2 where science2.cardID = '"+cardID1+"'", null, true, Load.ALL));
+    queryDataSet1.setColumns(new Column[] {column2, column3, column4, column5, column1});
+
+    jdbTable1.setDataSet(queryDataSet1);
+    }
+    catch(Exception sql){
+      JOptionPane.showMessageDialog(this,"准考证不存在，请重试");
+    }
+  }
+}

@@ -1,0 +1,38 @@
+SELECT pn.str AS package_name,
+       CASE WHEN abstractness IS NULL THEN NULL
+                                      ELSE TO_CHAR(instability, '0.99') END AS instability,
+       CASE WHEN instability IS NULL THEN NULL
+                                     ELSE TO_CHAR(abstractness, '0.99') END AS abstractness,
+       CASE WHEN abstractness IS NULL OR instability IS NULL THEN NULL
+       ELSE TO_CHAR(ABS(abstractness + instability - 1), '0.99') END AS normalized_distance
+FROM <#(emit (shared-tbl-name "str"))#> AS pn,
+     (SELECT package_id,
+            CASE WHEN (dep_to + dep_from) = 0 THEN NULL
+                                              ELSE 1.0 * dep_from / (dep_to + dep_from) END AS instability,
+            CASE WHEN (abs_cnt + con_cnt) = 0 THEN NULL
+                                              ELSE 1.0 * abs_cnt / (abs_cnt + con_cnt) END AS abstractness
+     FROM (SELECT package_id, COUNT(from_package_id) AS dep_from
+           FROM <#(emit (snapshot-tbl-name "package" selected-index))#>
+                LEFT JOIN
+                <#(emit (snapshot-tbl-name "dependency" selected-index))#>
+                ON package_id = from_package_id
+           GROUP BY package_id) AS aff
+          NATURAL JOIN
+          (SELECT package_id, COUNT(to_package_id) AS dep_to
+           FROM <#(emit (snapshot-tbl-name "package" selected-index))#>
+                LEFT JOIN
+                <#(emit (snapshot-tbl-name "dependency" selected-index))#>
+                ON package_id = to_package_id
+           GROUP BY package_id) AS eff
+          NATURAL JOIN
+          (SELECT p.package_id, COUNT(is_abs) AS abs_cnt, COUNT(is_con) AS con_cnt
+           FROM (<#(emit (snapshot-tbl-name "package" selected-index))#> AS p
+                 LEFT JOIN
+                 (SELECT package_id,
+                         CASE WHEN is_abstract = true  THEN true ELSE NULL END AS is_abs,
+                         CASE WHEN is_abstract = false THEN true ELSE NULL END AS is_con
+                  FROM <#(emit (snapshot-tbl-name "class" selected-index))#>) AS c_abs
+                 ON p.package_id = c_abs.package_id)
+           GROUP BY p.package_id) AS cls) AS dq
+WHERE dq.package_id = pn.id
+ORDER BY pn.str

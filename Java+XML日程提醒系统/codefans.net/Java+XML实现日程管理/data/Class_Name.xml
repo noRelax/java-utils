@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="gb2312"?>
+<Class_Name>
+<className>
+<id>1</id>
+<name>普通提醒</name>
+</className>
+<className>
+<id>2</id>
+<name>生日聚会</name>
+</className>
+<className>
+<id>3</id>
+<name>重要提醒</name>
+</className>
+<className>
+<id>4</id>
+<name>约会提醒</name>
+</className>
+<className>
+<id>5</id>
+<name>日程计划</name>
+</className>
+<className>
+<id>6</id>
+<name>其它提醒</name>
+</className>
+</Class_Name>

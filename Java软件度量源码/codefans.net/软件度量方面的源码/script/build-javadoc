@@ -1,0 +1,12 @@
+#!/bin/bash
+
+rm -rf ../doc/javadoc
+
+javadoc \
+  -sourcepath ../src \
+  -d ../doc/javadoc \
+  -windowtitle "MetricsAnalyzer API" \
+  -doctitle "<h1>MetricsAnalyzer API</h1>" \
+  metricsanalyzer.api \
+  metricsanalyzer.api.data \
+  metricsanalyzer.api.ext > /dev/null

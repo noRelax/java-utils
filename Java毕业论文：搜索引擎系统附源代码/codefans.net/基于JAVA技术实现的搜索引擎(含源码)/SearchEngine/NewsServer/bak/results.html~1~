@@ -1,0 +1,17 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title>
+Results
+</title>
+</head>
+<body bgcolor="#ffffff">
+
+<form action="/NewsServer/results" method="get">
+<p>QueryContent  <input type="text" name="QueryContent"></p>
+<p>press Submit to invoke servlet Results</p>
+<p><input type="submit" name="Submit" value="Submit">
+<input type="reset" value="Reset"></p>
+</form>
+</body>
+</html>

@@ -1,0 +1,39 @@
+package card;
+import java.awt.event.*;
+import javax.swing.*;
+import java.awt.*;
+//download by http://www.codefans.net
+class moveFrameEvent extends MouseMotionAdapter
+{
+  JFrame ownerframe=null;
+  boolean m_bMovable=false;
+  int m_prevx,m_prevy;
+  public moveFrameEvent(JFrame aframe)
+  {
+     ownerframe = aframe;
+   }
+   public void mousePressed(MouseEvent mouseevent)
+   {
+     if(m_bMovable)
+     {
+       m_prevx = mouseevent.getX();
+       m_prevy = mouseevent.getY();
+     }
+   }
+ public void mouseMoved(MouseEvent mouseevent)
+ {
+   if(m_bMovable)
+   {
+     Point point = ownerframe.getLocation();
+     ownerframe.setLocation((point.x + mouseevent.getX()) -  m_prevx, (point.y + mouseevent.getY()) - m_prevy);
+   }
+ }
+ public void mouseReleased(MouseEvent mouseevent)
+ {
+   if(m_bMovable)
+   {
+     m_prevx = mouseevent.getX();
+     m_prevy = mouseevent.getY();
+   }
+ }
+}

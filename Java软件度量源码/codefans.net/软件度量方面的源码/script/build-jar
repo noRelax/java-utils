@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd ../src
+rm ../metricsanalyzer.jar `find . -path '*.class'`
+javac -g:none -O `find . -path '*.java' -a -not -path '*Test.java'`
+jar cf ../metricsanalyzer.jar `find . -path '*.class'`

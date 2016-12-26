@@ -1,0 +1,23 @@
+package uml_gaokai;
+
+/**
+ * <p>Title: </p>
+ * <p>Description: </p>
+ * <p>Copyright: Copyright (c) 2003</p>
+ * <p>Company: </p>
+ * @author unascribed
+ * @version 1.0
+ */
+
+public class Register {
+  String userName ;
+  String userGender ;
+  String userPassword ;
+  String testPassword ;
+  String userAddress ;
+  String userAuthority ;
+  int userAge ;
+
+  public Register() {
+  }
+}

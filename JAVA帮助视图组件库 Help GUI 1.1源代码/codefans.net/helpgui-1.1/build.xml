@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+
+<project default="helpgui_jar" basedir=".">
+
+	<!-- =================================================================== -->
+	<!-- Help of the program                                                 -->
+	<!-- =================================================================== -->
+	<target name="help">
+		<echo message="HelpGUI compilation"/>
+		<echo message=" Here is a list of possible targets: "/>
+		<echo message="  helpgui_jar..........Compiles the jar file (default)"/>
+		<echo message="  demo.................Compiles the jar file for the demo"/>
+		<echo message="  clean................Cleans out old directories"/>
+		<echo message="  javadocs.............Compiles the javadoc"/>
+	 </target>
+
+	<!-- =================================================================== -->	
+	<!-- Properties' initialization                                          -->
+	<!-- =================================================================== -->
+	<target name="init">
+		<property name="name" value="HelpGui"/>
+		<property name="version" value="1.1"/>
+		<property name="year" value="2003"/>
+		<property name="build.compiler" value="modern"/>
+		<property name="debug" value="on"/>
+		<property name="optimize" value="on"/>
+		<property name="deprecation" value="off"/>
+		<property name="src.dir" value="./src"/>
+		<property name="docs.dir" value="./docs"/>
+		<property name="data.dir" value="./data"/>
+		<property name="packages" value="net.*"/>
+		<property name="build.dir" value="./build"/>
+		<property name="build.dest" value="./classes"/>
+		<property name="package.dest" value="./classes/net/sourceforge/helpgui"/>
+		<property name="build.docs" value="${build.dir}/docs"/>
+		<property name="build.javadocs" value="${build.docs}/api"/>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Prepares the build directories                                      -->
+	<!-- =================================================================== -->
+	<target name="prepare" depends="init">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${build.dest}"/>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Compiles the source directory                                       -->
+	<!-- =================================================================== -->
+	<target name="compile" depends="prepare">
+		
+		<javac srcdir="${src.dir}"
+			classpath="${project.build.classpath.unix}"
+			destdir="${build.dest}"
+			debug="${debug}"
+			deprecation="${deprecation}"
+			optimize="${optimize}"
+			includeAntRuntime="false"/>
+		
+		<mkdir dir="${build.dest}/docs"/>
+		<copy todir="${build.dest}/docs">
+		    <fileset dir="." includes="COPYING,README"/>	    
+		</copy>
+		
+		<mkdir dir="${package.dest}/icons"/>
+		<mkdir dir="${package.dest}/languages"/>
+		<copy todir="${package.dest}/icons"> <fileset dir="src/net/sourceforge/helpgui/icons/" includes="**"/> </copy>
+		<copy todir="${package.dest}/languages"> <fileset dir="src/net/sourceforge/helpgui/languages/" includes="**"/> </copy>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Creates the jar archive for the demo                                -->
+	<!-- =================================================================== -->
+	<target name="demo" depends="compile">
+		<copy todir="${build.dest}">
+		    <fileset dir="${data.dir}/resources"/>
+		</copy>
+		<jar jarfile="${build.dir}/helpgui-${version}-demo.jar"
+			manifest="${data.dir}/MANIFEST.MF"
+			compress="true"
+			basedir="${build.dest}"/>
+			
+		<echo message="java -jar build/helpgui-${version}-demo.jar" file="./helpgui.sh"/>
+		<chmod file="./helpgui.sh" perm="ugo+rx"/>
+		<echo message="java -jar build\helpgui-${version}-demo.jar" file="./helpgui.bat"/>
+		
+			
+	</target>
+	
+	<!-- =================================================================== -->
+	<!-- Creates the jar archive                                             -->
+	<!-- =================================================================== -->
+	<target name="helpgui_jar" depends="compile">
+		<jar jarfile="${build.dir}/helpgui-${version}.jar"
+			compress="true"
+			basedir="${build.dest}"
+			excludes="docs/help/"/>	
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Creates the API documentation                                       -->
+	<!-- =================================================================== -->
+	<target name="javadocs" depends="prepare">
+		<mkdir dir="${build.javadocs}"/>
+		<javadoc packagenames="${packages}"
+			sourcepath="${src.dir}"
+			destdir="${build.javadocs}"
+			author="true"
+			version="true"
+			use="true"
+			windowtitle="${name} API"
+			doctitle="${name}"
+			bottom="${copyright}"/>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Cleans everything                                                   -->
+	<!-- =================================================================== -->
+	<target name="clean" depends="init">
+		<delete dir="${build.dest}"/>
+		<delete dir="${build.dir}"/>
+		<delete>
+			<fileset dir="." includes="**/*~" defaultexcludes="no"/>
+		</delete>
+		
+		<delete file="${basedir}/helpgui.bat"/>
+		<delete file="${basedir}/helpgui.sh"/>
+		
+	</target>
+	
+</project>

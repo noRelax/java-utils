@@ -1,0 +1,118 @@
+
+An unexpected exception has been detected in native code outside the VM.
+Unexpected Signal : EXCEPTION_ACCESS_VIOLATION (0xc0000005) occurred at PC=0x7C921010
+Function=RtlEnterCriticalSection+0xB
+Library=D:\WINDOWS\system32\ntdll.dll
+
+Current Java thread:
+	at sun.jdbc.odbc.JdbcOdbc.allocStmt(Native Method)
+	at sun.jdbc.odbc.JdbcOdbc.SQLAllocStmt(JdbcOdbc.java:171)
+	at sun.jdbc.odbc.JdbcOdbcConnection.createStatement(JdbcOdbcConnection.java:413)
+	at sun.jdbc.odbc.JdbcOdbcConnection.createStatement(JdbcOdbcConnection.java:396)
+	at card.storePanel.jButton1_actionPerformed(storePanel.java:90)
+	at card.storePanel$2.actionPerformed(storePanel.java:55)
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1786)
+	at javax.swing.AbstractButton$ForwardActionEvents.actionPerformed(AbstractButton.java:1839)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:420)
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:258)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:245)
+	at java.awt.Component.processMouseEvent(Component.java:5100)
+	at java.awt.Component.processEvent(Component.java:4897)
+	at java.awt.Container.processEvent(Container.java:1569)
+	at java.awt.Component.dispatchEventImpl(Component.java:3615)
+	at java.awt.Container.dispatchEventImpl(Container.java:1627)
+	at java.awt.Component.dispatchEvent(Component.java:3477)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:3483)
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:3198)
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:3128)
+	at java.awt.Container.dispatchEventImpl(Container.java:1613)
+	at java.awt.Window.dispatchEventImpl(Window.java:1606)
+	at java.awt.Component.dispatchEvent(Component.java:3477)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:456)
+	at java.awt.EventDispatchThread.pumpOneEventForHierarchy(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:151)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:145)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:137)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:100)
+
+Dynamic libraries:
+0x00400000 - 0x00407000 	E:\编程工具\Borland\JBuilder2005\jdk1.4\bin\javaw.exe
+0x7C920000 - 0x7C9B4000 	D:\WINDOWS\system32\ntdll.dll
+0x7C800000 - 0x7C91C000 	D:\WINDOWS\system32\kernel32.dll
+0x77DA0000 - 0x77E49000 	D:\WINDOWS\system32\ADVAPI32.dll
+0x77E50000 - 0x77EE1000 	D:\WINDOWS\system32\RPCRT4.dll
+0x77D10000 - 0x77D9F000 	D:\WINDOWS\system32\USER32.dll
+0x77EF0000 - 0x77F36000 	D:\WINDOWS\system32\GDI32.dll
+0x77BE0000 - 0x77C38000 	D:\WINDOWS\system32\MSVCRT.dll
+0x76300000 - 0x7631D000 	D:\WINDOWS\system32\IMM32.DLL
+0x62C20000 - 0x62C29000 	D:\WINDOWS\system32\LPK.DLL
+0x73FA0000 - 0x7400B000 	D:\WINDOWS\system32\USP10.dll
+0x08000000 - 0x08138000 	E:\编程工具\Borland\JBuilder2005\jdk1.4\jre\bin\client\jvm.dll
+0x76B10000 - 0x76B3A000 	D:\WINDOWS\system32\WINMM.dll
+0x10000000 - 0x10007000 	E:\编程工具\Borland\JBuilder2005\jdk1.4\jre\bin\hpi.dll
+0x003F0000 - 0x003FE000 	E:\编程工具\Borland\JBuilder2005\jdk1.4\jre\bin\verify.dll
+0x009A0000 - 0x009B9000 	E:\编程工具\Borland\JBuilder2005\jdk1.4\jre\bin\java.dll
+0x009C0000 - 0x009CD000 	E:\编程工具\Borland\JBuilder2005\jdk1.4\jre\bin\zip.dll
+0x02DB0000 - 0x02EBF000 	E:\编程工具\Borland\JBuilder2005\jdk1.4\jre\bin\awt.dll
+0x72F70000 - 0x72F96000 	D:\WINDOWS\system32\WINSPOOL.DRV
+0x76990000 - 0x76ACC000 	D:\WINDOWS\system32\ole32.dll
+0x030D0000 - 0x03120000 	E:\编程工具\Borland\JBuilder2005\jdk1.4\jre\bin\fontmanager.dll
+0x736D0000 - 0x73719000 	D:\WINDOWS\system32\ddraw.dll
+0x73B30000 - 0x73B36000 	D:\WINDOWS\system32\DCIMAN32.dll
+0x738B0000 - 0x73980000 	D:\WINDOWS\system32\D3DIM700.DLL
+0x37210000 - 0x37247000 	D:\WINDOWS\downlo~1\CnsMin.dll
+0x77F40000 - 0x77FB6000 	D:\WINDOWS\system32\SHLWAPI.dll
+0x5FDD0000 - 0x5FE24000 	D:\WINDOWS\system32\NETAPI32.dll
+0x77BD0000 - 0x77BD8000 	D:\WINDOWS\system32\VERSION.dll
+0x74680000 - 0x746CB000 	D:\WINDOWS\system32\MSCTF.dll
+0x73640000 - 0x7366E000 	D:\WINDOWS\system32\msctfime.ime
+0x07290000 - 0x072AE000 	E:\编程工具\Borland\JBuilder2005\jdk1.4\jre\bin\jpeg.dll
+0x07330000 - 0x0733C000 	E:\编程工具\Borland\JBuilder2005\jdk1.4\jre\bin\JdbcOdbc.dll
+0x73540000 - 0x7357D000 	D:\WINDOWS\system32\ODBC32.dll
+0x5D170000 - 0x5D207000 	D:\WINDOWS\system32\COMCTL32.dll
+0x773A0000 - 0x77B91000 	D:\WINDOWS\system32\SHELL32.dll
+0x76320000 - 0x76367000 	D:\WINDOWS\system32\comdlg32.dll
+0x77180000 - 0x77282000 	D:\WINDOWS\WinSxS\x86_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.2600.2180_x-ww_a84f1ff9\comctl32.dll
+0x20000000 - 0x20017000 	D:\WINDOWS\system32\odbcint.dll
+0x4B470000 - 0x4B4DC000 	D:\WINDOWS\system32\SQLSRV32.dll
+0x5C270000 - 0x5C29D000 	D:\WINDOWS\system32\SQLUNIRL.dll
+0x770F0000 - 0x7717C000 	D:\WINDOWS\system32\OLEAUT32.dll
+0x758A0000 - 0x758A8000 	D:\WINDOWS\system32\NDDEAPI.DLL
+0x1FA30000 - 0x1FA46000 	D:\WINDOWS\system32\sqlsrv32.rll
+0x77FC0000 - 0x77FD1000 	D:\WINDOWS\system32\Secur32.dll
+0x4D3D0000 - 0x4D3EB000 	D:\WINDOWS\system32\odbccp32.dll
+0x6D880000 - 0x6D89B000 	D:\WINDOWS\system32\DBNETLIB.DLL
+0x71A40000 - 0x71A4B000 	D:\WINDOWS\system32\WSOCK32.dll
+0x71A20000 - 0x71A37000 	D:\WINDOWS\system32\WS2_32.dll
+0x71A10000 - 0x71A18000 	D:\WINDOWS\system32\WS2HELP.dll
+0x71F00000 - 0x71F04000 	D:\WINDOWS\system32\security.dll
+0x77C40000 - 0x77C63000 	D:\WINDOWS\system32\msv1_0.dll
+0x76D30000 - 0x76D48000 	D:\WINDOWS\system32\iphlpapi.dll
+0x76770000 - 0x76783000 	D:\WINDOWS\system32\ntdsapi.dll
+0x76EF0000 - 0x76F17000 	D:\WINDOWS\system32\DNSAPI.dll
+0x76F30000 - 0x76F5C000 	D:\WINDOWS\system32\WLDAP32.dll
+0x765E0000 - 0x76672000 	D:\WINDOWS\system32\crypt32.dll
+0x76DB0000 - 0x76DC2000 	D:\WINDOWS\system32\MSASN1.dll
+0x74CD0000 - 0x74CD7000 	D:\WINDOWS\system32\DBmsLPCn.dll
+0x76C60000 - 0x76C88000 	D:\WINDOWS\system32\imagehlp.dll
+0x68D60000 - 0x68E01000 	D:\WINDOWS\system32\DBGHELP.dll
+0x76BC0000 - 0x76BCB000 	D:\WINDOWS\system32\PSAPI.DLL
+
+Heap at VM Abort:
+Heap
+ def new generation   total 576K, used 96K [0x10010000, 0x100b0000, 0x104f0000)
+  eden space 512K,   6% used [0x10010000, 0x10018328, 0x10090000)
+  from space 64K, 100% used [0x10090000, 0x100a0000, 0x100a0000)
+  to   space 64K,   0% used [0x100a0000, 0x100a0000, 0x100b0000)
+ tenured generation   total 2412K, used 1591K [0x104f0000, 0x1074b000, 0x14010000)
+   the space 2412K,  65% used [0x104f0000, 0x1067dd28, 0x1067de00, 0x1074b000)
+ compacting perm gen  total 6400K, used 6367K [0x14010000, 0x14650000, 0x18010000)
+   the space 6400K,  99% used [0x14010000, 0x14647ff8, 0x14648000, 0x14650000)
+
+Local Time = Wed Mar 23 20:41:10 2005
+Elapsed Time = 33
+#
+# The exception above was detected in native code outside the VM
+#
+# Java VM: Java HotSpot(TM) Client VM (1.4.2_04-b05 mixed mode)
+#

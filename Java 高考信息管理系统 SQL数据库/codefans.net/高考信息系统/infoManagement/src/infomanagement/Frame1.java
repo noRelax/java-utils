@@ -1,0 +1,184 @@
+package infomanagement;
+//download by http://www.codefans.net
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import com.borland.jbcl.layout.*;
+import javax.swing.border.*;
+
+/**
+ * <p>Title: </p>
+ * <p>Description: </p>
+ * <p>Copyright: Copyright (c) 2003</p>
+ * <p>Company: </p>
+ * @author unascribed
+ * @version 1.0
+ */
+
+public class Frame1 extends JFrame {
+  private JPanel contentPane;
+  private BorderLayout borderLayout1 = new BorderLayout();
+  private JPanel jPanel1 = new JPanel();
+  //设置jPanel1的布局方式为xylayout,任意布局
+  private XYLayout xYLayout1 = new XYLayout();
+  private JLabel jLabel1 = new JLabel();
+  private TitledBorder titledBorder1;
+  private JLabel jLabel2 = new JLabel();
+  private JLabel jLabel3 = new JLabel();
+  private JLabel jLabel4 = new JLabel();
+  //理科成绩录入
+  private JRadioButton rdbInputScnAch = new JRadioButton();
+  //理科成绩查询
+  private JRadioButton rdbQqueryScnAch = new JRadioButton();
+  //文科成绩录入
+  private JRadioButton rdbInputArtAch = new JRadioButton();
+  //文科成绩查询
+  private JRadioButton rdbQueryArtAch = new JRadioButton();
+
+  //Construct the frame
+  public Frame1() {
+    enableEvents(AWTEvent.WINDOW_EVENT_MASK);
+    try {
+      jbInit();
+    }
+    catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+  //Component initialization
+  private void jbInit() throws Exception  {
+    //setIconImage(Toolkit.getDefaultToolkit().createImage(Frame1.class.getResource("[Your Icon]")));
+    contentPane = (JPanel) this.getContentPane();
+    titledBorder1 = new TitledBorder("");
+    contentPane.setLayout(borderLayout1);
+    this.setSize(new Dimension(399, 288));
+    this.setTitle("Frame Title");
+    jPanel1.setLayout(xYLayout1);
+    jLabel1.setFont(new java.awt.Font("Dialog", 0, 23));
+    jLabel1.setForeground(Color.green);
+    jLabel1.setBorder(titledBorder1);
+    //输入项目标题
+    jLabel1.setText("              通用高考成绩管理系统");
+    //设置jLabel2的边界为etch
+    jLabel2.setBorder(BorderFactory.createEtchedBorder());
+    jLabel3.setText("请选择");
+    jLabel4.setBorder(BorderFactory.createEtchedBorder());
+    jLabel4.setToolTipText("");
+    //将文字颜色设为红色
+    rdbInputScnAch.setForeground(Color.red);
+    //rdbInputScnAch的标题 理科成绩录入
+    rdbInputScnAch.setText("理科成绩录入");
+    //加入jRadioButton事件，rdbInputScnAch(理科成绩录入)
+    rdbInputScnAch.addMouseListener(new java.awt.event.MouseAdapter() {
+      //添加鼠标单击事件
+      public void mouseClicked(MouseEvent e) {
+        rdbInputScnAch_mouseClicked(e);
+      }
+    });
+    //将文字颜色设为红色
+    rdbQqueryScnAch.setForeground(Color.red);
+    //rdbQqueryScnAch的标题 理科成绩查询
+    rdbQqueryScnAch.setText("理科成绩查询");
+     //加入jRadioButton事件 rdbQqueryScnAch("理科成绩查询")
+    rdbQqueryScnAch.addMouseListener(new java.awt.event.MouseAdapter() {
+      //添加鼠标单击事件
+      public void mouseClicked(MouseEvent e) {
+        rdbQqueryScnAch_mouseClicked(e);
+      }
+    });
+    //将文字颜色设为红色
+    rdbInputArtAch.setForeground(Color.red);
+    //rdbInputArtAch的标题 文科成绩录入
+    rdbInputArtAch.setText("文科成绩录入");
+     //加入jRadioButton事件 rdbInputArtAch("文科成绩录入")
+    rdbInputArtAch.addMouseListener(new java.awt.event.MouseAdapter() {
+      //添加鼠标单击事件
+      public void mouseClicked(MouseEvent e) {
+        rdbInputArtAch_mouseClicked(e);
+      }
+    });
+    //将文字颜色设为红色
+    rdbQueryArtAch.setForeground(Color.red);
+    //rdbQueryArtAch的标题 文科成绩查询
+    rdbQueryArtAch.setText("文科成绩查询");
+     //加入jRadioButton事件 rdbQueryArtAch("文科成绩查询")
+    rdbQueryArtAch.addMouseListener(new java.awt.event.MouseAdapter() {
+      //添加鼠标单击事件
+      public void mouseClicked(MouseEvent e) {
+        rdbQueryArtAch_mouseClicked(e);
+      }
+    });
+    contentPane.add(jPanel1, BorderLayout.CENTER);
+    //放置jLanel1在jPanel1中的位置
+    jPanel1.add(jLabel1,  new XYConstraints(0, 0, 400, 47));
+    //放置jLanel2在jPanel1中的位置
+    jPanel1.add(jLabel2,    new XYConstraints(1, 46, 398, 242));
+    //放置rdbInputScnAch在jPanel1中的位置
+    jPanel1.add(rdbInputScnAch,   new XYConstraints(50, 130, -1, -1));
+    //放置rdbQqueryScnAch在jPanel1中的位置
+    jPanel1.add(rdbQqueryScnAch,   new XYConstraints(200, 130, -1, -1));
+    //放置rdbInputArtAch在jPanel1中的位置
+    jPanel1.add(rdbInputArtAch,   new XYConstraints(50, 200, -1, -1));
+    //放置rdbQueryArtAch在jPanel1中的位置
+    jPanel1.add(rdbQueryArtAch,    new XYConstraints(200, 200, -1, -1));
+    //放置jLanel3在jPanel1中的位置
+    jPanel1.add(jLabel3, new XYConstraints(3, 48, 92, 22));
+    //放置jLanel4在jPanel1中的位置
+    jPanel1.add(jLabel4, new XYConstraints(33, 94, 320, 165));
+  }
+  //Overridden so we can exit when window is closed
+  protected void processWindowEvent(WindowEvent e) {
+    super.processWindowEvent(e);
+    if (e.getID() == WindowEvent.WINDOW_CLOSING) {
+      System.exit(0);
+    }
+  }
+//显示理科成绩录入界面
+  void rdbInputScnAch_mouseClicked(MouseEvent e) {
+    //调用理科成绩录入界面对话框
+    ScienceAchievement dlg = new ScienceAchievement();
+    Dimension dlgSize = dlg.getPreferredSize();
+    Dimension frmSize = getSize();
+    Point loc = getLocation();
+    dlg.setLocation((frmSize.width - dlgSize.width) / 2 + loc.x, (frmSize.height - dlgSize.height) / 2 + loc.y);
+    dlg.setModal(true);
+    dlg.pack();
+    dlg.show();
+  }
+//显示理科成绩查询界面
+  void rdbQqueryScnAch_mouseClicked(MouseEvent e) {
+    //调用理科成绩查询界面对话框
+    ScienceQuery dlg = new ScienceQuery();
+    Dimension dlgSize = dlg.getPreferredSize();
+    Dimension frmSize = getSize();
+    Point loc = getLocation();
+    dlg.setLocation((frmSize.width - dlgSize.width) / 2 + loc.x, (frmSize.height - dlgSize.height) / 2 + loc.y);
+    dlg.setModal(true);
+    dlg.pack();
+    dlg.show();
+  }
+//显示文科成绩录入界面
+  void rdbInputArtAch_mouseClicked(MouseEvent e) {
+    //调用文科成绩录入界面对话框
+    ArtsAchievement dlg = new ArtsAchievement();
+    Dimension dlgSize = dlg.getPreferredSize();
+    Dimension frmSize = getSize();
+    Point loc = getLocation();
+    dlg.setLocation((frmSize.width - dlgSize.width) / 2 + loc.x, (frmSize.height - dlgSize.height) / 2 + loc.y);
+    dlg.setModal(true);
+    dlg.pack();
+    dlg.show();
+  }
+//显示文科成绩查询界面
+  void rdbQueryArtAch_mouseClicked(MouseEvent e) {
+    //调用文科成绩查询界面对话框
+    ArtsQuery dlg = new ArtsQuery();
+    Dimension dlgSize = dlg.getPreferredSize();
+    Dimension frmSize = getSize();
+    Point loc = getLocation();
+    dlg.setLocation((frmSize.width - dlgSize.width) / 2 + loc.x, (frmSize.height - dlgSize.height) / 2 + loc.y);
+    dlg.setModal(true);
+    dlg.pack();
+    dlg.show();
+  }
+}

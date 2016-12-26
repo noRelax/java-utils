@@ -1,0 +1,7 @@
+SELECT pn.str || '.' || cn.str AS class, ncss, is_abstract
+FROM <#(emit (snapshot-tbl-name "class" selected-index))#> AS c
+, <#(emit (shared-tbl-name "str"))#> AS cn
+, <#(emit (shared-tbl-name "str"))#> AS pn
+WHERE c.class_id = cn.id
+AND c.package_id = pn.id
+ORDER BY ncss DESC

@@ -1,0 +1,4 @@
+-libraryjars D:\sony\JavaME_SDK_CLDC\PC_Emulation\WTK2\lib\midpapi20.jar;D:\sony\JavaME_SDK_CLDC\PC_Emulation\WTK2\lib\cldcapi11.jar;D:\sony\JavaME_SDK_CLDC\PC_Emulation\WTK2\lib\wma11.jar;D:\sony\JavaME_SDK_CLDC\PC_Emulation\WTK2\lib\mmapi.jar;D:\sony\JavaME_SDK_CLDC\PC_Emulation\WTK2\lib\jsr082.jar;D:\sony\JavaME_SDK_CLDC\PC_Emulation\WTK2\lib\jsr75.jar;D:\sony\JavaME_SDK_CLDC\PC_Emulation\WTK2\lib\mobile3d.jar;D:\sony\JavaME_SDK_CLDC\PC_Emulation\WTK2\lib\mascotv3.jar;D:\sony\JavaME_SDK_CLDC\PC_Emulation\WTK2\lib\nokiaext.jar
+-injars D:\sony\JavaME_SDK_CLDC\PC_Emulation\WTK2\apps\Casper\bin\Casper.jar
+-outjar C:\DOCUME~1\HWH\LOCALS~1\Temp\Casper.jar
+-keep public class * extends javax.microedition.midlet.MIDlet 

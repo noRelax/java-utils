@@ -1,0 +1,48 @@
+package card;
+
+import java.awt.*;
+import javax.swing.*;
+
+public class welcomePanel extends JPanel
+{
+  public welcomePanel(String id)
+  {
+    try
+    {
+      this.CardID=id;
+      jbInit();
+    } catch( Exception exception )
+    {
+      exception.printStackTrace();
+    }
+  }
+
+  private void jbInit() throws Exception
+  {
+    this.setLayout( null );
+    jLabel1.setFont( new java.awt.Font( "黑体", Font.BOLD, 26 ) );
+    jLabel1.setForeground( UIManager.getColor( "CheckBox.focus" ) );
+    jLabel1.setHorizontalAlignment( SwingConstants.CENTER );
+    jLabel1.setText( "欢迎使用信用卡系统" );
+    jLabel1.setBounds( new Rectangle( 75, 45, 269, 33 ) );
+    jLabel2.setFont( new java.awt.Font( "新宋体", Font.PLAIN, 18 ) );
+    jLabel2.setToolTipText( "" );
+    jLabel2.setHorizontalAlignment( SwingConstants.CENTER );
+    jLabel2.setText( "版权：IT6工作室" );
+    jLabel2.setBounds( new Rectangle( 124, 121, 147, 24 ) );
+    jLabel3.setFont( new java.awt.Font( "\u7D30明\u9AD4", Font.ITALIC, 11 ) );
+    jLabel3.setForeground( Color.red );
+    jLabel3.setHorizontalAlignment( SwingConstants.CENTER );
+    jLabel3.setText( "http://www.IT6.com.cn" );
+    jLabel3.setBounds( new Rectangle( 138, 198, 131, 16 ) );
+    this.add( jLabel1 );
+    this.add( jLabel2 );
+    this.add( jLabel3 );
+    staticMessage sm=new staticMessage(CardID);
+  }
+
+  JLabel jLabel1 = new JLabel();
+  JLabel jLabel2 = new JLabel();
+  JLabel jLabel3 = new JLabel();
+  String CardID;
+}

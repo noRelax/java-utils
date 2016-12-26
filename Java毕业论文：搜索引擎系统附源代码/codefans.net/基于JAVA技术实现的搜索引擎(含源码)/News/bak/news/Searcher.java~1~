@@ -1,0 +1,13 @@
+package news;
+
+/**
+ * <p>Title: 新闻搜索引擎</p>
+ * <p>Description: 毕业设计</p>
+ * <p>Copyright: Copyright (c) 2003</p>
+ * <p>Company: </p>
+ * @author 计算机99630 沈晨
+ * @version 1.0
+ */
+
+public class Searcher {
+}

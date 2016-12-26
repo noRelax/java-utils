@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--JBuilder XML Project-->
+<project>
+<property category="generalFormatting" name="baseCodeStyle" value="java/Java Standard.codestyle"/>
+<property category="generalFormatting2" name="blockIndent" value="4"/>
+<property category="generalFormatting2" name="continuationIndent" value="8"/>
+<property category="generalFormatting2" name="overrideBasicFormatting" value="1"/>
+<property category="javaFormatting" name="alignMultilineAssign" value="1"/>
+<property category="javaFormatting" name="arrayInitDataOnNewLine" value="0"/>
+<property category="javaFormatting" name="blankLinesAfterClass" value="2"/>
+<property category="javaFormatting" name="catchOnNewLine" value="0"/>
+<property category="javaFormatting" name="elseOnNewLine" value="0"/>
+<property category="javaFormatting" name="extendsOnNewLine" value="0"/>
+<property category="javaFormatting" name="finallyOnNewLine" value="0"/>
+<property category="javaFormatting" name="implementsOnNewLine" value="0"/>
+<property category="javaFormatting" name="indentCase" value="0"/>
+<property category="javaFormatting" name="packagePrefixGroups" value="java;BLANK_LINE;javax;BLANK_LINE;(*)"/>
+<property category="javaFormatting" name="packageThreshold" value="2"/>
+<property category="javaFormatting" name="preservedBlankLinesInDecl" value="2"/>
+<property category="javaFormatting" name="spaceBeforeLparen" value="0"/>
+<property category="javaFormatting" name="whileOnNewLine" value="0"/>
+<property category="javadoc" name="custom.tags.1" value="todo;a;To Do:"/>
+<property category="runtime" name="DefaultConfiguration" value="-1"/>
+<property category="runtime.0" name="ConfigurationName" value="MyApp"/>
+<property category="runtime.0" name="RunnableType" value="com.borland.jbuilder.runtime.ApplicationRunner"/>
+<property category="runtime.0" name="application.class" value="lgcsgwxt.MyApp"/>
+<property category="serverservices" name="disabled.services" value="jdatastore"/>
+<property category="serverservices" name="single.server.name" value=""/>
+<property category="sys" name="AuthorLabel" value="@author"/>
+<property category="sys" name="BackupPath" value="bak"/>
+<property category="sys" name="CheckStable" value="1"/>
+<property category="sys" name="Company" value="ST-117\u73ed"/>
+<property category="sys" name="CompanyLabel" value="Company:"/>
+<property category="sys" name="Copyright" value="Copyright (c) 2007"/>
+<property category="sys" name="CopyrightLabel" value="Copyright:"/>
+<property category="sys" name="DefaultPath" value="src"/>
+<property category="sys" name="Description" value="\u5317\u5927\u9752\u9e1f\u9c81\u5e7f\u6821\u533aS1\u6bd5\u4e1a\u8bbe\u8ba1"/>
+<property category="sys" name="DescriptionLabel" value="Description:"/>
+<property category="sys" name="DocPath" value="doc"/>
+<property category="sys" name="ExcludeClassEnabled" value="0"/>
+<property category="sys" name="IncludeTestPath" value="1"/>
+<property category="sys" name="InstanceVisibility" value="2"/>
+<property category="sys" name="JDK" value="java version 1.5.0_03-b07"/>
+<property category="sys" name="JvmVersion" value="1.5"/>
+<property category="sys" name="LastTag" value="0"/>
+<property category="sys" name="Libraries" value="../SQL/msbase.jar;../SQL/mssqlserver.jar;../SQL/msutil.jar"/>
+<property category="sys" name="MakeStable" value="0"/>
+<property category="sys" name="OutPath" value="classes"/>
+<property category="sys" name="SourcePath" value="src;test"/>
+<property category="sys" name="SourceVersion" value="1.5"/>
+<property category="sys" name="TestPath" value="test"/>
+<property category="sys" name="Title" value="\u9c81\u5e7f\u8d85\u5e02\u8fdb\u9500\u5b58\u7cfb\u7edf"/>
+<property category="sys" name="TitleLabel" value="Title:"/>
+<property category="sys" name="Version" value="1.0"/>
+<property category="sys" name="VersionLabel" value="@version"/>
+<property category="sys" name="WorkingDirectory" value="."/>
+<property category="sys" name="uidesign.size.lgcsgwxt.Put_outdepot" value="603,367"/>
+<property category="sys" name="uidesign.size.lgcsgwxt.dialog.AddMerchandise" value="903,466"/>
+<property category="sys" name="uidesign.size.lgcsgwxt.dialog.Dialog_enroll" value="458,397"/>
+<property category="sys" name="uidesign.size.lgcsgwxt.dialog.Earning" value="590,586"/>
+<property category="sys" name="uidesign.size.lgcsgwxt.dialog.Enroll_Dialog" value="455,388"/>
+<property category="sys" name="uidesign.size.lgcsgwxt.dialog.Guayuqwomen" value="503,389"/>
+<property category="sys" name="uidesign.size.lgcsgwxt.dialog.JoinAndExceed" value="597,484"/>
+<property category="sys" name="uidesign.size.lgcsgwxt.dialog.PaymentList" value="784,441"/>
+<property category="sys" name="uidesign.size.lgcsgwxt.dialog.Put_Out_Depot" value="663,460"/>
+<property category="sys" name="uidesign.size.lgcsgwxt.dialog.Put_out_depot" value="645,387"/>
+<property category="sys" name="uidesign.size.lgcsgwxt.dialog.Select_card" value="454,373"/>
+<property category="sys" name="uidesign.size.lgcsgwxt.dialog.Stock_Dialog" value="787,515"/>
+<property category="sys" name="uidesign.size.lgcsgwxt.dialog.Vendition_dialog" value="794,572"/>
+<file path="Lgcsgwxt.html"/>
+</project>

@@ -1,0 +1,28 @@
+[PropertyInfo]
+border1,javax.swing.border.Border,false,false, , ,false,<default>
+border2,javax.swing.border.Border,false,false, , ,false,<default>
+ds,main_frame.defaule_show,false,false, , ,false,<default>
+JButton1,javax.swing.JButton,false,false, , ,false,<default>
+JButton2,javax.swing.JButton,false,false, , ,false,<default>
+JButton3,javax.swing.JButton,false,false, , ,false,<default>
+JButton4,javax.swing.JButton,false,false, , ,false,<default>
+JButton5,javax.swing.JButton,false,false, , ,false,<default>
+JButton6,javax.swing.JButton,false,false, , ,false,<default>
+JButton7,javax.swing.JButton,false,false, , ,false,<default>
+JButton8,javax.swing.JButton,false,false, , ,false,<default>
+JButton9,javax.swing.JButton,false,false, , ,false,<default>
+JPanel1,javax.swing.JPanel,false,false, , ,false,<default>
+JPanel2,javax.swing.JPanel,false,false, , ,false,<default>
+JToolBar1,javax.swing.JToolBar,false,false, , ,false,<default>
+JToolBar2,javax.swing.JToolBar,false,false, , ,false,<default>
+JToolBar3,javax.swing.JToolBar,false,false, , ,false,<default>
+paneLayout1,com.borland.jbcl.layout.PaneLayout,false,false, , ,false,<default>
+statusBar,javax.swing.JLabel,false,false, , ,false,<default>
+tl,today_list.Today_List,false,false, , ,false,<default>
+XYLayout1,com.borland.jbcl.layout.XYLayout,false,false, , ,false,<default>
+XYLayout2,com.borland.jbcl.layout.XYLayout,false,false, , ,false,<default>
+[IconNames]
+
+
+
+

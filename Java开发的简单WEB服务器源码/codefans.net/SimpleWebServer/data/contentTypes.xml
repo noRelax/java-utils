@@ -1,0 +1,286 @@
+<contentTypes>
+ <contentType type="text/plain">
+  <ending value=".txt" />
+ </contentType>
+
+
+ <contentType type="text/css">
+  <ending value=".css" />
+ </contentType>
+
+ <contentType type="text/javascript">
+  <ending value=".js" />
+ </contentType>
+
+ <contentType type="text/html">
+  <ending value=".shtml" />
+  <ending value=".html" />
+  <ending value=".htm" />
+  <ending value=".stm" />
+  <ending value=".vcl" />
+ </contentType>
+
+ <contentType type="text/x-component">
+  <ending value=".htc" />
+ </contentType>
+
+ <contentType type="text/xml">
+  <ending value=".xml" />
+  <ending value=".xsl" />
+ </contentType>
+
+ <contentType type="image/svg-xml">
+  <ending value=".svg" />
+ </contentType>
+
+ <contentType type="image/x-xbitmap">
+  <ending value=".fpx" />
+ </contentType>
+
+ <contentType type="video/quicktime">
+  <ending value=".mov" />
+  <ending value=".qt" />
+ </contentType>
+
+ <contentType type="audio/x-ms-wma">
+  <ending value=".wma" />
+ </contentType>
+
+ <contentType type="video/x-ms-wm">
+  <ending value=".wm" />
+ </contentType>
+
+ <contentType type="audio/x-ms-wax">
+  <ending value=".wax" />
+ </contentType>
+
+ <contentType type="audio/wav">
+  <ending value=".wav" />
+ </contentType>
+
+ <contentType type="application/voicexml+xml">
+   <ending value=".vxml" />
+ </contentType>
+
+ <contentType type="image/jpeg">
+  <ending value=".jpg" />
+  <ending value=".jpe" />
+  <ending value=".jpeg" />
+ </contentType>
+
+ <contentType type="image/tiff">
+  <ending value=".tiff" />
+  <ending value=".tif" />
+ </contentType>
+
+ <contentType type="image/png">
+  <ending value=".png" />
+ </contentType>
+
+ <contentType type="image/gif">
+  <ending value=".gif" />
+ </contentType>
+
+ <contentType type="image/bmp">
+  <ending value=".bmp" />
+  <ending value=".dib" />
+ </contentType>
+
+ <contentType type="audio/mpeg">
+  <ending value=".mp1" />
+  <ending value=".mp3" />
+ </contentType>
+
+ <contentType type="video/mpeg">
+  <ending value=".mpeg" />
+  <ending value=".mpe" />
+  <ending value=".mpg" />
+  <ending value=".m1v" />
+  <ending value=".mp2" />
+  <ending value=".mp2v" />
+  <ending value=".mpa" />
+
+ </contentType>
+
+ <contentType type="audio/x-pn-realaudio">
+  <ending value=".ram" />
+  <ending value=".ra" />
+ </contentType>
+
+ <contentType type="audio/vnd.rn-realmedia">
+  <ending value=".rm" />
+ </contentType>
+
+ <contentType type="application/vnd.rn-realplayer">
+  <ending value=".rnx" />
+ </contentType>
+
+ <contentType type="application/vnd.rn-objects">
+  <ending value=".rob" />
+ </contentType>
+
+
+ <contentType type="audio/x-pn-realaudio-plugin">
+  <ending value=".rpm" />
+ </contentType>
+
+ <contentType type="text/scriptlet">
+  <ending value=".sct" />
+ </contentType>
+
+ <contentType type="application/x-shockwave-flash">
+  <ending value=".swf" />
+ </contentType> 
+
+ <contentType type="application/x-icq-scm">
+  <ending value=".scm" />
+ </contentType>
+
+ <contentType type="application/x-rar-compressed">
+  <ending value=".rar" />
+
+ </contentType>
+
+ <contentType type="audio/mpegurl">
+  <ending value=".m3u" />
+ </contentType>
+
+ <contentType type="video/avi">
+  <ending value=".avi" />
+ </contentType>
+
+ <contentType type="video/x-ms-asx">
+  <ending value=".asx" />
+ </contentType>
+
+ <contentType type="audio/basic">
+  <ending value=".au" />
+  <ending value=".ulw" />
+ </contentType>
+
+ <contentType type="application/pdf">
+  <ending value=".pdf" />
+ </contentType>
+
+ <contentType type="application/msword">
+  <ending value=".doc" />
+  <ending value=".dot" />
+ </contentType>
+
+ <contentType type="application/envoy">
+  <ending value=".evy" />
+ </contentType>
+
+ <contentType type="application/fractals">
+  <ending value=".fif" />
+ </contentType>
+
+ <contentType type="image/pict">
+  <ending value=".pic" />
+  <ending value=".pct" />
+ </contentType>
+
+
+ <contentType type="application/internet-property-stream">
+  <ending value=".acx" />
+ </contentType>
+
+ <contentType type="application/postscript">
+  <ending value=".ps" />
+  <ending value=".eps" />
+  <ending value=".ai" />
+ </contentType>
+
+ <contentType type="application/vnd.ms-excel">
+  <ending value=".xla" />
+  <ending value=".xlc" />
+  <ending value=".xlm" />
+  <ending value=".xls" />
+  <ending value=".xlt" />
+  <ending value=".xlw" />
+ </contentType>
+
+ <contentType type="application/vnd.ms-outlook">
+  <ending value=".msg" />
+ </contentType>
+
+ <contentType type="application/vnd.ms-powerpoint">
+  <ending value=".pot" />
+  <ending value=".ppt" />
+  <ending value=".pps" />
+ </contentType>
+
+ <contentType type="application/vnd.ms-project">
+  <ending value=".mpp" />
+ </contentType>
+
+ <contentType type="application/vnd.ms-works">
+  <ending value=".wcm" />
+  <ending value=".wdb" />
+  <ending value=".wks" />
+  <ending value=".wps" />
+ </contentType>
+
+ <contentType type="application/x-compress">
+  <ending value=".z" />
+ </contentType>
+
+ <contentType type="application/x-compressed">
+  <ending value=".tgz" />
+  <ending value=".ace" />
+  <ending value=".lha" />
+  <ending value=".lzh" />
+ </contentType>
+
+ <contentType type="application/x-gtar">
+  <ending value=".gtar" />
+ </contentType>
+
+ <contentType type="application/x-cdf">
+  <ending value=".cdf" />
+ </contentType>
+
+ <contentType type="application/x-tar">
+  <ending value=".tar" />
+ </contentType>
+
+ <contentType type="application/zip">
+  <ending value=".zip" />
+ </contentType>
+
+ <contentType type="audio/mid">
+  <ending value=".midi" />
+  <ending value=".mid" />
+  <ending value=".rmi" />
+ </contentType>
+
+ <contentType type="application/winhlp">
+  <ending value=".hlp" />
+ </contentType>
+
+ <contentType type="application/x-gzip">
+  <ending value=".gz" />
+ </contentType>
+
+ <contentType type="application/x-iphone">
+  <ending value=".iii" />
+ </contentType>
+
+ <contentType type="application/x-latex">
+  <ending value=".latex" />
+ </contentType>
+
+ <contentType type="application/rtf">
+  <ending value=".rtf" />
+ </contentType>
+
+ <contentType type="application/file-mirror-list">
+  <ending value=".fml" />
+ </contentType>
+
+ <contentType type="java/*">
+  <ending value=".class" />
+  <ending value=".java" />
+ </contentType>
+
+</contentTypes>

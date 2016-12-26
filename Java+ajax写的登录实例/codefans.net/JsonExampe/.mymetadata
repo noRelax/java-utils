@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="JsonExampe"
+  id="myeclipse.1199867819156"
+  context-root="/JsonExampe"
+  j2ee-spec="1.4"
+  archive="JsonExampe.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

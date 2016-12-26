@@ -1,0 +1,14 @@
+iChat LE 1.1 Release Notes:
+
+New Features and Fixed Bugs:
+
+1. Remind sound is played when new messages comes.
+
+2. Empty message is blocked to send.
+
+3. Connect dialog now has default button, that is, you just press Enter and then it connects.
+
+
+If you face any problem, just write to allenchue@gmail.com.
+
+And I'd like to mention that the coming iChat LE v2.0 will be a great shock.

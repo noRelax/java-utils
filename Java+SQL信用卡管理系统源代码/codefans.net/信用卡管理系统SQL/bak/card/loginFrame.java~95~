@@ -1,0 +1,202 @@
+package card;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+import java.sql.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
+
+public class loginFrame extends JFrame
+{
+  JPanel contentPane;
+  BorderLayout borderLayout1 = new BorderLayout();
+  String CardID;
+  String loginQuery;
+  String passwordtemp;
+  PreparedStatement loginStmt;
+  Connection con;
+  ResultSet rs;
+  JLabel jLabel1 = new JLabel();
+  JPanel jPanel1 = (JPanel)getGlassPane();
+  JLabel jLabel2 = new JLabel();
+  JLabel jLabel3 = new JLabel();
+  JLabel jLabel4 = new JLabel();
+  JTextField jTextField1 = new JTextField();
+  JPasswordField jTextField2 = new JPasswordField();
+  JButton jButton1 = new JButton();
+  JButton jButton2 = new JButton();
+
+  ImageIcon img1,img2;
+  public loginFrame()
+  {
+    try
+    {
+      setDefaultCloseOperation( EXIT_ON_CLOSE );
+      setUndecorated(true);//不显示标题栏
+      jPanel1.addMouseMotionListener(new moveFrameEvent(this));
+      setResizable(false);
+      jbInit();
+    } catch( Exception exception )
+    {
+      exception.printStackTrace();
+    }
+  }
+
+  /**
+   * Component initialization.
+   *
+   * @throws java.lang.Exception
+   */
+  private void jbInit() throws Exception
+  {
+    contentPane = ( JPanel ) getContentPane();
+    contentPane.setLayout( borderLayout1 );
+    setSize( new Dimension( 385, 320 ) );
+    setTitle( "信用卡管理" );
+    //图标
+    //img1=new ImageIcon("img/log001.gif");
+    img1=new ImageIcon("img/1.jpg");
+    img2=new ImageIcon("img/log002.gif");
+
+    jLabel1.setIcon( img1 );
+    jLabel1.setText( "" );
+    jPanel1.setLayout( null );
+    jLabel3.setFont( new java.awt.Font( "Dialog", Font.PLAIN, 13 ) );
+    jLabel3.setText( "卡号：" );
+    jLabel3.setBounds( new Rectangle( 64, 103, 48, 22 ) );
+    jLabel4.setFont( new java.awt.Font( "Dialog", Font.PLAIN, 13 ) );
+    jLabel4.setText( "密码：" );
+    jLabel4.setBounds( new Rectangle( 66, 163, 53, 24 ) );
+    jTextField1.setBounds( new Rectangle( 138, 102, 155, 23 ) );
+    jTextField1.setBorder( BorderFactory.createLineBorder( Color.black ) );
+    jTextField1.setBackground(new Color(84,103,206));
+    jTextField2.setBounds( new Rectangle( 138, 161, 155, 22 ) );
+    jTextField2.setBorder( BorderFactory.createLineBorder( Color.black ) );
+    jTextField2.setBackground(new Color(84,103,206));
+    jTextField2.addActionListener( new ActionListener()
+    {
+      public void actionPerformed( ActionEvent e )
+      {
+        jTextField2_actionPerformed( e );
+      }
+    } );
+    jButton1.setBounds( new Rectangle( 72, 219, 84, 20 ) );
+    jButton1.setFont( new java.awt.Font( "Dialog", Font.PLAIN, 12 ) );
+    jButton1.setText( "登　录" );
+    //jButton1.setBorder( BorderFactory.createEtchedBorder() );
+    jButton1.setBackground(new Color(84,103,206));
+    jButton1.addActionListener( new ActionListener()
+    {
+      public void actionPerformed( ActionEvent e )
+      {
+        jButton1_actionPerformed( e );
+      }
+    } );
+    jButton2.setBounds( new Rectangle( 201, 217, 90, 22 ) );
+    jButton2.setFont( new java.awt.Font( "Dialog", Font.PLAIN, 12 ) );
+    jButton2.setText( "退　出" );
+    //jButton2.setBorder( BorderFactory.createEtchedBorder() );
+    jButton2.setBackground(new Color(84,103,206));
+    jButton2.addActionListener( new ActionListener()
+    {
+      public void actionPerformed( ActionEvent e )
+      {
+        jButton2_actionPerformed( e );
+      }
+    } );
+    jLabel2.setIcon( img2);
+    jPanel1.add( jTextField2 );
+    jPanel1.add( jLabel3 );
+    jPanel1.add( jButton2 );
+    jPanel1.add( jTextField1 );
+    jPanel1.add( jButton1 );
+    jPanel1.add( jLabel4 );
+    jPanel1.setVisible(true);
+    //contentPane.add( jPanel1, java.awt.BorderLayout.CENTER );
+    //contentPane.add( jLabel1, java.awt.BorderLayout.NORTH );
+    //contentPane.add( jLabel2, java.awt.BorderLayout.SOUTH );
+    contentPane.add( jLabel1, java.awt.BorderLayout.CENTER );
+
+    //定义数据
+    Connection con=cardConnect.getconn();
+    loginQuery="Select Name from card Where CardID=? and Password=?";
+    loginStmt=con.prepareStatement(loginQuery);
+  }
+
+  public void jButton1_actionPerformed( ActionEvent e )
+  {
+    protocol();
+  }
+
+  public void jButton2_actionPerformed( ActionEvent e )
+  {
+    System.exit(0);
+  }
+
+  //警告对话框
+  public void showMessageDialog(String s1,String s2)
+  {
+    JOptionPane.showMessageDialog(this,s1,s2,JOptionPane.ERROR_MESSAGE);
+  }
+  //登录
+  public void protocol()
+  {
+    if(jTextField1.getText().trim().equals(""))
+    {
+      showMessageDialog("请输入用户名！","警告");
+      jTextField1.selectAll();
+      jTextField1.requestFocus();
+      return;
+    }
+    if(jTextField2.getPassword().toString().equals(""))
+    {
+      showMessageDialog("请输入密码！","警告");
+      jTextField2.setText("");
+      jTextField2.requestFocus();
+      return;
+    }
+    CardID=jTextField1.getText();//提取CardID的值
+    try
+    {
+      loginStmt.setString( 1, CardID ); //给出第一主机变量赋值
+      passwordtemp="";
+      for(int i=0;i<jTextField2.getPassword().length;i++)
+      {
+        passwordtemp+=jTextField2.getPassword()[i];
+      }//提取用户输入密码的值
+      loginStmt.setString(2,passwordtemp);
+      rs=loginStmt.executeQuery();//执行查询，返回一个结果集
+      if(rs.next())//验证卡号和密码
+      {
+        eventFrame ef=new eventFrame();//通过验证
+        ef.setUserName(rs.getString(1));
+        ef.setCardID(CardID);
+        ef.setVisible(true);
+        this.setVisible(false);
+        this.dispose();
+      }else//没有通过验证
+      {
+        showMessageDialog("用户名或密码错误！","警告");
+        jTextField1.selectAll();
+        jTextField1.requestFocus();
+        jTextField2.setText("");
+      }
+    }catch(SQLException ex)
+    {
+      System.out.println("数据库错误1！");
+    }
+  }
+
+  public void jTextField1_actionPerformed( ActionEvent e )
+  {
+    jTextField2.requestFocus();
+  }
+
+  public void jTextField2_actionPerformed( ActionEvent e )
+  {
+    protocol();
+  }
+}

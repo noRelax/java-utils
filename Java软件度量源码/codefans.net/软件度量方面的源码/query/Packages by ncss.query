@@ -1,0 +1,5 @@
+SELECT pn.str AS package, ncss
+FROM <#(emit (shared-tbl-name "str"))#> AS pn
+, <#(emit (snapshot-tbl-name "package" selected-index))#> AS p
+WHERE p.package_id = pn.id
+ORDER BY ncss DESC

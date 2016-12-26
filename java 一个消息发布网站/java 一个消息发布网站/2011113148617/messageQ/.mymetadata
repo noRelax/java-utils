@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="messageQ"
+  id="myeclipse.1280677235004"
+  context-root="/messageQ"
+  j2ee-spec="5.0"
+  archive="messageQ.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

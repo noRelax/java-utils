@@ -1,0 +1,17 @@
+! ** JCreator Workspace File (C)2000
+! ********** DO NOT EDIT *********
+
+VERSION := "1.00"
+LABEL := "MoFang"
+
+! Start Project Structure
+#[BeginProject]SOURCE := "\\MoFang.jcp" #[EndProject]
+
+! Start Last Document Structure
+#[BeginFile]SOURCE := "\\MoFang.java" #[EndFile]
+#[BeginFile]SOURCE := "\\MofangStatusMessage.java" #[EndFile]
+#[BeginFile]SOURCE := "\\MyMainFrame.java" #[EndFile]
+#[BeginFile]SOURCE := "\\PanelAddedScene3D.java" #[EndFile]
+
+! Start Breakpoint Structure
+

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo Checking HTML files with Tidy
+
+cd ..
+
+for file in `find . -path '*.htm*' -a -not -path '*javadoc*'` ; do
+  if tidy -quiet "$file" > /dev/null ; then
+    echo -n
+  else
+    echo "in $file"
+  fi
+done
+
+# TBD: Check links!

@@ -1,0 +1,397 @@
+/**
+ * Created on 2009-8-20
+ */
+package com.itstar.erp.bean;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Time;
+
+import com.itstar.erp.dao.GetConnection;
+
+/**
+ * 出库表封装类
+ * 
+ * @author Zhang Li
+ */
+public class OutStock {
+	private static int OId;
+	private static int OGId;
+	private static int OGNumber;
+	private static String OUserName;
+	private static Time OTime;
+
+	private static Connection conn;
+	
+	public static int getOId() {
+		return OId;
+	}
+	public static void setOId(int id) {
+		OId = id;
+	}
+	public static int getOGId() {
+		return OGId;
+	}
+	public static void setOGId(int id) {
+		OGId = id;
+	}
+	public static int getOGNumber() {
+		return OGNumber;
+	}
+	public static void setOGNumber(int number) {
+		OGNumber = number;
+	}
+
+	public static String getOUserName() {
+		return OUserName;
+	}
+	public static void setOUserName(String userName) {
+		OUserName = userName;
+	}
+	public static Time getOTime() {
+		return OTime;
+	}
+	public static void setOTime(Time time) {
+		OTime = time;
+	}
+	
+	public static void setNull(){
+		OId = 0;
+		OGId = 0;
+		OGNumber = 0;
+		OUserName = null;
+		OTime = null;
+	}
+	
+    /**
+     * SQL语句增加
+     * 
+     * @param 
+     * @return String
+     * @throws 
+     */	
+	public static String addOutStock() {
+
+		conn = GetConnection.getConn();
+		PreparedStatement pdst = null;
+		String sql = "insert into OutStock(OGId,OGNumber,OUserName,OTime) values(?,?,?,getdate())";
+
+		int set = 0;
+
+		try {
+			pdst = conn.prepareStatement(sql);
+			pdst.setInt(1, OGId);
+			pdst.setInt(2, OGNumber);
+			pdst.setString(3, OUserName);
+
+			set = pdst.executeUpdate();
+
+			pdst.close();
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		if (set <= 0) {
+			return "插入客户失败";
+		} else {
+			return "插入客户成功";
+		}
+
+	}
+	
+	
+    /**
+     * SQL语句删除
+     * 
+     * @param 
+     * @return String
+     * @throws 
+     */
+	public static String delOutStock() {
+
+		conn = GetConnection.getConn();
+		PreparedStatement pdst = null;
+		String sql = "delete from OutStock where OId = ?";
+
+		int set = 0;
+
+		try {
+			pdst = conn
+					.prepareStatement("select count(*) from Goods where GId = ?");
+			pdst.setInt(1, OGId);
+			set = pdst.executeUpdate();
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		
+		if (set <= 0) {
+			set = 0;
+			try {
+				pdst = conn.prepareStatement(sql);
+				pdst.setInt(1, OId);
+				set = pdst.executeUpdate();
+
+				pdst.close();
+
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+			if (set <= 0) {
+				return "删除客户失败";
+			} else {
+				return "删除客户成功";
+			}
+
+		} else {
+			return "该供货商与商品存在依赖关系";
+		}
+
+	}
+	
+    /**
+     * SQL语句查询
+     * 
+     * @param 
+     * @return int
+     * @throws 
+     */
+	public static int count() {
+		conn = GetConnection.getConn();
+		Statement st = null;
+		ResultSet rs = null;
+		String sql = "select count(*) from OutStock";
+
+		int set = 0;
+
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			while (rs.next()) {
+				set = rs.getInt(1);
+			}
+			
+			if (rs != null) {
+				rs.close();
+				rs = null;
+			}
+			if (st != null) {
+				st.close();
+				st = null;
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			
+			if (set == 0) {
+				return 1;
+			}
+
+		}
+		return set;
+	}
+    /**
+     * SQL语句查询
+     * 
+     * @param 
+     * @return Object[][]
+     * @throws 
+     */
+	public static Object[][] selectOutStock() {
+		Object[][] showAll = new Object[count() + 1][5];
+		conn = GetConnection.getConn();
+		Statement st = null;
+		ResultSet rs = null;
+		String sql = "Select * from OutStock";
+		int i = 0;
+
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			while (rs.next()) {
+//				System.out.println(rs.getString("CName") + rs.getString("CAddress") + rs.getString("CPhone") + rs.getString("CAcount") + rs.getString("CEmail"));
+				showAll[i][0] = rs.getInt("OId");
+				showAll[i][1] = rs.getInt("OGId");
+				showAll[i][2] = rs.getInt("OGNumber");
+				showAll[i][3] = rs.getString("OUserName");
+				showAll[i][4] = rs.getString("OTime");
+				i = i + 1;
+			}
+			if (rs != null) {
+				rs.close();
+				rs = null;
+			}
+			if (st != null) {
+				st.close();
+				st = null;
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		return showAll;
+
+	}
+	
+
+public static Object[][] selectOutStock_1() {
+		Object[][] showAll = new Object[count() + 1][5];
+		conn = GetConnection.getConn();
+		Statement st = null;
+		ResultSet rs = null;
+		String sql = "select a.ousername as name,sum((b.goutprice-b.ginprice)*a.ognumber) as pig from outstock as a join goods as b on a.ogid=b.gid group by a.ousername order by pig desc";
+		int i = 0;
+
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			while (rs.next()) {
+//				System.out.println(rs.getString("CName") + rs.getString("CAddress") + rs.getString("CPhone") + rs.getString("CAcount") + rs.getString("CEmail"));
+				showAll[i][0] ="第"+(i+1)+"名";
+				showAll[i][1] = rs.getFloat("pig");
+				showAll[i][2]=rs.getString("name");
+				i = i + 1;
+			}
+			if (rs != null) {
+				rs.close();
+				rs = null;
+			}
+			if (st != null) {
+				st.close();
+				st = null;
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		return showAll;
+
+	}
+	
+public static Object[][] selectOutStock_2() {
+	Object[][] showAll = new Object[count() + 1][5];
+	conn = GetConnection.getConn();
+	Statement st = null;
+	ResultSet rs = null;
+	String sql = 
+	"select a.oid,a.ogid,a.ogname,a.ognumber,b.ginprice,b.goutprice,(b.goutprice-b.ginprice)*a.ognumber as pig,b.gaddress,a.ousername,a.otime from outstock as a join goods as b on a.ogid=b.gid";
+	int i = 0;
+
+	try {
+		st = conn.createStatement();
+		rs = st.executeQuery(sql);
+		while (rs.next()) {
+			showAll[i][0] = rs.getInt("a.oid");
+			showAll[i][1]=rs.getInt("a.ogid");
+			showAll[i][2]=rs.getString("a.ogname");
+			showAll[i][3]=rs.getFloat("b.ginprice");
+			showAll[i][4]=rs.getFloat("b.goutprice");
+			showAll[i][5]=rs.getFloat("pig");
+			showAll[i][6]=rs.getString("b.gaddress");
+			showAll[i][7]=rs.getString("a.useName");
+			showAll[i][8]=rs.getDate("a.otime");
+			i = i + 1;
+		}
+		if (rs != null) {
+			rs.close();
+			rs = null;
+		}
+		if (st != null) {
+			st.close();
+			st = null;
+		}
+
+	} catch (SQLException e) {
+
+		e.printStackTrace();
+	}
+	return showAll;
+
+}
+    /**
+     * SQL语句查询
+     * 
+     * @param String 客户名
+     * @return Object[][]
+     * @throws 
+     */
+	/**
+	 * @param OId
+	 * @return
+	 */
+	/**
+	 * @param OId
+	 * @return
+	 */
+	/**
+	 * @param OId
+	 * @return
+	 */
+	/**
+	 * @param OId
+	 * @return
+	 */
+	/**
+	 * @param OId
+	 * @return
+	 */
+	/**
+	 * @param OId
+	 * @return
+	 */
+	public static Object[][] selectOutStock(String OId) {
+		Object[][] showAll = new Object[count() + 1][5];
+		conn = GetConnection.getConn();
+		Statement st = null;
+		ResultSet rs = null;
+		String sql = "Select * from OutStock where OId =" + OId ;
+		int i = 0;
+
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			while (rs.next()) {
+//				System.out.println(rs.getString("CName") + rs.getString("CAddress") + rs.getString("CPhone") + rs.getString("CAcount") + rs.getString("CEmail"));
+				showAll[i][0] = rs.getInt("OId");
+				showAll[i][1] = rs.getInt("OGId");
+				showAll[i][2] = rs.getInt("OGNumber");
+				showAll[i][3] = rs.getString("OUserName");
+				showAll[i][4] = rs.getTime("OTime");
+				i = i + 1;
+			}
+			if (rs != null) {
+				rs.close();
+				rs = null;
+			}
+			if (st != null) {
+				st.close();
+				st = null;
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		return showAll;
+}
+	
+	public static void main(String[] args){
+		new OutStock();
+		OutStock.setOGId(1);
+		OutStock.setOGNumber(100);
+		OutStock.setOUserName("不是我");
+		OutStock.addOutStock();
+		OutStock.setNull();
+	}
+	
+
+}

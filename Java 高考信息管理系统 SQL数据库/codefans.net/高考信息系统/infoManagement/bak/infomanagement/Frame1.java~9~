@@ -1,0 +1,94 @@
+package infomanagement;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import com.borland.jbcl.layout.*;
+import javax.swing.border.*;
+
+/**
+ * <p>Title: </p>
+ * <p>Description: </p>
+ * <p>Copyright: Copyright (c) 2003</p>
+ * <p>Company: </p>
+ * @author unascribed
+ * @version 1.0
+ */
+
+public class Frame1 extends JFrame {
+  private JPanel contentPane;
+  private BorderLayout borderLayout1 = new BorderLayout();
+  private JPanel jPanel1 = new JPanel();
+  private XYLayout xYLayout1 = new XYLayout();
+  private JLabel jLabel1 = new JLabel();
+  private TitledBorder titledBorder1;
+  private JLabel jLabel2 = new JLabel();
+  private JLabel jLabel3 = new JLabel();
+  private JLabel jLabel4 = new JLabel();
+  private JRadioButton jRadioButton1 = new JRadioButton();
+  private JRadioButton jRadioButton2 = new JRadioButton();
+  private JRadioButton jRadioButton3 = new JRadioButton();
+  private JRadioButton jRadioButton4 = new JRadioButton();
+
+  //Construct the frame
+  public Frame1() {
+    enableEvents(AWTEvent.WINDOW_EVENT_MASK);
+    try {
+      jbInit();
+    }
+    catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+  //Component initialization
+  private void jbInit() throws Exception  {
+    //setIconImage(Toolkit.getDefaultToolkit().createImage(Frame1.class.getResource("[Your Icon]")));
+    contentPane = (JPanel) this.getContentPane();
+    titledBorder1 = new TitledBorder("");
+    contentPane.setLayout(borderLayout1);
+    this.setSize(new Dimension(399, 288));
+    this.setTitle("Frame Title");
+    jPanel1.setLayout(xYLayout1);
+    jLabel1.setFont(new java.awt.Font("Dialog", 0, 23));
+    jLabel1.setForeground(Color.green);
+    jLabel1.setBorder(titledBorder1);
+    jLabel1.setText("                通用高考成绩管理系统");
+    jLabel2.setBorder(BorderFactory.createEtchedBorder());
+    jLabel3.setText("请选择");
+    jLabel4.setBorder(BorderFactory.createEtchedBorder());
+    jLabel4.setToolTipText("");
+    jRadioButton1.setForeground(Color.red);
+    jRadioButton1.setText("理科成绩录入");
+    jRadioButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(MouseEvent e) {
+        jRadioButton1_mouseClicked(e);
+      }
+    });
+    jRadioButton2.setForeground(Color.red);
+    jRadioButton2.setText("理科成绩查询");
+    jRadioButton3.setForeground(Color.red);
+    jRadioButton3.setText("文科成绩录入");
+    jRadioButton4.setForeground(Color.red);
+    jRadioButton4.setText("文科成绩查询");
+    contentPane.add(jPanel1, BorderLayout.CENTER);
+    jPanel1.add(jLabel1,  new XYConstraints(0, 0, 400, 47));
+    jPanel1.add(jLabel2,    new XYConstraints(1, 46, 398, 242));
+    jPanel1.add(jRadioButton1,   new XYConstraints(50, 130, -1, -1));
+    jPanel1.add(jRadioButton2,   new XYConstraints(200, 130, -1, -1));
+    jPanel1.add(jRadioButton3,   new XYConstraints(50, 200, -1, -1));
+    jPanel1.add(jRadioButton4,    new XYConstraints(200, 200, -1, -1));
+    jPanel1.add(jLabel3, new XYConstraints(3, 48, 92, 22));
+    jPanel1.add(jLabel4, new XYConstraints(33, 94, 320, 165));
+  }
+  //Overridden so we can exit when window is closed
+  protected void processWindowEvent(WindowEvent e) {
+    super.processWindowEvent(e);
+    if (e.getID() == WindowEvent.WINDOW_CLOSING) {
+      System.exit(0);
+    }
+  }
+
+  void jRadioButton1_mouseClicked(MouseEvent e) {
+
+  }
+}

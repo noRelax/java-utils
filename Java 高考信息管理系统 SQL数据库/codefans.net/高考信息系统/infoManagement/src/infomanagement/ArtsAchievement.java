@@ -1,0 +1,113 @@
+package infomanagement;
+//download by http://www.codefans.net
+import java.awt.*;
+import javax.swing.*;
+import com.borland.jbcl.layout.*;
+import com.borland.dx.dataset.*;
+import com.borland.dbswing.*;
+import com.borland.dx.sql.dataset.*;
+import java.awt.event.*;
+
+/**
+ * <p>Title: </p>
+ * <p>Description: </p>
+ * <p>Copyright: Copyright (c) 2003</p>
+ * <p>Company: </p>
+ * @author unascribed
+ * @version 1.0
+ */
+
+public class ArtsAchievement extends JDialog {
+  private JPanel panel1 = new JPanel();
+  private BorderLayout borderLayout1 = new BorderLayout();
+  private JPanel jPanel1 = new JPanel();
+  private XYLayout xYLayout1 = new XYLayout();
+  private JLabel jLabel1 = new JLabel();
+  private JLabel jLabel2 = new JLabel();
+  private JLabel jLabel3 = new JLabel();
+  private JLabel jLabel4 = new JLabel();
+  private JLabel jLabel5 = new JLabel();
+  private JTextField jTextField1 = new JTextField();
+  private JTextField jTextField2 = new JTextField();
+  private JTextField jTextField3 = new JTextField();
+  private JLabel jLabel6 = new JLabel();
+  private JButton jButton1 = new JButton();
+  private JdbTable jdbTable1 = new JdbTable();
+  private Database database1 = new Database();
+  private QueryDataSet queryDataSet1 = new QueryDataSet();
+
+  public ArtsAchievement(Frame frame, String title, boolean modal) {
+    super(frame, title, modal);
+    try {
+      jbInit();
+      pack();
+    }
+    catch(Exception ex) {
+      ex.printStackTrace();
+    }
+  }
+
+  public ArtsAchievement() {
+    this(null, "", false);
+  }
+  private void jbInit() throws Exception {
+    panel1.setLayout(borderLayout1);
+    jPanel1.setLayout(xYLayout1);
+    jLabel1.setFont(new java.awt.Font("Dialog", 0, 23));
+    jLabel1.setForeground(Color.red);
+    jLabel1.setBorder(BorderFactory.createEtchedBorder());
+    jLabel1.setText("                  文科成绩录入");
+    jLabel2.setBorder(BorderFactory.createEtchedBorder());
+    jLabel3.setText("    准考证号");
+    jLabel4.setText("       学生姓名");
+    jLabel5.setText("    考前学校");
+    jLabel6.setBorder(BorderFactory.createEtchedBorder());
+    jButton1.setText("成绩录入");
+    jButton1.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        jButton1_actionPerformed(e);
+      }
+    });
+    jdbTable1.setBorder(BorderFactory.createEtchedBorder());
+    database1.setConnection(new com.borland.dx.sql.dataset.ConnectionDescriptor("jdbc:odbc:local", "sa", "", false, "sun.jdbc.odbc.JdbcOdbcDriver"));
+    jTextField1.setText("0");
+    queryDataSet1.setQuery(new com.borland.dx.sql.dataset.QueryDescriptor(database1, "SELECT art.cardID,art.studentName,art.schoolBefore FROM info.dbo.art", null, true, Load.ALL));
+    getContentPane().add(panel1);
+    panel1.add(jPanel1, BorderLayout.CENTER);
+    jPanel1.add(jLabel1,  new XYConstraints(0, 0, 399, 48));
+    jPanel1.add(jLabel3,    new XYConstraints(30, 50, 114, 21));
+    jPanel1.add(jLabel4,    new XYConstraints(150, 50, 108, 23));
+    jPanel1.add(jLabel5,    new XYConstraints(270, 50, 104, 23));
+    jPanel1.add(jLabel2, new XYConstraints(0, 46, 399, 76));
+    jPanel1.add(jTextField1,  new XYConstraints(40, 81, 90, 20));
+    jPanel1.add(jTextField2,   new XYConstraints(160, 81, 90, 20));
+    jPanel1.add(jTextField3,    new XYConstraints(280, 81, 90, 20));
+    jPanel1.add(jLabel6,     new XYConstraints(1, 119, 397, 50));
+    jPanel1.add(jButton1,   new XYConstraints(280, 134, 90, 20));
+    jPanel1.add(jdbTable1,  new XYConstraints(2, 172, 396, 215));
+  }
+
+  public int cardID(){
+   int card = Integer.parseInt(jTextField1.getText().trim()) ;
+   return card ;
+ }
+ public String studentName(){
+   return jTextField2.getText().trim().toString() ;
+ }
+ public String studentBefore(){
+   return jTextField3.getText().trim().toString();
+ }
+
+ void jButton1_actionPerformed(ActionEvent e) {
+   ArtAcn dlg = new ArtAcn();
+   Dimension dlgSize = dlg.getPreferredSize();
+   Dimension frmSize = getSize();
+   Point loc = getLocation();
+   dlg.setLocation((frmSize.width - dlgSize.width) / 2 + loc.x, (frmSize.height - dlgSize.height) / 2 + loc.y);
+   dlg.setModal(true);
+   dlg.pack();
+   dlg.show();
+   queryDataSet1.refresh();
+   jdbTable1.setDataSet(queryDataSet1);
+  }
+}

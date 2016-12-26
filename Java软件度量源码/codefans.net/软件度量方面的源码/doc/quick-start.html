@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>MetricsAnalyzer: Quick Start Guide</title>
+  </head>
+
+  <body>
+    <h1>MetricsAnalyzer: Quick Start Guide</h1>
+
+    <h2>Setting up other programs you will need</h2>
+
+    <p>Before you can start using MetricsAnalyzer, you will need to setup other programs.</p>
+
+    <p>If you have problems setting up or installing these programs, please contact the support for the program (not me).</p>
+
+    <ol>
+      <li>Setup an SQL database system and create a database for storing the metrics. MetricsAnalyzer has been developed with <a target="_top" href="http://www.postgresql.org">PostgreSQL</a>, but should work with any SQL database, that implements enough of the SQL standard.</li>
+      <li>Setup <a target="_top" href="http://www.kclee.com/clemens/java/javancss/">JavaNCSS</a> and <a target="_top" href="http://www.clarkware.com/software/JDepend.html">JDepend</a> and use them to extract metrics from your project in XML format.</li>
+    </ol>
+
+    <h2>Installing MetricsAnalyzer and setting up the project file using the GUI</h2>
+
+    <p>To begin working with MetricsAnalyzer, you need to setup a MetricsAnalyzer project file. After the project file has been setup, you can concentrate on using the MetricsAnalyzer.</p>
+
+    <p>If you follow these instructions carefully, and have problems setting up MetricsAnalyzer, don't hesitate to submit a support request using <a target="_top" href="http://sourceforge.net/tracker/?group_id=61554">Trackers</a>. Try to be as specific as possible: say exactly what you did and what happened.</p>
+
+    <ol>
+      <li>Download the latest MetricsAnalyzer release from <a target="_top" href="http://sourceforge.net/project/showfiles.php?group_id=61554">Files</a> and decompress the archive file. You will get a <tt>metricsanalyzer</tt> directory.</li>
+      <li>Run MetricsAnalyzer (the jar files are in the <tt>metricsanalyzer</tt> directory):<br>
+          <tt>java -cp "metricsanalyzer.jar:minijlisp.jar:<i>your JDBC driver</i>" metricsanalyzer.gui.Main</tt></br>
+        If you are using a Java 2 platform older than version 1.4, you will also need to explicitly have the <a target="_top" href="http://xml.apache.org/">Xerces</a> XML parser in your class path.</li>
+      <li>Fill in the the database settings:
+        <ul>
+          <li><b>Driver</b> is the JDBC driver class name. You should consult the manual of your JDBC driver for the correct class name.</li>
+          <li><b>URL</b> is the URL used for identifying the database to connect to. Again, your JDBC driver manual should explain the correct syntax.</li>
+          <li><b>User</b> is the user name you have setup to be able to access the database.</li>
+          <li><b>Password</b> is a clear text password used for connecting to the database. In the future, it is likely that passwords need to be given interactively and will not be stored in the configuration file.</li>
+          <li><b>Basename</b> is a MetricsAnalyzer specific concept. It is a prefix for the tables that MetricsAnalyzer creates for this project. This way you can store the metrics of multiple projects in a single database. It is recommended to choose a short mnemonic name as the base name.</li>
+        </ul>
+      </li>
+      <li>Click on <b>Set</b>. If everything was succesful, a second tab <b>Metrics</b> was created. If you click it, you will get an error message, which says that the relation "<i>Basename</i>_history" does not exists.</li>
+      <li>Click on <b>Create tables</b>. If you didn't get an error, you can now click on <b>Metrics</b> and you should not get an error.</li>
+      <li>When you finally get the database settings correct. It is best to save the project file. Choose <b>Save</b> from the menu.</li>
+      <li>Click on <b>Add...</b> to add an Importer. You will first be prompted to specify a file. Choose an XML file produced either by JavaNCSS or JDepend. After you have selected the file, you will be prompted to specify a fully qualified Importer class. Type either <tt>metricsanalyzer.importer.JavaNCSSXMLImporter</tt> or <tt>metricsanalyzer.importer.JDependXMLImporter</tt> depending on which type of file you chose.</li>
+      <li>When you've specified the importers, it is best to save the project file again.</li>
+      <li>Click on <b>Load..</b> to add a query to the <b>Query</b> list. A number of prewritten queries are located in the directory <tt>metricsanalyzer/query</tt>. Repeat this for each query.</li>
+      <li>When you've loaded the queries, it is best to save the project file again.</li>
+      <li>Click on <b>Import as...</b>. You will be prompted for a name. Type, for example, <tt>Initial metrics</tt>. If you have a large project, this will take a while during which MetricsAnalyzer will be unresponsive. After the importation is complete, you will see an entry in the <b>History</b> list.</li>
+      <li>Choose a query from the <b>Query</b> list and click on <b>Execute</b>. A new frame will be opened for the results of the query.</li>
+    </ol>
+
+    <p>When you subsequently run the MetricsAnalyzer GUI, you can specify the project file as the first parameter:<br>
+        <tt>java [-cp ...] metricsanalyzer.gui.Main <i>the-project-file</i></tt></p>
+
+    <h2>Using the Scriptable UI</h2>
+
+    <p>The purpose of the Scriptable UI, or SUI, is to make it possible to automate the process of collecting and storing metrics.</p>
+
+    <p>Here is an example bash script for automating the process of collecting metrics.</p>
+
+    <blockquote>
+      <pre>
+#!/bin/bash
+
+echo Computing metrics for fi.*. This will take a while...
+echo
+echo Note: You must compile everything before running this script.
+echo
+
+read -p "Give name for the snapshot: " ssname
+
+echo Computing JDepend metrics...
+java jdepend.xmlui.JDepend -file jdepend_metrics.xml ../classes/fi
+
+echo Computing JavaNCSS metrics...
+java javancss.Main -all -xml -recursive -out javancss_metrics.xml fi
+
+echo Importing metrics with MetricsAnalyzer...
+java metricsanalyzer.sui.Main metrics_analyzer_project.xml -import-as "$ssname"
+      </pre>
+    </blockquote>
+
+    <hr>
+
+<!-- Created: Sun Sep  8 21:15:51 EEST 2002 -->
+<!-- hhmts start -->
+Last modified: Sat Nov  2 08:22:05 EET 2002
+<!-- hhmts end -->
+  </body>
+</html>

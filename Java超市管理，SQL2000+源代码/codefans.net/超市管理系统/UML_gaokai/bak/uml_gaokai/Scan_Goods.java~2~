@@ -1,0 +1,75 @@
+package uml_gaokai;
+
+import java.awt.*;
+import javax.swing.*;
+import com.borland.jbcl.layout.*;
+import com.borland.dx.sql.dataset.*;
+import java.awt.event.*;
+import java.sql.*;
+
+/**
+ * <p>Title: </p>
+ * <p>Description: </p>
+ * <p>Copyright: Copyright (c) 2003</p>
+ * <p>Company: </p>
+ * @author unascribed
+ * @version 1.0
+ */
+
+public class Scan_Goods extends JDialog {
+  private JPanel panel1 = new JPanel();
+  private XYLayout xYLayout1 = new XYLayout();
+  private JLabel jLabel1 = new JLabel();
+  private JLabel jLabel2 = new JLabel();
+  private JTextField jTextField1 = new JTextField();
+  private JTextField jTextField2 = new JTextField();
+  private JButton jButton1 = new JButton();
+  private JButton jButton2 = new JButton();
+  private Database database1 = new Database();
+
+  public Scan_Goods(Frame frame, String title, boolean modal) {
+    super(frame, title, modal);
+    try {
+      jbInit();
+      pack();
+    }
+    catch(Exception ex) {
+      ex.printStackTrace();
+    }
+  }
+
+  public Scan_Goods() {
+    this(null, "", false);
+  }
+  private void jbInit() throws Exception {
+    panel1.setLayout(xYLayout1);
+    jLabel1.setText("商品名");
+    jLabel2.setText("商品ID");
+    jButton1.setText("确定");
+    jButton1.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        jButton1_actionPerformed(e);
+      }
+    });
+    jButton2.setText("取消");
+    database1.setConnection(new com.borland.dx.sql.dataset.ConnectionDescriptor("jdbc:odbc:gaokaiSQL", "sa", "", false, "sun.jdbc.odbc.JdbcOdbcDriver"));
+    database1.setDatabaseName("");
+    jTextField2.setToolTipText("");
+    jTextField2.setText("0");
+    getContentPane().add(panel1);
+    panel1.add(jLabel1,   new XYConstraints(55, 34, 89, 27));
+    panel1.add(jLabel2,   new XYConstraints(53, 83, 96, 30));
+    panel1.add(jTextField2,   new XYConstraints(162, 83, 121, 32));
+    panel1.add(jButton1, new XYConstraints(144, 169, 94, 25));
+    panel1.add(jButton2,   new XYConstraints(258, 169, 95, 25));
+    panel1.add(jTextField1, new XYConstraints(161, 34, 120, 32));
+  }
+
+  void jButton1_actionPerformed(ActionEvent e) {
+    String GoodsName = String.valueOf(jTextField1.getText()) ;
+    int GoodsID = Integer.parseInt(jTextField2.getText()) ;
+    Statement sql = database1.createStatement() ;
+    if( GoodsName == null && GoodsID == 0){
+    JOptionPane.showMessageDialog(null,"请输入商品名或商品ID号，查询商品","",JOptionPane.DEFAULT_OPTION);}
+  }
+}

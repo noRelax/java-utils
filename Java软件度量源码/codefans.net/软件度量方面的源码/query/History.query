@@ -1,0 +1,3 @@
+SELECT *
+FROM <#(emit (shared-tbl-name "history"))#>
+ORDER BY idx

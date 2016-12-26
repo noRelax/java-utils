@@ -1,0 +1,10 @@
+package awokeOperate;
+import java.applet.AudioClip;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.net.*;
+public class Sound_Player{
+    public
+
+}

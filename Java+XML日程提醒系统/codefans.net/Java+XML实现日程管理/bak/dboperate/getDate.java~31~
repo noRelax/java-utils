@@ -1,0 +1,18 @@
+package dboperate;
+public class getDate{
+    public static void main(String args[]){
+        java.util.Date utildate = new java.util.Date();
+        //获取系统时间.
+        String nowTime = utildate.toString().substring(11, 19).trim();
+        String nowDate=utildate.toString();
+        String compareTime = "13:30:56";
+        System.out.println("nowDate :"+nowDate);
+        System.out.println("nowTime :"+nowTime);
+        System.out.println("compareTime :"+compareTime);
+        if(compareTime.compareTo(nowTime)<0){
+            System.out.println("yes");
+        }else{
+            System.out.println("No");
+        }
+    }
+}

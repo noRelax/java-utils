@@ -1,0 +1,111 @@
+
+
+import javax.microedition.midlet.MIDlet;
+import javax.microedition.midlet.MIDletStateChangeException;
+/*
+ * 创建日期 2005-4-24
+ *
+ * 主程序
+ * 
+ */
+
+/**
+ * @author lbc
+ *
+ * TODO 要更改此生成的类型注释的模板，请转至
+ * 窗口 － 首选项 － Java － 代码样式 － 代码模板
+ */
+import javax.microedition.lcdui.*;
+//import javax.microedition.midlet.*;
+
+public class lzhhdm extends MIDlet implements CommandListener {
+public Display display;
+	private Image splashLogo;
+	private boolean isSplash=true;
+   
+    public Form a;
+    private Alert alert;
+    int length;
+    private MenuScreen menuscreen;
+    private gameScreen gamescreen;
+    private Command ok,back;
+    private byte[] byteInputData;
+	public lzhhdm() 
+	{
+	}
+	protected void startApp() throws MIDletStateChangeException {
+	display=Display.getDisplay(this);
+	//gamescreen=new gameScreen(this);
+	menuscreen=new MenuScreen(this);
+	if(isSplash)
+	{  a=null;
+		a=new Form("览桥风光V1.0");
+		ok=new Command("ok",Command.OK,1);
+	    a.append(new StringItem(null,"1937年7月7日，芦沟桥事变爆发，29军吉星文所部奋起还击，1937年7月17日，蒋中正发表庐山讲话，称“我们东四省失陷，已有了６年之久，续之以塘沽协定，现在冲突地点已到了北平门口的芦沟桥。如果芦沟桥可以受人压迫强占，那么我们百年故都，北方政治文化的中心与军事重镇北平，就要变成沈阳第二！今日的北平，若果变成昔日的沈阳，今日的冀察，亦将成为昔日的东四省。北平若可变成沈阳，南京又何尝不会变成北平！”，“如果战端一开，那就是地无分南北，年无分老幼，无论何人，皆有守土抗战之责，皆应抱定牺牲一切之决心。  1937年8月13日，松沪战役爆发,8月14日，空军第四大队由河南周家口转场浙江览桥，同日八一四览桥空战爆发......"));
+		a.addCommand(ok);
+		a.setCommandListener(this);
+	    display.setCurrent(a);	
+	}
+	}
+	protected void menuscreenShow() 
+	{ 
+		display.setCurrent(menuscreen);	
+	}
+	protected void menuscreensecond() {
+		
+		menuscreen=new MenuScreen(this);
+		MenuScreen.mainmenu[0]="重新开始";//玩完一遍或挂了后在玩一遍 菜单第一项改为 重新开始
+		display.setCurrent(menuscreen);	
+		}
+
+	protected void pauseApp() {}
+	protected void destroyApp(boolean arg0) throws MIDletStateChangeException {	
+	}
+	protected void helShow()
+	{  a=null;
+		a=new Form("览桥风光V1.0");
+		back=new Command("返回",Command.BACK,1);
+	    a.append(new StringItem(null,"操作方式：上 2 下 8 左 4 右 6 开火 5"));
+	    a.append(new StringItem(null,"弹药数：一次最多打三组"));
+		a.addCommand(ok);
+		a.setCommandListener(this);
+	    display.setCurrent(a);
+	}
+	protected void renwuShow()
+	{       System.gc();
+		a=null;	
+		a=new Form("览桥风光V1.0");
+		back=new Command("返回",Command.BACK,1);
+	    a.append(new StringItem(null,"游戏名称：览桥风光"));
+	    a.append(new StringItem(null,"版本号：V1.00"));
+	    a.append(new StringItem(null,"制作者：信息电子技术学院01计算机5班 刘泽华 学号：7"));
+		a.addCommand(ok);
+		a.setCommandListener(this);
+	    display.setCurrent(a);
+	}
+	protected void gameShow()
+	{   try{
+	
+		gamescreen=null;
+		gamescreen=new gameScreen(this);
+		
+		gamescreen.start();
+	
+		display.setCurrent(gamescreen);
+		gamescreen.conti=true;
+	}catch(Exception exp)
+	{
+	System.out.println("dfg");
+	}
+	}
+	
+	public void commandAction(Command arg0, Displayable arg1) {
+		a=null;
+		
+		this.menuscreenShow();
+	}
+
+	
+	
+	
+}

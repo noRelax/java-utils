@@ -1,0 +1,108 @@
+package awokeOperate;
+import java.applet.AudioClip;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.net.*;
+import java.awt.BorderLayout;
+import com.borland.jbcl.layout.XYLayout;
+import com.borland.jbcl.layout.*;
+
+/**
+ * <p>Title: </p>
+ *
+ * <p>Description: </p>
+ *
+ * <p>Copyright: Copyright (c) 2007</p>
+ *
+ * <p>Company: </p>
+ *
+ * @author not attributable
+ * @version 1.0
+ */
+public class SoundPlayer extends JFrame implements Runnable{
+
+    boolean looping = false; //是否循环播放
+    String[] choics = {"chimes.wav", "start.wav"}; //声音文件名数组
+    URL file1 = getClass().getResource(choics[0]); //声音文件1
+
+    URL file2 = getClass().getResource(choics[1]); //声音文件2
+
+    AudioClip sound1 = java.applet.Applet.newAudioClip(file1); //声音剪辑对象1
+    AudioClip sound2 = java.applet.Applet.newAudioClip(file2); //声音剪辑对象2
+    AudioClip chosenClip = sound1; //选择的声音剪辑对象
+
+    JComboBox jComboBox1 = new JComboBox(choics);
+    XYLayout xYLayout1 = new XYLayout();
+    JButton jButton1 = new JButton();
+    JButton jButton2 = new JButton();
+    JButton jButton3 = new JButton();
+
+    public SoundPlayer() {
+        try {
+            jbInit();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    private void jbInit() throws Exception {
+        getContentPane().setLayout(xYLayout1);
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                jButton1_actionPerformed(e);
+            }
+        });
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                jButton2_actionPerformed(e);
+            }
+        });
+        jButton3.setText("jButton3");
+        jButton3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                jButton3_actionPerformed(e);
+            }
+        });
+        xYLayout1.setWidth(400);
+        xYLayout1.setHeight(91);
+        this.getContentPane().add(jComboBox1, new XYConstraints(0, 8, 400, -1));
+        this.getContentPane().add(jButton3, new XYConstraints(296, 44, -1, -1));
+        this.getContentPane().add(jButton2, new XYConstraints(187, 45, -1, -1));
+        this.getContentPane().add(jButton1, new XYConstraints(75, 46, -1, -1));
+    }
+
+
+
+    public void jButton1_actionPerformed(ActionEvent e) {
+        jButton3.setEnabled(true); //设置停止播放按钮可用
+        jButton2.setEnabled(true); //设置循环播放按钮可用
+        chosenClip.play(); //播放选择的声音剪辑对象一次
+    }
+
+    public void jButton2_actionPerformed(ActionEvent e) {
+        looping = true;
+        chosenClip.loop(); //循环播放选择的声音剪辑对象
+        jButton2.setEnabled(false); //设置循环播放按钮不可用
+        jButton1.setEnabled(true); //设置停止播放按钮可用
+    }
+
+    public void jButton3_actionPerformed(ActionEvent e) {
+
+    }
+
+
+    public void run() {
+    }
+
+    public static void main(String[] args) {
+    SoundPlayer soundplayer = new SoundPlayer();
+    soundplayer.setSize(300,200);
+    soundplayer.setLocationRelativeTo(null);
+    soundplayer.setVisible(true);
+}
+
+}
+
